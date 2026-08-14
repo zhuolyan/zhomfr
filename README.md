@@ -3,7 +3,7 @@
 [![Line Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.1.0/.github/badges/badge_linecoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.1.0/.github/badges/Summary.md)
 [![Method Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.1.0/.github/badges/badge_methodcoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.1.0/.github/badges/Summary.md)
 
-<img src="../zhomfr-icon.png" height="300">
+<img src="zhomfr-icon.png" height="300">
 
 ## About
 
@@ -43,8 +43,8 @@ the .NET ecosystem — while remaining a natural extension of the platform rathe
 
 |||
 |:---|:---|
-| Generated on: | 08/14/2026 - 22:51:22 |
-| Coverage date: | 08/14/2026 - 22:51:19 |
+| Generated on: | 08/14/2026 - 23:07:21 |
+| Coverage date: | 08/14/2026 - 23:07:19 |
 | Parser: | Cobertura |
 | Assemblies: | 1 |
 | Classes: | 4 |
