@@ -1,7 +1,3 @@
-{{BADGES}}
-
----
-
 <img src="zhomfr-icon.png" height="300">
 
 ## About
@@ -41,5 +37,7 @@ the .NET ecosystem — while remaining a natural extension of the platform rathe
 ---
 
 ## Coverage
+
+{{BADGES}}
 
 {{COVERAGE_SUMMARY}}
