@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Helpers.ScalarTypes\Helpers.ScalarTypes.csproj" />
+        <ProjectReference Include="..\Helpers.ScalarTypes\Helpers.ScalarTypes.csproj"/>
     </ItemGroup>
 
 </Project>
