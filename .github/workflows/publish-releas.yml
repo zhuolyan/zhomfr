@@ -30,7 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-
+      id-token: write
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -47,10 +48,16 @@ jobs:
 
       - name: Pack NuGet packages
         run: dotnet pack --no-restore --configuration Release
+      
+      - name: NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
 
       - name: Publish NuGet packages
         run: |
           dotnet nuget push "nupkgs/*.nupkg" \
-            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
             --source "https://api.nuget.org/v3/index.json" \
             --skip-duplicate
