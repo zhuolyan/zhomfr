@@ -1,0 +1,47 @@
+<Project>
+    <PropertyGroup>
+        <PackageId>Zhomfr.$(MSBuildProjectName)</PackageId>
+        <RootNamespace>Zhomfr.$(MSBuildProjectName)</RootNamespace>
+        <AssemblyName>Zhomfr.$(MSBuildProjectName)</AssemblyName>
+        <MinVerTagPrefix>v</MinVerTagPrefix>
+        <Authors>zhuolyan (Oleg Zhuravskiy)</Authors>
+        <RepositoryUrl>https://github.com/zhuolyan/zhomfr</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/zhuolyan/zhomfr</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <IncludeSourceRevisionInInformationalVersion>true</IncludeSourceRevisionInInformationalVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Copyright>Copyright © $([System.DateTime]::Now.Year) Oleg Zhuravskiy</Copyright>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageOutputPath>$(MSBuildThisFileDirectory)nupkgs</PackageOutputPath>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Deterministic>true</Deterministic>
+        <DeterministicSourcePaths>true</DeterministicSourcePaths>
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup Condition="!$(MSBuildProjectName.EndsWith('.Tests'))">
+        <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="true" PackagePath="\" Visible="false"/>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.301">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+
+        <PackageReference Include="MinVer" Version="7.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>
