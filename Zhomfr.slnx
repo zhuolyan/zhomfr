@@ -1,1 +1,4 @@
-<Solution/>
+<Solution>
+    <Project Path="Helpers.ScalarTypes.Tests/Helpers.ScalarTypes.Tests.csproj"/>
+    <Project Path="Helpers.ScalarTypes/Helpers.ScalarTypes.csproj"/>
+</Solution>

@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Title>Helpers for scalar types</Title>
+        <Description>Convenient extension methods for common scalar types such as string and decimal.</Description>
+        <PackageTags>zhomfr; extensions; scalar-types; helpers; csharp; dotnet; string; decimal</PackageTags>
+    </PropertyGroup>
+
+</Project>
