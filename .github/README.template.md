@@ -1,6 +1,6 @@
 {{BADGES}}
 
-<img src="../zhomfr-icon.png" height="300">
+<img src="zhomfr-icon.png" height="300">
 
 ## About
 
