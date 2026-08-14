@@ -3,14 +3,15 @@ name: Publish Release
 on:
   push:
     tags:
-      - 'v*'
-    
+      - 'v0.1.0'
+
 jobs:
   release:
+    name: Create GitHub Release
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -25,13 +26,14 @@ jobs:
             --generate-notes \
             --title "${GITHUB_REF_NAME}" \
             || gh release view "${GITHUB_REF_NAME}"
-
+  
   publish:
+    name: Publish NuGet packages
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
-
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -49,7 +51,7 @@ jobs:
       - name: Pack NuGet packages
         run: dotnet pack --no-restore --configuration Release
 
-      - name: NuGet login (OIDC → temp API key)
+      - name: NuGet login (OIDC → temporary API key)
         uses: NuGet/login@v1
         id: login
         with:
@@ -61,3 +63,4 @@ jobs:
             --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
             --source "https://api.nuget.org/v3/index.json" \
             --skip-duplicate
+  
