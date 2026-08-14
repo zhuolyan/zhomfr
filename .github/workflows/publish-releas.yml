@@ -3,9 +3,7 @@ name: Publish Release
 on:
   push:
     tags:
-      - '**'
-
-  workflow_dispatch:
+      - 'v*'
     
 jobs:
   release:
