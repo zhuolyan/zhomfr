@@ -1,0 +1,17 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.DS_Store
+.env
+.env.backup
+.env.production
+/.idea
+/auth.json
+/.vscode
+cover/
+nupkgs/
+# JetBrains Resharper / Rider
+*.DotSettings.user
+_ReSharper*/
