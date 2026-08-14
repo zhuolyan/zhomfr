@@ -71,3 +71,9 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           VERSION: ${{ env.VERSION }}
         run: .github/scripts/create-tag.sh
+
+      - name: Test App token
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh api user --jq '.login'
