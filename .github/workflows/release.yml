@@ -1,14 +1,15 @@
-name: Create Version
+name: Release
 
 on:
   workflow_dispatch:
 
 jobs:
-  create_version:
+  release:
     if: github.ref == 'refs/heads/master' && github.actor == 'zhuolyan'
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -34,9 +35,9 @@ jobs:
       - name: Run tests with coverage
         run: |
           dotnet test --no-build --configuration Release \
-          --settings ./tests.runsettings \
-          --collect:"XPlat Code Coverage" \
-          --results-directory "cover"
+            --settings ./tests.runsettings \
+            --collect:"XPlat Code Coverage" \
+            --results-directory "cover"
 
       - name: Install ReportGenerator tool
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
@@ -72,8 +73,27 @@ jobs:
           VERSION: ${{ env.VERSION }}
         run: .github/scripts/create-tag.sh
 
-      - name: Test App token
+      - name: Create GitHub Release
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          gh api user --jq '.login'
+          gh release create "v${VERSION}" \
+            --generate-notes \
+            --title "v${VERSION}" \
+            || gh release view "v${VERSION}"
+
+      - name: Pack NuGet packages
+        run: dotnet pack --no-restore --configuration Release
+
+      - name: NuGet login (OIDC → temporary API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Publish NuGet packages
+        run: |
+          dotnet nuget push "nupkgs/*.nupkg" \
+            --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
+            --source "https://api.nuget.org/v3/index.json" \
+            --skip-duplicate
