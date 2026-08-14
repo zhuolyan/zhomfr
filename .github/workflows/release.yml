@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/master' && github.actor == 'zhuolyan'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Determine version
+        run: .github/scripts/determine-version.sh
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run tests with coverage
+        run: |
+          dotnet test --no-build --configuration Release \
+            --settings ./tests.runsettings \
+            --collect:"XPlat Code Coverage" \
+            --results-directory "cover"
+
+      - name: Install ReportGenerator tool
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Generate badges and reports
+        run: |
+          reportgenerator \
+            -reports:"cover/**/coverage.cobertura.xml" \
+            -targetdir:"./.github/badges" \
+            -reporttypes:"MarkdownSummary;Badges"
+
+      - name: Generate README
+        env:
+          VERSION: ${{ env.VERSION }}
+        run: python .github/scripts/generate-readme.py
+
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.COVERAGE_BADGES_CLIENT_ID }}
+          private-key: ${{ secrets.COVERAGE_BADGES_PRIVATE_KEY }}
+
+      - name: Commit and push release metadata
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          VERSION: ${{ env.VERSION }}
+        run: .github/scripts/commit-release.sh
+
+      - name: Create tag
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          VERSION: ${{ env.VERSION }}
+        run: .github/scripts/create-tag.sh
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh release create "v${VERSION}" \
+            --generate-notes \
+            --title "v${VERSION}" \
+            || gh release view "v${VERSION}"
+
+      - name: Pack NuGet packages
+        run: dotnet pack --no-restore --configuration Release
+
+      - name: NuGet login (OIDC → temporary API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Publish NuGet packages
+        run: |
+          dotnet nuget push "nupkgs/*.nupkg" \
+            --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
+            --source "https://api.nuget.org/v3/index.json" \
+            --skip-duplicate
