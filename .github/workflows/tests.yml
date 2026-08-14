@@ -1,0 +1,50 @@
+name: .NET Test & Coverage
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+          
+      - name: Restore dependencies
+        run: dotnet restore
+        
+      - name: Build solution
+        run: dotnet build --no-restore --configuration Release
+        
+      - name: Run tests with coverage
+        run: |
+          dotnet test --no-build --configuration Release \
+          --settings ./tests.runsettings \
+          --collect:"XPlat Code Coverage" \
+          --results-directory "cover"
+
+      - name: Install ReportGenerator tool
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+      
+      - name: Generate coverage report
+        run: |
+          reportgenerator \
+            -reports:"cover/**/coverage.cobertura.xml" \
+            -targetdir:"./.github/badges" \
+            -reporttypes:MarkdownSummary \
+            minimumCoverageThresholds:lineCoverage=95 \
+            minimumCoverageThresholds:branchCoverage=80 \
+            minimumCoverageThresholds:methodCoverage=100
+          
+      - name: Add coverage summary to GitHub job
+        run: |
+          if [ -f ./.github/badges/Summary.md ]; then
+            cat ./.github/badges/Summary.md >> $GITHUB_STEP_SUMMARY
+          fi
