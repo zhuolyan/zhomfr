@@ -1,5 +1,3 @@
-{{BADGES}}
-
 <img src="zhomfr-icon.png" height="300">
 
 ## About
@@ -30,10 +28,16 @@ around it, and provide convenient abstractions for common application-developmen
 The result is a framework that aims to bring some of the developer experience and conventions familiar from Laravel into
 the .NET ecosystem — while remaining a natural extension of the platform rather than an attempt to replace it.
 
+---
+
 ## Modules
 
 {{MODULES}}
 
+---
+
 ## Coverage
+
+{{BADGES}}
 
 {{COVERAGE_SUMMARY}}
