@@ -2,8 +2,8 @@
 
 |||
 |:---|:---|
-| Generated on: | 08/14/2026 - 23:57:51 |
-| Coverage date: | 08/14/2026 - 23:57:48 |
+| Generated on: | 08/15/2026 - 00:01:53 |
+| Coverage date: | 08/15/2026 - 00:01:50 |
 | Parser: | Cobertura |
 | Assemblies: | 1 |
 | Classes: | 4 |
