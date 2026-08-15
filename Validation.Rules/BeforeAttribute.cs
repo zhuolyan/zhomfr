@@ -1,0 +1,28 @@
+using System.ComponentModel.DataAnnotations;
+
+using Zhomfr.Validation.Rules.Abstractions;
+
+namespace Zhomfr.Validation.Rules;
+
+/// <summary>The field under validation must be a value preceding the given date.</summary>
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
+public class BeforeAttribute : AbstractRule
+{
+    public BeforeAttribute(string dateTime = "now")
+    {
+    }
+
+    public BeforeAttribute(DateTime dateTime)
+    {
+    }
+
+    public BeforeAttribute(DateTimeOffset dateTime)
+    {
+    }
+
+    /// <inheritdoc/>
+    protected override bool CheckCondition(object value, ValidationContext context)
+    {
+        throw new NotImplementedException();
+    }
+}
