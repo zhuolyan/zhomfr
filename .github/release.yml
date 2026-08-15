@@ -1,0 +1,17 @@
+changelog:
+  categories:
+    - title: "💥 Breaking Changes"
+      labels:
+        - "breaking"
+
+    - title: "🚀 Features"
+      labels:
+        - "feat"
+
+    - title: "🐛 Fixes"
+      labels:
+        - "fix"
+
+    - title: "📦 Other Changes"
+      labels:
+        - "*"
