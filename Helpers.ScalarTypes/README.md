@@ -5,147 +5,504 @@ to simplify everyday data processing and formatting tasks.
 
 ## 📦 Installation
 
-Add the extension files to your project in the appropriate namespaces (`Zhomfr.Helpers.ScalarTypes` and
-`Zhomfr.Helpers.ScalarTypes.Strings`).
+Install package:
+
+```shell
+dotnet add package Zhomfr.Helpers.ScalarTypes
+```
+
+After add namespace in using section:
+
+```csharp
+using Zhomfr.Helpers.ScalarTypes;
+using Zhomfr.Helpers.ScalarTypes.Strings;
+```
+
+---
+
+## Available Methods
+
+### String Methods
+
+<table><tr>
+<td valign="top">
+
+- [After](#after)
+- [AfterLast](#afterlast)
+- [Before](#before)
+- [BeforeLast](#beforelast)
+- [Between](#between)
+- [BetweenFirst](#betweenfirst)
+- [BetweenLast](#betweenlast)
+- [CharAt](#charat)
+- [ChopStart](#chopstart)
+- [ChopEnd](#chopend)
+- [Deduplicate](#deduplicate)
+- [EndWith](#endwith)
+- [Excerpt](#excerpt)
+- [FromBase64](#frombase64)
+
+</td>
+
+<td valign="top">
+
+- [Initials](#initials)
+- [LcFirst](#lcfirst)
+- [Limit](#limit)
+- [Mask](#mask)
+- [PadBoth](#padboth)
+- [Remove](#remove)
+- [RemoveIgnoreCase](#removeignorecase)
+- [Replace](#replace)
+- [ReplaceFirst](#replacefirst)
+- [ReplaceLast](#replacelast)
+- [ReplaceMatches](#replacematches)
+- [Reverse](#reverse)
+- [Squish](#squish)
+- [StartWith](#startwith)
+
+</td>
+
+<td valign="top">
+
+- [SubstringCount](#substringcount)
+- [SubstringReplace](#substringreplace)
+- [Swap](#swap)
+- [ToBase64](#tobase64)
+- [ToCamelCase](#tocamelcase)
+- [ToSnakeCase](#tosnakecase)
+- [ToKebabCase](#tokebabcase)
+- [ToPascalCase](#topascalcase)
+- [UcFirst](#ucfirst)
+- [UcSplit](#ucsplit)
+- [UcWord](#ucword)
+- [WordCount](#wordcount)
+- [GetDigits](#getdigits)
+- [GetDecimal](#getdecimal)
+
+</td>
+
+</tr></table>
+
+### Decimal Methods
+
+<table><tr>
+<td valign="top">
+
+- [GetDigitsBeforeSeparator](#getdigitsbeforeseparator)
+
+</td>
+
+<td valign="top">
+
+- [GetDigits](#getdigits)
+
+</td>
+
+<td valign="top">
+
+- [GetDecimal](#getdecimal)
+
+</td>
+
+</tr></table>
 
 ---
 
 ## 🛠️ Features and Examples
 
-### 1. String Modification (`ModificationExtensions`)
+#### After
 
-This module provides methods for changing case, cleaning, masking, replacing, and formatting strings.
-
-#### `Mask` (Masking Sensitive Data)
-
-Ideal for hiding parts of email addresses, phone numbers, or credit card numbers.
+Returns everything after the given value in a string, or the entire string if the value is not found.
 
 ```csharp
-string phone = "+380991234567";
-string masked = phone.Mask(4, -4, '*'); // Result: "+380********4567"
-
+string value = "one/two/three";
+string result = value.After("/"); // two/three
 ```
 
-#### Case and Identifier Styles (`ToSnakeCase`, `ToCamelCase`, `ToPascalCase`, `ToKebabCase`)
+#### AfterLast
+
+Returns everything after the last occurrence of the given value in a string, or the entire string if the value is not
+found.
 
 ```csharp
-string text = "HelloWorld";
-
-string snake = text.ToSnakeCase();   // "hello_world"
-string kebab = text.ToKebabCase();   // "hello-world"
-string camel = "hello_world".ToCamelCase(); // "helloWorld"
-string pascal = "hello_world".ToPascalCase(); // "HelloWorld"
-
+string value = "one/two/three";
+string result = value.AfterLast("/"); // three
 ```
 
-#### `ChopStart` / `ChopEnd`
+#### Before
 
-Removes specific prefixes or suffixes from a string.
+Returns everything before the given value in a string.
 
 ```csharp
-string filename = "prefix_data_suffix.txt";
-string clean = filename.ChopStart("prefix_").ChopEnd(".txt"); // "data_suffix"
-
+string value = "one/two/three";
+string result = value.Before("/"); // one
 ```
 
-#### `Squish` and `Deduplicate`
+#### BeforeLast
 
-Removes extraneous whitespace (similar to SQL `TRIM` or Laravel's `Str::squish`).
+Returns everything before the last occurrence of the given value in a string.
 
 ```csharp
-string messy = "   Hello    world!   ";
-string clean = messy.Squish(); // "Hello world!"
-
+string value = "one/two/three";
+string result = value.BeforeLast("/"); // one/two
 ```
 
-#### `Excerpt`
+#### Between
 
-Extracts a fragment around a search term with an omission indicator.
+Returns the portion of a string between two specified values.
 
 ```csharp
-string article = "This is a long article text where we search for a keyword for context.";
-string excerpt = article.Excerpt("keyword", radius: 10); 
-// Result: "...text where we search for a keyword for..."
-
+string value = "[hello] [world]";
+string result = value.Between("[", "]"); // hello] [world
 ```
 
----
+#### BetweenFirst
 
-### 2. Substrings (`SubstringsExtensions`)
-
-Methods for searching, trimming, and extracting text fragments.
-
-#### `After` / `Before`
+Returns the smallest possible portion of a string between two specified values.
 
 ```csharp
-string path = "api/v1/users";
-string after = path.After("api/");   // "v1/users"
-string before = path.Before("/users"); // "api/v1"
-
+string value = "[hello] [world]";
+string result = value.BetweenFirst("[", "]"); // hello
 ```
 
-#### `Between`
+#### BetweenLast
 
-Extracts text between two markers.
+Returns the last smallest possible portion of a string between two specified values.
 
 ```csharp
-string html = "<div>Hello, Oleg</div>";
-string name = html.Between("<div>", "</div>"); // "Hello, Oleg"
-
+string value = "[hello] [world]";
+string result = value.BetweenLast("[", "]"); // world
 ```
 
-#### `Limit`
+#### CharAt
 
-Truncates a string to a specified length with optional whole word preservation.
+Returns the character at the specified index, or null if the index is out of bounds.
 
 ```csharp
-string sentence = "This text is way too long to display.";
-string shortText = sentence.Limit(18, "...", preserveWords: true); 
-// Result: "This text ..."
-
+string value = "hello";
+char? result = value.CharAt(1); // e
 ```
 
----
+#### ChopStart
 
-### 3. General String Utilities (`OtherExtensions`)
-
-Useful functions for analysis and counting.
-
-#### `WordCount` and `SubstringCount`
+Removes the first occurrence of any of the specified values from the start of the string.
 
 ```csharp
-string phrase = "Cat eats fish, cat sleeps.";
-int words = phrase.WordCount();          // 5
-int count = phrase.SubstringCount("cat"); // 2 (case-dependent)
+string value = "https://example.com";
 
+string result1 = value.ChopStart("https://"); // example.com
+string result2 = value.ChopStart("https://", "http://"); // example.com
 ```
 
-#### `Initials`
+#### ChopEnd
 
-Generates initials from a full name.
+Removes the first occurrence of any of the specified values from the end of the string.
 
 ```csharp
-string fullName = "Oleg Ivanov";
-string initials = fullName.Initials(); // "OI"
+string value = "example.com/";
 
+string result1 = value.ChopEnd("/"); // example.com
+string result2 = value.ChopEnd("/", "."); // example.com
 ```
 
----
+#### Deduplicate
 
-### 4. Decimal Extensions (`DecimalExtensions`)
-
-Helper methods for working with `decimal` floating-point numbers.
+Replaces consecutive instances of the specified substring with a single instance in the string. By default, deduplicates
+spaces.
 
 ```csharp
-decimal price = 1234.56m;
-
-int intDigits = price.GetDigitsBeforeSeparator(); // 4
-int totalDigits = price.GetDigits();              // 6
-
+string value = "hello   world";
+string result = value.Deduplicate(); // hello world
 ```
 
----
+#### EndWith
 
-## 📄 License
+Ends the string with a single instance of the specified value if it does not already end with it.
 
-This project is licensed under the [MIT](https://github.com/zhuolyan/zhomfr/blob/master/LICENSE) License.
+```csharp
+string value = "example";
+string result = value.EndWith(".com"); // example.com
+```
+
+#### Excerpt
+
+Extracts an excerpt from the string that matches the first instance of the specified phrase.
+
+```csharp
+string value = "The quick brown fox jumps over the lazy dog";
+string result = value.Excerpt("fox", radius: 5); // ...own fox jump...
+```
+
+#### FromBase64
+
+Decodes the given Base64 string, or returns null if the string is not a valid Base64 encoding.
+
+```csharp
+string value = "SGVsbG8=";
+string result = value.FromBase64(); // Hello
+```
+
+#### GetDecimal
+
+Gets the total number of digits before and after the decimal separator.
+
+```csharp
+decimal value = 123.45m;
+int result = value.GetDecimal(); // 2
+```
+
+#### GetDigitsBeforeSeparator
+
+Gets the number of digits in the integer part of the decimal value.
+
+```csharp
+decimal value = 123.45m;
+int result = value.GetDigitsBeforeSeparator(); // 3
+```
+
+#### GetDigits
+
+Gets the total number of digits before and after the decimal separator.
+
+```csharp
+decimal value = 123.45m;
+int result = value.GetDigits(); // 5
+```
+
+#### Initials
+
+Returns the character at the specified index, or null if the index is out of bounds.
+
+```csharp
+string value = "John Ronald Reuel Tolkien";
+string result = value.Initials(); // JRRT
+```
+
+#### LcFirst
+
+Returns the string with its first character converted to lowercase.
+
+```csharp
+string value = "Hello";
+string result = value.LcFirst(); // hello
+```
+
+#### Limit
+
+Truncates the string to the specified length, optionally appending a custom string to the end of the truncated result.
+Can preserve complete words at the nearest word boundary when specified.
+
+```csharp
+string value = "The quick brown fox";
+string result = value.Limit(12); // The quick ...
+```
+
+#### Mask
+
+Masks a portion of a string with a repeated character, which can be used to obfuscate segments of sensitive strings such
+as email addresses and phone numbers.
+
+```csharp
+string value = "john@example.com";
+string result = value.Mask(4, 4); // john*********e.com
+```
+
+#### PadBoth
+
+Pads both sides of a string with another string until the final string reaches the specified length.
+
+```csharp
+string value = "title";
+string result = value.PadBoth(9, "-"); // --title--
+```
+
+#### Remove
+
+Removes the specified values from the string in a case-sensitive manner.
+
+```csharp
+string value = "a-b-c";
+string result = value.Remove("-"); // abc
+```
+
+#### RemoveIgnoreCase
+
+Removes the specified values from the string in a case-insensitive manner.
+
+```csharp
+string value = "Hello HELLO";
+string result = value.RemoveIgnoreCase("hello"); //  
+```
+
+#### Replace
+
+Replaces a given value in the string sequentially using an array of replacement values.
+
+```csharp
+string value = "a-b-c";
+string result = value.Replace("-", ["1", "2"]); // a1b2c
+```
+
+#### ReplaceFirst
+
+Replaces the first occurrence of a specified string with another string, with an option to control case sensitivity.
+
+```csharp
+string value = "foo foo";
+string result = value.ReplaceFirst("foo", "bar"); // bar foo
+```
+
+#### ReplaceLast
+
+Replaces the last occurrence of a specified string with another string, with an option to control case sensitivity.
+
+```csharp
+string value = "foo foo";
+string result = value.ReplaceLast("foo", "bar"); // foo bar
+```
+
+#### ReplaceMatches
+
+Replaces all portions of a string matching a regular expression pattern with the specified replacement string.
+
+```csharp
+string value = "foo123 bar456";
+string result = value.ReplaceMatches(@"\d+", "#"); // foo# bar#
+```
+
+#### Reverse
+
+Replaces all portions of a string matching a regular expression pattern with the specified replacement string.
+
+```csharp
+string value = "hello";
+string result = value.Reverse(); // olleh
+```
+
+#### Squish
+
+Removes all extraneous white space from the string, including extra white space between words.
+
+```csharp
+string value = "  hello   world  ";
+string result = value.Squish(); // hello world
+```
+
+#### StartWith
+
+Removes all extraneous white space from the string, including extra white space between words.
+
+```csharp
+string value = "example.com";
+string result = value.StartWith("https://"); // https://example.com
+```
+
+#### SubstringCount
+
+Returns the number of occurrences of a given value in the string.
+
+```csharp
+string value = "one two one";
+int result = value.SubstringCount("one"); // 2
+```
+
+#### SubstringReplace
+
+Replaces text within a portion of a string, starting at the specified position and replacing the number of characters
+specified by the length. Passing 0 for the length inserts the string without replacing any existing characters.
+
+```csharp
+string value = "hello world";
+string result = value.SubstringReplace("C#", 6, 5); // hello C#
+```
+
+#### Swap
+
+Replaces multiple values in the string.
+
+```csharp
+string value = "hello world";
+string result = value.Swap(new() { ["hello"] = "hi", ["world"] = "there" }); // hi there
+```
+
+#### ToBase64
+
+Converts the given string to its Base64-encoded representation.
+
+```csharp
+string value = "Hello";
+string result = value.ToBase64(); // SGVsbG8=
+```
+
+#### ToCamelCase
+
+Converts the given string to its Base64-encoded representation.
+
+```csharp
+string value = "hello_world";
+string result = value.ToCamelCase(); // helloWorld
+```
+
+#### ToSnakeCase
+
+Converts the given string to snake_case.
+
+```csharp
+string value = "helloWorld";
+string result = value.ToSnakeCase(); // hello_world
+```
+
+#### ToKebabCase
+
+Converts the given string to camelCase.
+
+```csharp
+string value = "hello world";
+string result = value.ToKebabCase(); // hello-world
+```
+
+#### ToPascalCase
+
+Converts the string to kebab-case.
+
+```csharp
+string value = "hello world";
+string result = value.ToPascalCase(); // HelloWorld
+```
+
+#### UcFirst
+
+Capitalizes the first character of the given string.
+
+```csharp
+string value = "hello";
+string result = value.UcFirst(); // Hello
+```
+
+#### UcSplit
+
+Splits the string into a list by uppercase characters.
+
+```csharp
+string value = "HelloWorld";
+List<string> result = value.UcSplit(); // ["Hello", "World"]
+```
+
+#### UcWord
+
+Converts the first character of each word in the given string to uppercase.
+
+```csharp
+string value = "hello world";
+string result = value.UcWord(); // Hello World
+```
+
+#### WordCount
+
+Returns the number of words that the string contains.
+
+```csharp
+string value = "hello world";
+int result = value.WordCount(); // 2
+```
