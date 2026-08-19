@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Title>Abstract validation rules</Title>
+        <Description>Provides an abstract rule class with shared reusable logic.</Description>
+        <PackageTags>zhomfr; validation; scalar-types; csharp; dotnet;</PackageTags>
+    </PropertyGroup>
+
+</Project>
