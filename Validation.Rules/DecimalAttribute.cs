@@ -11,9 +11,8 @@ public class DecimalAttribute : AbstractRule
     public DecimalAttribute(int size)
     {
     }
-    /// <summary>
-    /// The field under validation must be decimal and must have between the specified numbers of decimal places.
-    /// </summary>
+
+    /// <summary>The field under validation must be decimal and must have between the specified numbers of decimal places.</summary>
     public DecimalAttribute(int min, int max)
     {
     }

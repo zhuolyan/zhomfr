@@ -24,7 +24,7 @@ public abstract class AbstractRule : ValidationAttribute
     /// <returns>The formatted error message string.</returns>
     protected virtual string FormatedMessage(string displayName, object value)
     {
-        List<object> arg = value is IEnumerable enumerable ? [displayName, .. this.MessageArgs, .. enumerable] : [displayName, .. this.MessageArgs, value];
+        object?[] arg = value is IEnumerable enumerable ? [displayName, .. this.MessageArgs, .. enumerable] : [displayName, .. this.MessageArgs, value];
 
         return string.Format(CultureInfo.CurrentCulture, this.ErrorMessageString, arg);
     }
@@ -37,7 +37,7 @@ public abstract class AbstractRule : ValidationAttribute
         if (value == null || value is string str && string.IsNullOrWhiteSpace(str)) {
             return ValidationResult.Success;
         }
-        
+
         bool result = this.CheckCondition(value, context);
 
         return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value));

@@ -1,6 +1,7 @@
 <Solution>
-    <Project Path="Helpers.ScalarTypes.Tests/Helpers.ScalarTypes.Tests.csproj" />
-    <Project Path="Helpers.ScalarTypes/Helpers.ScalarTypes.csproj" />
-    <Project Path="Validation.Rules.Abstractions/Validation.Rules.Abstractions.csproj" />
-    <Project Path="Validation.Rules/Validation.Rules.csproj" />
+    <Project Path="Helpers.ScalarTypes.Tests/Helpers.ScalarTypes.Tests.csproj"/>
+    <Project Path="Helpers.ScalarTypes/Helpers.ScalarTypes.csproj"/>
+    <Project Path="Validation.Rules.Abstractions/Validation.Rules.Abstractions.csproj"/>
+    <Project Path="Validation.Rules.Tests/Validation.Rules.Tests.csproj"/>
+    <Project Path="Validation.Rules/Validation.Rules.csproj"/>
 </Solution>
