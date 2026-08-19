@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
+using Zhomfr.Validation.Rules.Abstractions;
 using Zhomfr.Validation.Rules.Tests.Stubs;
 
 namespace Zhomfr.Validation.Rules.Tests.Unit;
@@ -62,6 +63,15 @@ public class ContainsAttributeTests
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must contains: \"test\", \"blah test\"."));
+    }
+
+    [Test]
+    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    {
+        ContainsAttribute attribute         = new(ContainsAttributeTests.NotCorrect);
+        ValidationContext validationContext = new(new());
+
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult("some string", validationContext));
     }
 
     [Test]
