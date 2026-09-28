@@ -23,18 +23,6 @@ public class AfterAttributeTests<T> where T : ISpanParsable<T>
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
-    [Test]
-    public void Should_ReturnSuccess_When_ValueIsCorrectAndValidationValueIsDefault()
-    {
-        AfterAttribute    attribute         = new();
-        ValidationContext validationContext = new(new());
-        T                 value             = T.Parse(DateTime.Now.AddDays(1).ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
-
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
-
-        Assert.That(result, Is.EqualTo(ValidationResult.Success));
-    }
-
     [TestCase("2026-04-13 12:21:00")]
     [TestCase("2026-04-13 12:20:59")]
     public void Should_ReturnValidationError_When_ValueIsNotCorrect(string strValue)
@@ -53,12 +41,13 @@ public class AfterAttributeTests<T> where T : ISpanParsable<T>
     }
 
     [Test]
-    public void Should_ReturnSuccess_When_ValueIsNull()
+    public void Should_ReturnSuccess_When_ValueIsCorrectAndValidationValueIsDefault()
     {
-        AfterAttribute    attribute         = new(AfterAttributeTests<T>.VALUE);
+        AfterAttribute    attribute         = new();
         ValidationContext validationContext = new(new());
+        T                 value             = T.Parse(DateTime.Now.AddDays(1).ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
 
-        ValidationResult? result = attribute.GetValidationResult(null, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -70,5 +59,16 @@ public class AfterAttributeTests<T> where T : ISpanParsable<T>
         ValidationContext validationContext = new(new());
 
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
+    }
+
+    [Test]
+    public void Should_ReturnSuccess_When_ValueIsNull()
+    {
+        AfterAttribute    attribute         = new(AfterAttributeTests<T>.VALUE);
+        ValidationContext validationContext = new(new());
+
+        ValidationResult? result = attribute.GetValidationResult(null, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 }

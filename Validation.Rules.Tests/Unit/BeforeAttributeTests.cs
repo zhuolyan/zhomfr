@@ -23,18 +23,6 @@ public class BeforeAttributeTests<T> where T : ISpanParsable<T>
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
-    [Test]
-    public void Should_ReturnSuccess_When_ValueIsCorrectAndValidationValueIsDefault()
-    {
-        AfterAttribute    attribute         = new();
-        ValidationContext validationContext = new(new());
-        T                 value             = T.Parse(DateTime.Now.AddDays(-1).ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
-
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
-
-        Assert.That(result, Is.EqualTo(ValidationResult.Success));
-    }
-
     [TestCase("2026-04-13 12:21:00")]
     [TestCase("2026-04-13 12:21:01")]
     public void Should_ReturnValidationError_When_ValueIsNotCorrect(string strValue)
@@ -50,6 +38,18 @@ public class BeforeAttributeTests<T> where T : ISpanParsable<T>
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 
         Assert.That(result?.ErrorMessage, Is.EqualTo($"The date in MyProp must be before {BeforeAttributeTests<T>.VALUE}."));
+    }
+
+    [Test]
+    public void Should_ReturnSuccess_When_ValueIsCorrectAndValidationValueIsDefault()
+    {
+        AfterAttribute    attribute         = new();
+        ValidationContext validationContext = new(new());
+        T                 value             = T.Parse(DateTime.Now.AddDays(-1).ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
+
+        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [Test]

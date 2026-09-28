@@ -8,11 +8,14 @@ namespace Zhomfr.Validation.Rules;
 ///     The field under validation must have a size between the given min and max (inclusive). Strings, numerics,
 ///     arrays, and files are evaluated in the same fashion as the size rule.
 /// </summary>
-/// <param name="min"></param>
-/// <param name="max"></param>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
-public class BetweenAttribute(string min, string max) : AbstractRule
+public class BetweenAttribute : AbstractRule
 {
+    public BetweenAttribute(string min, string max)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
