@@ -13,7 +13,7 @@ public static class TestedCollections
 
     public static readonly List<IEnumerable<int>> BetweenNotCorrectEnumerationValues = [TestedCollections.GetEnumerable(1), TestedCollections.GetEnumerable(5)];
 
-    private static IEnumerable<int> GetEnumerable(int count)
+    public static IEnumerable<int> GetEnumerable(int count)
     {
         for (int i = 0; i < count; i++) {
             yield return i;

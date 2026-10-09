@@ -15,7 +15,11 @@ public class GreaterThanAttribute : AbstractRule
     {
     }
 
-    public GreaterThanAttribute(int min)
+    public GreaterThanAttribute(long min)
+    {
+    }
+
+    public GreaterThanAttribute(double min)
     {
     }
 

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 
 using Zhomfr.Validation.Rules.Abstractions;
 
@@ -15,7 +16,10 @@ public class GreaterThanOrEqualAttribute : AbstractRule
     {
     }
 
-    public GreaterThanOrEqualAttribute(int min)
+    public GreaterThanOrEqualAttribute(long min)
+    {
+    }
+    public GreaterThanOrEqualAttribute(double min)
     {
     }
 

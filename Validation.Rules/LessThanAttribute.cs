@@ -15,7 +15,10 @@ public class LessThanAttribute : AbstractRule
     {
     }
 
-    public LessThanAttribute(int max)
+    public LessThanAttribute(long max)
+    {
+    }
+    public LessThanAttribute(double max)
     {
     }
 
