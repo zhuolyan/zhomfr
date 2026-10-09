@@ -66,6 +66,31 @@ public class ContainsAttributeTests
     }
 
     [Test]
+    public void Should_ReturnSuccess_When_ValueIsStringAndCorrect()
+    {
+        ContainsAttribute attribute = new(ContainsAttributeTests.Correct);
+
+        ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
+
+        ValidationResult? result = attribute.GetValidationResult("test value", validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+
+    [Test]
+    public void Should_ReturnValidationError_When_ValueIsStringAndNotCorrect()
+    {
+        ContainsAttribute attribute = new(ContainsAttributeTests.NotCorrect) { ErrorMessage = "The {0} must contains: {1}." };
+
+        ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
+
+        ValidationResult? result = attribute.GetValidationResult("something wrong", validationContext);
+
+        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+        Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must contains: \"test\", \"blah test\"."));
+    }
+
+    [Test]
     public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
     {
         ContainsAttribute attribute         = new(ContainsAttributeTests.NotCorrect);
