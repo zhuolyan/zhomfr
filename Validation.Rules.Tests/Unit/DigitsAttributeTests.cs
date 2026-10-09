@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+using Zhomfr.Validation.Rules.Abstractions;
+
 namespace Zhomfr.Validation.Rules.Tests.Unit;
 
 [TestFixture]
@@ -101,14 +103,11 @@ public class DigitsAttributeTests
     }
 
     [Test]
-    public void Should_ReturnValidationError_When_ValueIsUnhandledType()
+    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
     {
         DigitsAttribute   attribute         = new(2, 4);
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult("string", validationContext);
-
-        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The field Object is invalid."));
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult("something", validationContext));
     }
 }

@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+using Zhomfr.Validation.Rules.Abstractions;
+
 namespace Zhomfr.Validation.Rules.Tests.Unit;
 
 public class DoesntStartWithAttributeTest
@@ -42,13 +44,11 @@ public class DoesntStartWithAttributeTest
     }
 
     [Test]
-    public void Should_ReturnValidationError_When_ValueIsUnhandledType()
+    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
     {
         DoesntStartWithAttribute attribute         = new("start");
         ValidationContext        validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(123, validationContext);
-
-        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(123, validationContext));
     }
 }

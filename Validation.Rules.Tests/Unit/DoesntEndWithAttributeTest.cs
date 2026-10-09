@@ -1,6 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
+using Zhomfr.Validation.Rules.Abstractions;
+
 namespace Zhomfr.Validation.Rules.Tests.Unit;
+
 [TestFixture]
 public class DoesntEndWithAttributeTest
 {
@@ -42,13 +45,11 @@ public class DoesntEndWithAttributeTest
     }
 
     [Test]
-    public void Should_ReturnValidationError_When_ValueIsUnhandledType()
+    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
     {
         DoesntEndWithAttribute attribute         = new("end");
         ValidationContext      validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(123, validationContext);
-
-        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(123, validationContext));
     }
 }
