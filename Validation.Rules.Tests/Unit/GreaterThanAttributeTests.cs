@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
+using Zhomfr.Validation.Rules.Abstractions;
 using Zhomfr.Validation.Rules.Tests.Stubs;
 
 namespace Zhomfr.Validation.Rules.Tests.Unit;
@@ -111,6 +112,26 @@ public class GreaterThanAttributeTests
     }
 
     [TestCase]
+    public void Should_ReturnSuccess_Then_ValueIsCorrectLong()
+    {
+        SizeValidationModel model = new();
+
+        GreaterThanAttribute attributeField = new(nameof(SizeValidationModel.LessThanLongValidatedField));
+        GreaterThanAttribute attributeSize  = new(2);
+
+        ValidationContext validationContextSize  = new(new());
+        ValidationContext validationContextFiled = new(model);
+
+        ValidationResult? resultSize  = attributeSize.GetValidationResult(model.GreaterThanLongValidatedField, validationContextSize);
+        ValidationResult? resultField = attributeField.GetValidationResult(model.LongValidatedField, validationContextFiled);
+
+        using (Assert.EnterMultipleScope()) {
+            Assert.That(resultSize, Is.EqualTo(ValidationResult.Success));
+            Assert.That(resultField, Is.EqualTo(ValidationResult.Success));
+        }
+    }
+
+    [TestCase]
     public void Should_ReturnSuccess_Then_ValueIsCorrectFloat()
     {
         SizeValidationModel model = new();
@@ -184,8 +205,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.CollectionValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.CollectionValidatedField, validationContextSize);
@@ -198,10 +219,14 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToCollectionValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanCollectionValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToCollectionValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanCollectionValidatedField"));
         }
     }
 
@@ -219,8 +244,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.DictionaryValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.DictionaryValidatedField, validationContextSize);
@@ -233,10 +258,14 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToDictionaryValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanDictionaryValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToDictionaryValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanDictionaryValidatedField"));
         }
     }
 
@@ -254,8 +283,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.EnumerableValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.EnumerableValidatedField, validationContextSize);
@@ -268,10 +297,14 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToEnumerableValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanEnumerableValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToEnumerableValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanEnumerableValidatedField"));
         }
     }
 
@@ -289,8 +322,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.StringValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.StringValidatedField, validationContextSize);
@@ -303,10 +336,14 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToStringValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanStringValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToStringValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanStringValidatedField"));
         }
     }
 
@@ -324,8 +361,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.IntValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.IntValidatedField, validationContextSize);
@@ -338,10 +375,51 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToIntValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanIntValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToIntValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanIntValidatedField"));
+        }
+    }
+
+    [TestCase]
+    public void Should_ReturnValidationError_Then_ValueIsNotCorrectLong()
+    {
+        SizeValidationModel model = new();
+
+        GreaterThanAttribute attributeEqualField
+            = new(nameof(SizeValidationModel.EqualToLongValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+
+        GreaterThanAttribute attributeGreaterField
+            = new(nameof(SizeValidationModel.GreaterThanLongValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+
+        GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+
+        ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.LongValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LongValidatedField, validationContextSize);
+        ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.LongValidatedField, validationContextFiled);
+        ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.LongValidatedField, validationContextFiled);
+
+        using (Assert.EnterMultipleScope()) {
+            Assert.That(resultSize1, Is.Not.EqualTo(ValidationResult.Success));
+            Assert.That(resultSize2, Is.Not.EqualTo(ValidationResult.Success));
+            Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
+            Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
+
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToLongValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanLongValidatedField"));
         }
     }
 
@@ -359,8 +437,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.FloatValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.FloatValidatedField, validationContextSize);
@@ -373,10 +451,14 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToFloatValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanFloatValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToFloatValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanFloatValidatedField"));
         }
     }
 
@@ -394,8 +476,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.DoubleValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.DoubleValidatedField, validationContextSize);
@@ -408,10 +490,14 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToDoubleValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanDoubleValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToDoubleValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanDoubleValidatedField"));
         }
     }
 
@@ -429,8 +515,8 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
         GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContextSize  = new(new()) { DisplayName = "MyProp" };
-        ValidationContext validationContextFiled = new(model) { DisplayName = "MyProp" };
+        ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
+        ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.DecimalValidatedField, validationContextSize);
         ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.DecimalValidatedField, validationContextSize);
@@ -443,10 +529,58 @@ public class GreaterThanAttributeTests
             Assert.That(resultEqualField, Is.Not.EqualTo(ValidationResult.Success));
             Assert.That(resultGreaterField, Is.Not.EqualTo(ValidationResult.Success));
 
-            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: 3"));
-            Assert.That(resultEqualField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: EqualToDecimalValidatedField"));
-            Assert.That(resultGreaterField?.ErrorMessage, Is.EqualTo("The MyProp must be greater than: GreaterThanDecimalValidatedField"));
+            Assert.That(resultSize1?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+            Assert.That(resultSize2?.ErrorMessage, Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: 3"));
+
+            Assert.That(resultEqualField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: EqualToDecimalValidatedField"));
+
+            Assert.That(resultGreaterField?.ErrorMessage,
+                        Is.EqualTo($"The {GreaterThanAttributeTests.ERROR_FIELD} must be greater than: GreaterThanDecimalValidatedField"));
         }
+    }
+
+    [Test]
+    public void Should_ReturnSuccess_When_ValueIsNull()
+    {
+        GreaterThanAttribute attribute         = new(2);
+        ValidationContext    validationContext = new(new());
+
+        ValidationResult? result = attribute.GetValidationResult(null, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+
+    [Test]
+    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    {
+        GreaterThanAttribute attribute         = new(2);
+        ValidationContext    validationContext = new(new());
+
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new SizeValidationModel(), validationContext));
+    }
+
+    [TestCase]
+    public void Should_ThrowValuesHasDifferentTypesException_Then_FieldsAreDifferentTypes()
+    {
+        SizeValidationModel model = new();
+
+        GreaterThanAttribute attribute = new(nameof(SizeValidationModel.EqualToDecimalValidatedField));
+
+        ValidationContext validationContext = new(model);
+
+        Assert.Throws<ValuesHasDifferentTypesException>(() => attribute.GetValidationResult(model.FloatValidatedField, validationContext));
+    }
+
+    [TestCase]
+    public void Should_ThrowArgumentException_Then_FieldsAreDifferentTypes()
+    {
+        SizeValidationModel model = new();
+
+        GreaterThanAttribute attribute = new("NotExistsProperty");
+
+        ValidationContext validationContext = new(model);
+
+        Assert.Throws<FiledNotExistsException>(() => attribute.GetValidationResult(model.FloatValidatedField, validationContext));
     }
 }
