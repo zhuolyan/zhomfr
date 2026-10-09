@@ -209,7 +209,7 @@ public class GreaterThanAttributeTests
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.CollectionValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.CollectionValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanCollectionValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.CollectionValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.CollectionValidatedField, validationContextFiled);
 
@@ -248,7 +248,7 @@ public class GreaterThanAttributeTests
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.DictionaryValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.DictionaryValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanDictionaryValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.DictionaryValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.DictionaryValidatedField, validationContextFiled);
 
@@ -287,7 +287,7 @@ public class GreaterThanAttributeTests
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.EnumerableValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.EnumerableValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanEnumerableValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.EnumerableValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.EnumerableValidatedField, validationContextFiled);
 
@@ -319,14 +319,14 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeGreaterField
             = new(nameof(SizeValidationModel.GreaterThanStringValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
-        GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize1 = new(4) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize2 = new(4) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.StringValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.StringValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanStringValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.StringValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.StringValidatedField, validationContextFiled);
 
@@ -358,14 +358,14 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeGreaterField
             = new(nameof(SizeValidationModel.GreaterThanIntValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
-        GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize1 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize2 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.IntValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.IntValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanIntValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.IntValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.IntValidatedField, validationContextFiled);
 
@@ -395,14 +395,14 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeGreaterField
             = new(nameof(SizeValidationModel.GreaterThanLongValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
-        GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize1 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize2 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.LongValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LongValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanLongValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.LongValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.LongValidatedField, validationContextFiled);
 
@@ -434,14 +434,14 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeGreaterField
             = new(nameof(SizeValidationModel.GreaterThanFloatValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
-        GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize1 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize2 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.FloatValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.FloatValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanFloatValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.FloatValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.FloatValidatedField, validationContextFiled);
 
@@ -473,14 +473,14 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeGreaterField
             = new(nameof(SizeValidationModel.GreaterThanDoubleValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
-        GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize1 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize2 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.DoubleValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.DoubleValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanDoubleValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.DoubleValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.DoubleValidatedField, validationContextFiled);
 
@@ -512,14 +512,14 @@ public class GreaterThanAttributeTests
         GreaterThanAttribute attributeGreaterField
             = new(nameof(SizeValidationModel.GreaterThanDecimalValidatedField)) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
-        GreaterThanAttribute attributeSize1 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
-        GreaterThanAttribute attributeSize2 = new(3) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize1 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
+        GreaterThanAttribute attributeSize2 = new(2) { ErrorMessage = GreaterThanAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContextSize  = new(new()) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
         ValidationContext validationContextFiled = new(model) { DisplayName = GreaterThanAttributeTests.ERROR_FIELD };
 
         ValidationResult? resultSize1        = attributeSize1.GetValidationResult(model.DecimalValidatedField, validationContextSize);
-        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.DecimalValidatedField, validationContextSize);
+        ValidationResult? resultSize2        = attributeSize2.GetValidationResult(model.LessThanDecimalValidatedField, validationContextSize);
         ValidationResult? resultEqualField   = attributeEqualField.GetValidationResult(model.DecimalValidatedField, validationContextFiled);
         ValidationResult? resultGreaterField = attributeGreaterField.GetValidationResult(model.DecimalValidatedField, validationContextFiled);
 

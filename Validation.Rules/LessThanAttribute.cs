@@ -18,6 +18,7 @@ public class LessThanAttribute : AbstractRule
     public LessThanAttribute(long max)
     {
     }
+
     public LessThanAttribute(double max)
     {
     }
