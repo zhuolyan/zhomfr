@@ -11,7 +11,7 @@ public class LessThanAttributeTests
     private const string ERROR_MESSAGE = "The {0} must be less than: {1}.";
     private const string ERROR_FIELD   = "MyProperty";
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectCollection()
     {
         SizeValidationModel model = new();
@@ -31,7 +31,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectDictionary()
     {
         SizeValidationModel model = new();
@@ -51,7 +51,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectEnumerable()
     {
         SizeValidationModel model = new();
@@ -71,7 +71,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectString()
     {
         SizeValidationModel model = new();
@@ -91,7 +91,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectInt()
     {
         SizeValidationModel model = new();
@@ -111,7 +111,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectLong()
     {
         SizeValidationModel model = new();
@@ -131,7 +131,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectFloat()
     {
         SizeValidationModel model = new();
@@ -151,7 +151,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectDouble()
     {
         SizeValidationModel model = new();
@@ -171,7 +171,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnSuccess_Then_ValueIsCorrectDecimal()
     {
         SizeValidationModel model = new();
@@ -191,7 +191,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectCollection()
     {
         SizeValidationModel model = new();
@@ -230,7 +230,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectDictionary()
     {
         SizeValidationModel model = new();
@@ -269,7 +269,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectEnumerable()
     {
         SizeValidationModel model = new();
@@ -308,7 +308,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectString()
     {
         SizeValidationModel model = new();
@@ -345,7 +345,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectInt()
     {
         SizeValidationModel model = new();
@@ -380,7 +380,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectLong()
     {
         SizeValidationModel model = new();
@@ -416,7 +416,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectFloat()
     {
         SizeValidationModel model = new();
@@ -453,7 +453,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectDouble()
     {
         SizeValidationModel model = new();
@@ -490,7 +490,7 @@ public class LessThanAttributeTests
         }
     }
 
-    [TestCase]
+    [Test]
     public void Should_ReturnValidationError_Then_ValueIsNotCorrectDecimal()
     {
         SizeValidationModel model = new();
@@ -548,7 +548,7 @@ public class LessThanAttributeTests
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new SizeValidationModel(), validationContext));
     }
 
-    [TestCase]
+    [Test]
     public void Should_ThrowValuesHasDifferentTypesException_Then_FieldsAreDifferentTypes()
     {
         SizeValidationModel model = new();
@@ -560,7 +560,7 @@ public class LessThanAttributeTests
         Assert.Throws<ValuesHasDifferentTypesException>(() => attribute.GetValidationResult(model.FloatValidatedField, validationContext));
     }
 
-    [TestCase]
+    [Test]
     public void Should_ThrowArgumentException_Then_FieldsAreDifferentTypes()
     {
         SizeValidationModel model = new();

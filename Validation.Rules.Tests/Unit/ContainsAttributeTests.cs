@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using Zhomfr.Validation.Rules.Abstractions;
 using Zhomfr.Validation.Rules.Tests.Stubs;
 
+// ReSharper disable CoVariantArrayConversion
+
 namespace Zhomfr.Validation.Rules.Tests.Unit;
 
 [TestFixture]

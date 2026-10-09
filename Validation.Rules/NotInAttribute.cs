@@ -11,7 +11,7 @@ namespace Zhomfr.Validation.Rules;
 /// </summary>
 /// <param name="values"></param>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
-public class NotInAttribute(params string[] values) : AbstractRule
+public class NotInAttribute(params object[] values) : AbstractRule
 {
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)

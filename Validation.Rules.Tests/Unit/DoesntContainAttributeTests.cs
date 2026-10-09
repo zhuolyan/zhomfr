@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using Zhomfr.Validation.Rules.Abstractions;
 using Zhomfr.Validation.Rules.Tests.Stubs;
 
+// ReSharper disable CoVariantArrayConversion
+
 namespace Zhomfr.Validation.Rules.Tests.Unit;
 
 [TestFixture]
@@ -18,7 +20,7 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnSuccess_When_ValueIsDictionaryAndCorrect()
     {
-        ContainsAttribute attribute = new(DoesntContainAttributeTests.Correct);
+        DoesntContainAttribute attribute = new(DoesntContainAttributeTests.Correct);
 
         ValidationContext validationContext = new(new());
 
@@ -30,7 +32,7 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnValidationError_When_ValueIsDictionaryAndNotCorrect()
     {
-        ContainsAttribute attribute = new(DoesntContainAttributeTests.NotCorrect) { ErrorMessage = DoesntContainAttributeTests.ERROR_MESSAGE };
+        DoesntContainAttribute attribute = new(DoesntContainAttributeTests.NotCorrect) { ErrorMessage = DoesntContainAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContext = new(new()) { DisplayName = DoesntContainAttributeTests.DISPLAY_NAME };
 
@@ -43,7 +45,7 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnSuccess_When_ValueIsCollectionAndCorrect()
     {
-        ContainsAttribute attribute = new(DoesntContainAttributeTests.Correct);
+        DoesntContainAttribute attribute = new(DoesntContainAttributeTests.Correct);
 
         ValidationContext validationContext = new(new()) { DisplayName = DoesntContainAttributeTests.DISPLAY_NAME };
 
@@ -55,7 +57,7 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnValidationError_When_ValueIsCollectionAndNotCorrect()
     {
-        ContainsAttribute attribute = new(DoesntContainAttributeTests.NotCorrect) { ErrorMessage = DoesntContainAttributeTests.ERROR_MESSAGE };
+        DoesntContainAttribute attribute = new(DoesntContainAttributeTests.NotCorrect) { ErrorMessage = DoesntContainAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContext = new(new()) { DisplayName = DoesntContainAttributeTests.DISPLAY_NAME };
 
@@ -68,7 +70,7 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnSuccess_When_ValueIsStringAndCorrect()
     {
-        ContainsAttribute attribute = new(DoesntContainAttributeTests.Correct);
+        DoesntContainAttribute attribute = new(DoesntContainAttributeTests.Correct);
 
         ValidationContext validationContext = new(new()) { DisplayName = DoesntContainAttributeTests.DISPLAY_NAME };
 
@@ -80,7 +82,7 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnValidationError_When_ValueIsStringAndNotCorrect()
     {
-        ContainsAttribute attribute = new(DoesntContainAttributeTests.NotCorrect) { ErrorMessage = DoesntContainAttributeTests.ERROR_MESSAGE };
+        DoesntContainAttribute attribute = new(DoesntContainAttributeTests.NotCorrect) { ErrorMessage = DoesntContainAttributeTests.ERROR_MESSAGE };
 
         ValidationContext validationContext = new(new()) { DisplayName = DoesntContainAttributeTests.DISPLAY_NAME };
 
@@ -93,8 +95,8 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
     {
-        ContainsAttribute attribute         = new(DoesntContainAttributeTests.NotCorrect);
-        ValidationContext validationContext = new(new());
+        DoesntContainAttribute attribute         = new(DoesntContainAttributeTests.NotCorrect);
+        ValidationContext      validationContext = new(new());
 
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
     }
@@ -102,8 +104,8 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
-        ContainsAttribute attribute         = new(DoesntContainAttributeTests.NotCorrect);
-        ValidationContext validationContext = new(new());
+        DoesntContainAttribute attribute         = new(DoesntContainAttributeTests.NotCorrect);
+        ValidationContext      validationContext = new(new());
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -113,7 +115,7 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ReturnSuccess_When_ExpectedEmpty()
     {
-        ContainsAttribute attribute = new();
+        DoesntContainAttribute attribute = new();
 
         ValidationContext validationContext = new(new());
 

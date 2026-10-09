@@ -4,6 +4,7 @@ public static class TestedCollections
 {
     public static readonly IEnumerable<string>        NotDistinctEnumeration = TestedCollections.GetNotDistinctEnumeration();
     public static readonly Dictionary<string, string> Dictionary             = new() { { "first", "test" }, { "second", "not" }, { "third", "blah" } };
+    public static readonly Dictionary<string, string> NotDistinctDictionary  = new() { { "first", "test" }, { "second", "test" }, { "third", "blah" } };
     public static readonly string[]                   Collection             = ["test", "not", "blah"];
 
     public static readonly List<List<int>> BetweenCorrectValues    = [[1, 2], [1, 2, 3], [1, 2, 3, 4]];
