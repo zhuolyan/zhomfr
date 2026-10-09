@@ -45,7 +45,7 @@ public class ContainsAttributeTests
     {
         ContainsAttribute attribute = new(ContainsAttributeTests.Correct);
 
-        ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
+        ValidationContext validationContext = new(new()) { DisplayName = ContainsAttributeTests.DISPLAY_NAME };
 
         ValidationResult? result = attribute.GetValidationResult(TestedCollections.Collection, validationContext);
 
@@ -55,14 +55,14 @@ public class ContainsAttributeTests
     [Test]
     public void Should_ReturnValidationError_When_ValueIsCollectionAndNotCorrect()
     {
-        ContainsAttribute attribute = new(ContainsAttributeTests.NotCorrect) { ErrorMessage = "The {0} must contains: {1}." };
+        ContainsAttribute attribute = new(ContainsAttributeTests.NotCorrect) { ErrorMessage = ContainsAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
+        ValidationContext validationContext = new(new()) { DisplayName = ContainsAttributeTests.DISPLAY_NAME };
 
         ValidationResult? result = attribute.GetValidationResult(TestedCollections.Collection, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must contains: \"test\", \"blah test\"."));
+        Assert.That(result?.ErrorMessage, Is.EqualTo(ContainsAttributeTests.EXPECTED_MESSAGE));
     }
 
     [Test]
@@ -70,7 +70,7 @@ public class ContainsAttributeTests
     {
         ContainsAttribute attribute = new(ContainsAttributeTests.Correct);
 
-        ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
+        ValidationContext validationContext = new(new()) { DisplayName = ContainsAttributeTests.DISPLAY_NAME };
 
         ValidationResult? result = attribute.GetValidationResult("test value", validationContext);
 
@@ -80,14 +80,14 @@ public class ContainsAttributeTests
     [Test]
     public void Should_ReturnValidationError_When_ValueIsStringAndNotCorrect()
     {
-        ContainsAttribute attribute = new(ContainsAttributeTests.NotCorrect) { ErrorMessage = "The {0} must contains: {1}." };
+        ContainsAttribute attribute = new(ContainsAttributeTests.NotCorrect) { ErrorMessage = ContainsAttributeTests.ERROR_MESSAGE };
 
-        ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
+        ValidationContext validationContext = new(new()) { DisplayName = ContainsAttributeTests.DISPLAY_NAME };
 
         ValidationResult? result = attribute.GetValidationResult("something wrong", validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must contains: \"test\", \"blah test\"."));
+        Assert.That(result?.ErrorMessage, Is.EqualTo(ContainsAttributeTests.EXPECTED_MESSAGE));
     }
 
     [Test]
@@ -96,7 +96,7 @@ public class ContainsAttributeTests
         ContainsAttribute attribute         = new(ContainsAttributeTests.NotCorrect);
         ValidationContext validationContext = new(new());
 
-        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult("some string", validationContext));
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
     }
 
     [Test]
