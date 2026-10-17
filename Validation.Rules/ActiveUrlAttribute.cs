@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Net;
+using System.Net.Sockets;
 
 using Zhomfr.Validation.Rules.Abstractions;
 
@@ -8,9 +10,24 @@ namespace Zhomfr.Validation.Rules;
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ActiveUrlAttribute : AbstractRule
 {
+    private static readonly List<AddressFamily> _allowedTypes = [AddressFamily.InterNetwork, AddressFamily.InterNetworkV6];
+
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        if (value is not string url) {
+            throw new UnsupportedTypeException();
+        }
+
+        try {
+            Uri    uri  = new(url.Contains("://") ? url : $"http://{url}");
+            string host = uri.Host;
+
+            IPAddress[] addresses = Dns.GetHostAddresses(host);
+
+            return addresses.Any(ip => ActiveUrlAttribute._allowedTypes.Contains(ip.AddressFamily));
+        } catch {
+            return false;
+        }
     }
 }

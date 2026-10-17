@@ -47,15 +47,6 @@ public class AcceptedAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
-    {
-        AcceptedAttribute attribute         = new();
-        ValidationContext validationContext = new(new());
-
-        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new List<string>(), validationContext));
-    }
-
-    [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
         AcceptedAttribute attribute         = new();

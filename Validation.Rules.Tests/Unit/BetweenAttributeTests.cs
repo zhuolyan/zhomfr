@@ -121,7 +121,7 @@ public class BetweenAttributeTests
     [TestCase(BetweenAttributeTests.INT_MAX)]
     public void Should_ReturnSuccess_When_ValueIsShortAndCorrect(string strValue)
     {
-        BetweenAttribute  attribute         = new(BetweenAttributeTests.DATE_MIN, BetweenAttributeTests.DATE_MAX);
+        BetweenAttribute  attribute         = new(BetweenAttributeTests.INT_MIN, BetweenAttributeTests.INT_MAX);
         ValidationContext validationContext = new(new());
         short             value             = short.Parse(strValue, CultureInfo.InvariantCulture);
 
@@ -135,7 +135,7 @@ public class BetweenAttributeTests
     public void Should_ReturnValidationError_When_ValueIsShortAndNotCorrect(string strValue)
     {
         BetweenAttribute attribute
-            = new(BetweenAttributeTests.DATE_MIN, BetweenAttributeTests.DATE_MAX) { ErrorMessage = "The value of {0} must be between {1} and {2}." };
+            = new(BetweenAttributeTests.INT_MIN, BetweenAttributeTests.INT_MAX) { ErrorMessage = "The value of {0} must be between {1} and {2}." };
 
         short value = short.Parse(strValue, CultureInfo.InvariantCulture);
 

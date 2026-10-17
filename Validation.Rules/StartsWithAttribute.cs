@@ -12,6 +12,6 @@ public class StartsWithAttribute(params string[] values) : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        return value is not string str ? throw new UnsupportedTypeException() : values.Any(str.StartsWith);
     }
 }

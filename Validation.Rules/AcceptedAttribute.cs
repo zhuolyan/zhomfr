@@ -14,6 +14,6 @@ public class AcceptedAttribute : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        return value is "yes" or "on" or "1" or "true" or 1 or true;
     }
 }

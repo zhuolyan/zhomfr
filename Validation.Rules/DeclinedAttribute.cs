@@ -11,6 +11,6 @@ public class DeclinedAttribute : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        return value is "no" or "off" or "0" or "false" or 0 or false;
     }
 }

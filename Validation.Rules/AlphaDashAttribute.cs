@@ -14,6 +14,6 @@ public class AlphaDashAttribute : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        return value is not string str ? throw new UnsupportedTypeException() : str.All(c => char.IsLetterOrDigit(c) || c == '-' || c == '_');
     }
 }

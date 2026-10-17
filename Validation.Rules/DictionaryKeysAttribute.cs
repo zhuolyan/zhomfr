@@ -1,3 +1,4 @@
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 using Zhomfr.Validation.Rules.Abstractions;
@@ -9,11 +10,11 @@ namespace Zhomfr.Validation.Rules;
 ///     key must be provided.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
-public class DictionaryKeysAttribute(params string[] keys) : AbstractRule
+public class DictionaryKeysAttribute(params object[] keys) : ContainsAttribute(keys)
 {
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        return value is IDictionary dictionary ? this.IsContains(dictionary.Keys) : throw new UnsupportedTypeException();
     }
 }

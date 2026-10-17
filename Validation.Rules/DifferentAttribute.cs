@@ -12,6 +12,8 @@ public class DifferentAttribute(string anotherFiledName) : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        DifferentAttribute attribute = new(anotherFiledName);
+
+        return attribute.GetValidationResult(value, context) != ValidationResult.Success;
     }
 }

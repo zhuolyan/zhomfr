@@ -37,6 +37,9 @@
         "resolved": "10.0.10",
         "contentHash": "eE839zyWZD/UBZYzP2lu9fhHX6RWe63/jz3Jxf+JumzO/db+Vc2s7CMiDwxk9ti2NTUft2tdRx31Rw2OjKbecA=="
       },
+      "Zhomfr.Helpers.ScalarTypes": {
+        "type": "Project"
+      },
       "Zhomfr.Validation.Rules.Abstractions": {
         "type": "Project"
       }

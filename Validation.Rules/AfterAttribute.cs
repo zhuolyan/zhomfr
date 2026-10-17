@@ -11,6 +11,11 @@ public class AfterAttribute(string dateTime = "now") : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        throw new NotImplementedException();
+        return value switch
+               {
+                   DateTime date       => date > (dateTime == "now" ? DateTime.Now : DateTime.Parse(dateTime)),
+                   DateTimeOffset date => date > (dateTime == "now" ? DateTimeOffset.Now : DateTimeOffset.Parse(dateTime)),
+                   var _               => throw new UnsupportedTypeException(),
+               };
     }
 }
