@@ -58,4 +58,9 @@ public abstract class AbstractRule : ValidationAttribute
 
         return (T?)fieldInfo?.GetValue(context.ObjectInstance);
     }
+
+    protected void AddListAsOneArgumentToMessageArgs(object[] args)
+    {
+        this.MessageArgs.Add(string.Join(", ", args.Select(i => i is string str ? $"\"{str}\"" : i)));
+    }
 }
