@@ -22,7 +22,7 @@ public class DeclinedAttributeTests
     [TestCase("0")]
     [TestCase(0)]
     [TestCase(false)]
-    public void Should_ReturnSuccess_When_TestedValueIsAcceptable(object value)
+    public void Should_ReturnSuccess_When_TestedValueIsDeclinable(object value)
     {
         DeclinedAttribute attribute         = new();
         ValidationContext validationContext = new(new());
@@ -41,9 +41,9 @@ public class DeclinedAttributeTests
     [TestCase(1)]
     [TestCase(2)]
     [TestCase(true)]
-    public void Should_ReturnFailure_When_TestedValueIsNotAcceptable(object value)
+    public void Should_ReturnFailure_When_TestedValueIsNotDeclinable(object value)
     {
-        DeclinedAttribute attribute = new() { ErrorMessage = "The {0} must be accepted." };
+        DeclinedAttribute attribute = new() { ErrorMessage = "The {0} must be declined." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
@@ -51,7 +51,7 @@ public class DeclinedAttributeTests
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
-            Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must be accepted."));
+            Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must be declined."));
         }
     }
 }
