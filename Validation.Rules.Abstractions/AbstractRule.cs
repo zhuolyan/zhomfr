@@ -11,7 +11,7 @@ namespace Zhomfr.Validation.Rules.Abstractions;
 public abstract class AbstractRule : ValidationAttribute
 {
     /// <summary>Arguments for error message.</summary>
-    protected List<IFormattable> MessageArgs { get; } = [];
+    protected List<object> MessageArgs { get; } = [];
 
     /// <summary>Checks the validation condition for the specified value.</summary>
     /// <param name="value">The value to validate.</param>
@@ -44,19 +44,6 @@ public abstract class AbstractRule : ValidationAttribute
         bool result = this.CheckCondition(value, context);
 
         return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value));
-    }
-
-    protected static object? GetAnotherField(string fieldName, ValidationContext context)
-    {
-        PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
-
-        if (propertyInfo is not null) {
-            return propertyInfo.GetValue(context.ObjectInstance);
-        }
-
-        FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
-
-        return fieldInfo?.GetValue(context.ObjectInstance);
     }
 
     protected static T? GetAnotherField<T>(string fieldName, ValidationContext context)
