@@ -1,6 +1,7 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using System.Reflection;
 
 using Zhomfr.Validation.Rules.Abstractions.Errors;
 
@@ -43,5 +44,31 @@ public abstract class AbstractRule : ValidationAttribute
         bool result = this.CheckCondition(value, context);
 
         return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value));
+    }
+
+    protected static object? GetAnotherField(string fieldName, ValidationContext context)
+    {
+        PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
+
+        if (propertyInfo is not null) {
+            return propertyInfo.GetValue(context.ObjectInstance);
+        }
+        
+        FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
+
+        return fieldInfo?.GetValue(context.ObjectInstance);
+    }
+
+    protected static T? GetAnotherField<T>(string fieldName, ValidationContext context)
+    {
+        PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
+
+        if (propertyInfo is not null) {
+            return (T?)propertyInfo.GetValue(context.ObjectInstance);
+        }
+        
+        FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
+
+        return (T?)fieldInfo?.GetValue(context.ObjectInstance);
     }
 }

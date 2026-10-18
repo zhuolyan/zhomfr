@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Zhomfr.Validation.Rules.Tests.Unit.AcceptedAttributeTests;
+namespace Zhomfr.Validation.Rules.Tests.Unit.Accepted;
+
 [TestFixture]
-public class DefaultTests
+public class AcceptedAttributeTests
 {
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
@@ -14,7 +15,7 @@ public class DefaultTests
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
-    
+
     [TestCase("yes")]
     [TestCase("on")]
     [TestCase("true")]

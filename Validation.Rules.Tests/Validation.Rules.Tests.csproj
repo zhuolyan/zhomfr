@@ -21,11 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Stubs\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Validation.Rules\Validation.Rules.csproj" />
+        <ProjectReference Include="..\Validation.Rules\Validation.Rules.csproj"/>
     </ItemGroup>
 
 </Project>
