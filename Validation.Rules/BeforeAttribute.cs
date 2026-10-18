@@ -13,7 +13,7 @@ public class BeforeAttribute : AbstractRule
 
     /// <summary>The field under validation must be a value preceding the given date.</summary>
     /// <param name="maxDate">The minimum datetime. Defaults to the current datetime.</param>
-    public BeforeAttribute(string maxDate = AfterAttribute.DEFAULT)
+    public BeforeAttribute(string maxDate = BeforeAttribute.DEFAULT)
     {
         this._maxDate = maxDate;
         this.MessageArgs.Add(maxDate);
@@ -24,8 +24,8 @@ public class BeforeAttribute : AbstractRule
     {
         return value switch
                {
-                   DateTime date       => this._maxDate == AfterAttribute.DEFAULT ? date < DateTime.Now : date       < DateTime.Parse(this._maxDate),
-                   DateTimeOffset date => this._maxDate == AfterAttribute.DEFAULT ? date < DateTimeOffset.Now : date < DateTimeOffset.Parse(this._maxDate),
+                   DateTime date       => this._maxDate == BeforeAttribute.DEFAULT ? date < DateTime.Now : date       < DateTime.Parse(this._maxDate),
+                   DateTimeOffset date => this._maxDate == BeforeAttribute.DEFAULT ? date < DateTimeOffset.Now : date < DateTimeOffset.Parse(this._maxDate),
                    var _               => throw new UnsupportedTypeException(value.GetType()),
                };
     }
