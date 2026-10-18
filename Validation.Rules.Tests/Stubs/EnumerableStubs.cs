@@ -2,6 +2,8 @@
 
 public static class EnumerableStubs
 {
+    public static IEnumerable<string> ContainsEnumeration = ["test", "not", "blah"];
+
     public static readonly List<object> Between =
     [
         EnumerableStubs.GetEnumerable(3).ToList(),

@@ -36,7 +36,7 @@ public class DictionaryKeysAttributeTests
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
-        DictionaryKeysAttribute attribute         = new();
+        DictionaryKeysAttribute attribute         = new("first", "test");
         ValidationContext       validationContext = new(new());
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
@@ -51,5 +51,14 @@ public class DictionaryKeysAttributeTests
         ValidationContext       validationContext = new(new());
 
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
+    }
+
+    [Test]
+    public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
+    {
+        DictionaryKeysAttribute attribute         = new();
+        ValidationContext       validationContext = new(new());
+
+        Assert.Throws<ArgumentException>(() => attribute.GetValidationResult(DictionaryStubs.Default, validationContext));
     }
 }
