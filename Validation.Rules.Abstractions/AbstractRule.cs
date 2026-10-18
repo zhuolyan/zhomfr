@@ -43,9 +43,7 @@ public abstract class AbstractRule : ValidationAttribute
 
         bool result = this.CheckCondition(value, context);
 
-        object a = value;
-
-        return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, a));
+        return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value));
     }
 
     protected static T? GetAnotherField<T>(string fieldName, ValidationContext context)
@@ -58,7 +56,11 @@ public abstract class AbstractRule : ValidationAttribute
 
         FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
 
-        return (T?)fieldInfo?.GetValue(context.ObjectInstance);
+        if (fieldInfo is not null) {
+            return (T?)fieldInfo.GetValue(context.ObjectInstance);
+        }
+
+        throw new MissingFieldException($"The filed {fieldName} not present in validated object.");
     }
 
     protected void AddListAsOneArgumentToMessageArgs(object[] args)

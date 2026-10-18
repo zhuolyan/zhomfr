@@ -26,13 +26,29 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
 
         ValidationContext validationContext = new(new ModelWithAnotherField<T>
         {
-            Field        = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
         });
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+
+    [Test]
+    public void Should_Throw_When_FieldNotExists()
+    {
+        AcceptedIfAttribute<T> attribute = new("wrongField", anotherFieldValue);
+
+        ValidationContext validationContext = new(new ModelWithAnotherField<T>
+        {
+            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+        });
+
+        Assert.Throws<MissingFieldException>(() => attribute.GetValidationResult("something", validationContext));
     }
 
     [TestCase("yes")]
@@ -52,12 +68,13 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [TestCase(false)]
     public void Should_ReturnSuccess_When_AnotherFieldValueIsNotExpected(object value)
     {
-        AcceptedIfAttribute<T> attribute = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue);
+        AcceptedIfAttribute<T> attribute = new(nameof(ModelWithAnotherField<>.AnotherField2), anotherFieldValue);
 
         ValidationContext validationContext = new(new ModelWithAnotherField<T>
         {
-            Field        = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture),
+            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField  = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture),
+            AnotherField2 = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture),
         });
 
         ValidationResult? result = attribute.GetValidationResult(value, validationContext);
@@ -77,8 +94,9 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
 
         ValidationContext validationContext = new(new ModelWithAnotherField<T>
         {
-            Field        = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
         });
 
         ValidationResult? result = attribute.GetValidationResult(value, validationContext);
@@ -101,8 +119,9 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
 
         ValidationContext validationContext = new(new ModelWithAnotherField<T>
         {
-            Field        = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
+            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
         }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(value, validationContext);

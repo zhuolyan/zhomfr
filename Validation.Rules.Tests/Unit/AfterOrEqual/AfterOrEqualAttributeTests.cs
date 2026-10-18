@@ -59,4 +59,16 @@ public class AfterOrEqualAttributeTests<T> where T : ISpanParsable<T>
 
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
     }
+
+    [Test]
+    public void Should_ReturnSuccess_When_ValueIsCorrectAndValidationValueIsDefault()
+    {
+        AfterOrEqualAttribute attribute         = new();
+        ValidationContext     validationContext = new(new());
+        T                     value             = T.Parse(DateTime.Now.AddDays(1).ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
+
+        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
 }
