@@ -6,13 +6,13 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
-/// <summary>The field under validation must be a collection that contains all the given parameter values.</summary>
-/// <param name="items"></param>
+
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ContainsAttribute : AbstractRule
 {
     private readonly HashSet<object> _requiredItems;
-
+    /// <summary>The field under validation must be a collection that contains all the given parameter values.</summary>
+    /// <param name="items">The sought-after values.</param>
     public ContainsAttribute(params object[] items)
     {
         this._requiredItems = [.. items];
