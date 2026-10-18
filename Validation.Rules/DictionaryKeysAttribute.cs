@@ -6,9 +6,10 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>
-///     The field under validation must be a IDictionary whose keys are all included in the given list. At least one
+///     The field under validation must be a Dictionary whose keys are all included in the given list. At least one
 ///     key must be provided.
 /// </summary>
+/// <param name="keys">The seek values.</param>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class DictionaryKeysAttribute(params object[] keys) : ContainsAttribute(keys)
 {

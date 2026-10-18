@@ -11,8 +11,8 @@ public class ContainsAttribute : AbstractRule
 {
     private readonly HashSet<object> _requiredItems;
 
-    /// <summary>The field under validation must be a collection that contains all the given parameter values.</summary>
-    /// <param name="items">The sought-after values.</param>
+    /// <summary>The field under validation must be a collection or string that contains all the given parameter values.</summary>
+    /// <param name="items">The seek values.</param>
     public ContainsAttribute(params object[] items)
     {
         this._requiredItems = [.. items];
