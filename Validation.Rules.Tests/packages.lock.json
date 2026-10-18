@@ -111,9 +111,13 @@
         "resolved": "13.0.3",
         "contentHash": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ=="
       },
+      "Zhomfr.Helpers.ScalarTypes": {
+        "type": "Project"
+      },
       "Zhomfr.Validation.Rules": {
         "type": "Project",
         "dependencies": {
+          "Zhomfr.Helpers.ScalarTypes": "[1.0.0, )",
           "Zhomfr.Validation.Rules.Abstractions": "[1.0.0, )"
         }
       },

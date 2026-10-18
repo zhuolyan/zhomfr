@@ -43,7 +43,9 @@ public abstract class AbstractRule : ValidationAttribute
 
         bool result = this.CheckCondition(value, context);
 
-        return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value));
+        object a = value;
+
+        return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, a));
     }
 
     protected static T? GetAnotherField<T>(string fieldName, ValidationContext context)

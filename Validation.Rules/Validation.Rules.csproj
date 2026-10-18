@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Helpers.ScalarTypes\Helpers.ScalarTypes.csproj"/>
         <ProjectReference Include="..\Validation.Rules.Abstractions\Validation.Rules.Abstractions.csproj"/>
     </ItemGroup>
 
