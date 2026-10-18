@@ -53,7 +53,7 @@ public abstract class AbstractRule : ValidationAttribute
         if (propertyInfo is not null) {
             return propertyInfo.GetValue(context.ObjectInstance);
         }
-        
+
         FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
 
         return fieldInfo?.GetValue(context.ObjectInstance);
@@ -66,7 +66,7 @@ public abstract class AbstractRule : ValidationAttribute
         if (propertyInfo is not null) {
             return (T?)propertyInfo.GetValue(context.ObjectInstance);
         }
-        
+
         FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
 
         return (T?)fieldInfo?.GetValue(context.ObjectInstance);
