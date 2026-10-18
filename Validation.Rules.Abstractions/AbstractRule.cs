@@ -63,6 +63,34 @@ public abstract class AbstractRule : ValidationAttribute
         throw new MissingFieldException($"The filed {fieldName} not present in validated object.");
     }
 
+    protected string? GetDisplayNameForProperty(string fieldName, ValidationContext context)
+    {
+        PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
+
+        if (propertyInfo is not null) {
+            return this.GetDisplayNameForProperty(propertyInfo);
+        }
+
+        FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
+
+        return fieldInfo is not null
+                   ? this.GetDisplayNameForProperty(fieldInfo)
+                   : throw new MissingFieldException($"The filed {fieldName} not present in validated object.");
+    }
+
+    private string? GetDisplayNameForProperty(MemberInfo property)
+    {
+        IEnumerable<Attribute> attributes = CustomAttributeExtensions.GetCustomAttributes(property, true);
+
+        foreach (Attribute attribute in attributes) {
+            if (attribute is DisplayAttribute display) {
+                return display.GetName();
+            }
+        }
+
+        return property.Name;
+    }
+
     protected void AddListAsOneArgumentToMessageArgs(object[] args)
     {
         this.MessageArgs.Add(string.Join(", ", args.Select(i => i is string str ? $"\"{str}\"" : i)));

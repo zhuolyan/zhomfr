@@ -22,14 +22,11 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
-        AcceptedIfAttribute<T> attribute = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue);
+        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
+        AcceptedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue);
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T>
-        {
-            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-        });
+        ValidationContext validationContext
+            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -39,14 +36,11 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [Test]
     public void Should_Throw_When_FieldNotExists()
     {
-        AcceptedIfAttribute<T> attribute = new("wrongField", anotherFieldValue);
+        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
+        AcceptedIfAttribute<T> attribute    = new("wrongField", anotherFieldValue);
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T>
-        {
-            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-        });
+        ValidationContext validationContext
+            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         Assert.Throws<MissingFieldException>(() => attribute.GetValidationResult("something", validationContext));
     }
@@ -68,13 +62,14 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [TestCase(false)]
     public void Should_ReturnSuccess_When_AnotherFieldValueIsNotExpected(object value)
     {
-        AcceptedIfAttribute<T> attribute = new(nameof(ModelWithAnotherField<>.AnotherField2), anotherFieldValue);
+        T                      anotherValue = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture);
+        AcceptedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField2), anotherFieldValue);
 
         ValidationContext validationContext = new(new ModelWithAnotherField<T>
         {
             Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField  = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture),
-            AnotherField2 = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture),
+            AnotherField  = anotherValue,
+            AnotherField2 = anotherValue,
         });
 
         ValidationResult? result = attribute.GetValidationResult(value, validationContext);
@@ -90,14 +85,11 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [TestCase(true)]
     public void Should_ReturnSuccess_When_TestedValueIsAcceptable(object value)
     {
-        AcceptedIfAttribute<T> attribute = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue);
+        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
+        AcceptedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue);
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T>
-        {
-            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-        });
+        ValidationContext validationContext
+            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         ValidationResult? result = attribute.GetValidationResult(value, validationContext);
 
@@ -115,14 +107,11 @@ public class AcceptedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [TestCase(false)]
     public void Should_ReturnFailure_When_TestedValueIsNotAcceptable(object value)
     {
-        AcceptedIfAttribute<T> attribute = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue) { ErrorMessage = "The {0} must be accepted." };
+        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
+        AcceptedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue) { ErrorMessage = "The {0} must be accepted." };
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T>
-        {
-            Field         = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField  = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-            AnotherField2 = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture),
-        }) { DisplayName = "MyProp" };
+        ValidationContext validationContext
+            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(value, validationContext);
 
