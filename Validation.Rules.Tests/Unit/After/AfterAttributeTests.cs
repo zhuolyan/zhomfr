@@ -52,6 +52,18 @@ public class AfterAttributeTests<T> where T : ISpanParsable<T>
     }
 
     [Test]
+    public void Should_ReturnSuccess_When_ValueIsCorrectAndValidationValueIsDefault()
+    {
+        AfterAttribute    attribute         = new();
+        ValidationContext validationContext = new(new());
+        T                 value             = T.Parse(DateTime.Now.AddDays(1).ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
+
+        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+
+    [Test]
     public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
     {
         AfterAttribute    attribute         = new();
