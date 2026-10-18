@@ -5,6 +5,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class AfterAttribute : AbstractRule
 {
     public const     string DEFAULT = "now";
