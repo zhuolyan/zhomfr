@@ -11,13 +11,11 @@ public class InAttribute : AbstractRule
 {
     private readonly List<string> _values;
 
-    /// <summary>
-    ///     The field under validation must be included in the given list of values.
-    ///     <remarks>
-    ///         For floating-point types (float, double), a tolerance epsilon of 0.000001 is used due to internal
-    ///         precision limitations that can cause rounding errors.
-    ///     </remarks>
-    /// </summary>
+    /// <summary>The field under validation must be included in the given list of values.</summary>
+    /// <remarks>
+    ///     For floating-point types (float, double), a tolerance epsilon of 0.000001 is used due to internal precision
+    ///     limitations that can cause rounding errors.
+    /// </remarks>
     /// <param name="items">Expected values.</param>
     public InAttribute(params string[] items)
     {
@@ -26,6 +24,7 @@ public class InAttribute : AbstractRule
         }
 
         this._values = [.. items];
+
         this.AddListAsOneArgumentToMessageArgs([.. items]);
     }
 
