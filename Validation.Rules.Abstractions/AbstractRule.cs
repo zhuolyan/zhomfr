@@ -80,17 +80,17 @@ public abstract class AbstractRule : ValidationAttribute
         PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
 
         if (propertyInfo is not null) {
-            return this.GetDisplayNameForProperty(propertyInfo);
+            return AbstractRule.GetDisplayNameForProperty(propertyInfo);
         }
 
         FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
 
         return fieldInfo != null
-                   ? this.GetDisplayNameForProperty(fieldInfo)
+                   ? AbstractRule.GetDisplayNameForProperty(fieldInfo)
                    : throw new MissingFieldException($"The filed {fieldName} not present in validated object.");
     }
 
-    private string? GetDisplayNameForProperty(MemberInfo property)
+    private static string? GetDisplayNameForProperty(MemberInfo property)
     {
         IEnumerable<Attribute> attributes = CustomAttributeExtensions.GetCustomAttributes(property, true);
 
