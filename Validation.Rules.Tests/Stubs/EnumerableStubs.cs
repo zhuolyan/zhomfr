@@ -2,7 +2,7 @@
 
 public static class EnumerableStubs
 {
-    public static IEnumerable<string> ContainsEnumeration = ["test", "not", "blah"];
+    public static readonly IEnumerable<string> ContainsEnumeration = ["test", "not", "blah"];
 
     public static readonly List<object> Between =
     [
@@ -16,6 +16,13 @@ public static class EnumerableStubs
     {
         for (int i = 0; i < count; i++) {
             yield return i;
+        }
+    }
+
+    public static IEnumerable<string> GetNotDistinctEnumerable(int count)
+    {
+        for (int i = 0; i < count; i++) {
+            yield return "test";
         }
     }
 }
