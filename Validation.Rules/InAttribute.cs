@@ -6,6 +6,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class InAttribute : AbstractRule
 {
     private readonly List<string> _values;
@@ -31,7 +32,8 @@ public class InAttribute : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        object test  = value;
+        object test = value;
+
         return test switch
                {
                    string str          => this._values.Any(s => s                                                                                    == str),

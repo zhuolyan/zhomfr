@@ -7,6 +7,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>Under validation must not have any duplicate values:</summary>
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class DistinctAttribute : AbstractRule
 {
     /// <inheritdoc/>
