@@ -6,7 +6,7 @@ using Zhomfr.Validation.Rules.Tests.Stubs;
 namespace Zhomfr.Validation.Rules.Tests.Unit.Between;
 
 [TestFixture]
-public class DefaultTests
+public class DefaultBetweenTests
 {
     [Test]
     public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()

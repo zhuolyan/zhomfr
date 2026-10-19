@@ -46,6 +46,18 @@ public abstract class AbstractRule : ValidationAttribute
         return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value));
     }
 
+    protected static void ThrowIfFieldsHasDifferentTypes(object value, object anotherValue)
+    {
+        if (value.GetType() != anotherValue.GetType()) {
+            throw new ValuesHasDifferentTypesException();
+        }
+    }
+
+    protected static bool CheckIfFieldExists(string fieldName, ValidationContext context)
+    {
+        return context.ObjectType.GetProperty(fieldName) is not null || context.ObjectType.GetField(fieldName) is not null;
+    }
+
     protected static T? GetAnotherField<T>(string fieldName, ValidationContext context)
     {
         PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
