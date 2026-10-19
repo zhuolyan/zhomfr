@@ -49,11 +49,11 @@ public class StringGreaterThanAttributeTests
     [TestCase("tes")]
     public void Should_ReturnValidationError_When_IsIncorrectField(string value)
     {
-        string               fieldVal  = "test";
+        const string         FIELD_VAL = "test";
         GreaterThanAttribute attribute = new(nameof(ModelWithAnotherField<>.AnotherField2)) { ErrorMessage = "The field {0} must be greater than {1}." };
 
         ValidationContext validationContext
-            = new(new ModelWithAnotherField<string> { AnotherField = fieldVal, AnotherField2 = fieldVal }) { DisplayName = "MyProp" };
+            = new(new ModelWithAnotherField<string> { AnotherField = FIELD_VAL, AnotherField2 = FIELD_VAL }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(value, validationContext);
 
