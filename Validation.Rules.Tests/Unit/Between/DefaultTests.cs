@@ -14,9 +14,8 @@ public class DefaultTests
         BetweenAttribute  attribute         = new("3", "5");
         ValidationContext validationContext = new(new());
 
-        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(
-                                                    new ModelWithAnotherField<int> { Field = 32, AnotherField = 32, AnotherField2 = 32 },
-                                                    validationContext));
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new ModelWithAnotherField<int> { AnotherField = 32, AnotherField2 = 32 },
+                                                                                    validationContext));
     }
 
     [Test]

@@ -33,10 +33,10 @@ public class DoesntContainAttributeTests
     [Test]
     public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
     {
-        DoesntContainAttribute attribute         = new();
-        ValidationContext      validationContext = new(new());
-
-        Assert.Throws<ArgumentException>(() => attribute.GetValidationResult(DictionaryStubs.Default, validationContext));
+        Assert.Throws<ArgumentException>(() =>
+        {
+            DoesntContainAttribute containsAttribute = new();
+        });
     }
 
     [TestCaseSource(typeof(DoesntContainAttributeTests), nameof(DoesntContainAttributeTests.TestCases))]

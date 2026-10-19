@@ -56,9 +56,9 @@ public class DictionaryKeysAttributeTests
     [Test]
     public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
     {
-        DictionaryKeysAttribute attribute         = new();
-        ValidationContext       validationContext = new(new());
-
-        Assert.Throws<ArgumentException>(() => attribute.GetValidationResult(DictionaryStubs.Default, validationContext));
+        Assert.Throws<ArgumentException>(() =>
+        {
+            DictionaryKeysAttribute containsAttribute = new();
+        });
     }
 }

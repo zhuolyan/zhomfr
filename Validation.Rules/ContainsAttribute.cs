@@ -13,8 +13,13 @@ public class ContainsAttribute : AbstractRule
 
     /// <summary>The field under validation must be a collection or string that contains all the given parameter values.</summary>
     /// <param name="items">The seek values.</param>
+    /// <exception cref="ArgumentException">If items is empty.</exception>
     public ContainsAttribute(params object[] items)
     {
+        if (items.Length == 0) {
+            throw new ArgumentException($"{nameof(items)} is empty");
+        }
+
         this._requiredItems = [.. items];
         this.AddListAsOneArgumentToMessageArgs(items);
     }
@@ -33,10 +38,6 @@ public class ContainsAttribute : AbstractRule
 
     protected bool IsContains(IEnumerable value)
     {
-        if (this._requiredItems.Count == 0) {
-            throw new ArgumentException($"{nameof(this._requiredItems)} is empty");
-        }
-
         foreach (object? element in value) {
             this._requiredItems.Remove(element!);
 

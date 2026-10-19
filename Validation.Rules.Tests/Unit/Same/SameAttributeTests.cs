@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
+using Zhomfr.Validation.Rules.Abstractions.Errors;
 using Zhomfr.Validation.Rules.Tests.Stubs;
 
 namespace Zhomfr.Validation.Rules.Tests.Unit.Same;
@@ -25,8 +26,7 @@ public class SameAttributeTests<T>(string anotherFieldValue) where T : IEquatabl
         T             anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
         SameAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField));
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -39,10 +39,20 @@ public class SameAttributeTests<T>(string anotherFieldValue) where T : IEquatabl
         T             anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
         SameAttribute attribute    = new("wrongField");
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         Assert.Throws<MissingFieldException>(() => attribute.GetValidationResult("something", validationContext));
+    }
+
+    [Test]
+    public void Should_Throw_When_FieldsIsDifferentTypes()
+    {
+        T             anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
+        SameAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField));
+
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
+
+        Assert.Throws<ValuesHasDifferentTypesException>(() => attribute.GetValidationResult(new(), validationContext));
     }
 
     [Test]
@@ -53,7 +63,7 @@ public class SameAttributeTests<T>(string anotherFieldValue) where T : IEquatabl
         SameAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField)) { ErrorMessage = "The {0} and {1} must be same." };
 
         ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue }) { DisplayName = "MyProp" };
+            = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(different, validationContext);
 
@@ -69,8 +79,7 @@ public class SameAttributeTests<T>(string anotherFieldValue) where T : IEquatabl
         T             anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
         SameAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField));
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         ValidationResult? result = attribute.GetValidationResult(anotherValue, validationContext);
 

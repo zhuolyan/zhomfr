@@ -73,7 +73,7 @@ public abstract class AbstractRule : ValidationAttribute
 
         FieldInfo? fieldInfo = context.ObjectType.GetField(fieldName);
 
-        return fieldInfo is not null
+        return fieldInfo != null
                    ? this.GetDisplayNameForProperty(fieldInfo)
                    : throw new MissingFieldException($"The filed {fieldName} not present in validated object.");
     }

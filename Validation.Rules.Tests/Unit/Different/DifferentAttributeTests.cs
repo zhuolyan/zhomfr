@@ -23,10 +23,9 @@ public class DifferentAttributeTests<T>(string anotherFieldValue) where T : IEqu
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
         T                  anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
-        DifferentAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField));
+        DifferentAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField2));
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -39,8 +38,7 @@ public class DifferentAttributeTests<T>(string anotherFieldValue) where T : IEqu
         T                  anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
         DifferentAttribute attribute    = new("wrongField");
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         Assert.Throws<MissingFieldException>(() => attribute.GetValidationResult("something", validationContext));
     }
@@ -49,16 +47,16 @@ public class DifferentAttributeTests<T>(string anotherFieldValue) where T : IEqu
     public void Should_ReturnValidationError_When_ValuesIsSame()
     {
         T                  anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
-        DifferentAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField)) { ErrorMessage = "The {0} and {1} must be different." };
+        DifferentAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField2)) { ErrorMessage = "The {0} and {1} must be different." };
 
         ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue }) { DisplayName = "MyProp" };
+            = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(anotherValue, validationContext);
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
-            Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp and SomeField must be different."));
+            Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp and AnotherField2 must be different."));
         }
     }
 
@@ -67,10 +65,9 @@ public class DifferentAttributeTests<T>(string anotherFieldValue) where T : IEqu
     {
         T                  anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
         T                  different    = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture);
-        DifferentAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField));
+        DifferentAttribute attribute    = new(nameof(ModelWithAnotherField<>.AnotherField2));
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { Field = anotherValue, AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
 
         ValidationResult? result = attribute.GetValidationResult(different, validationContext);
 

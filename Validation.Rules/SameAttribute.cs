@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 using Zhomfr.Validation.Rules.Abstractions;
+using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
@@ -22,6 +23,10 @@ public class SameAttribute : AbstractRule
     protected override bool CheckCondition(object value, ValidationContext context)
     {
         object? anotherValue = AbstractRule.GetAnotherField<object>(this._propertyName, context);
+
+        if (anotherValue != null && value.GetType() != anotherValue.GetType()) {
+            throw new ValuesHasDifferentTypesException();
+        }
 
         if (!this._cached) {
             this.MessageArgs.Add(this.GetDisplayNameForProperty(this._propertyName, context) ?? this._propertyName);
