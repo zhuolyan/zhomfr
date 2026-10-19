@@ -38,7 +38,7 @@ public class DoesntStartWithAttributeTests
 
     [TestCase("Start End")]
     [TestCase(" start end ")]
-    [TestCase("enything")]
+    [TestCase("anything")]
     public void Should_ReturnSuccess_When_ValueIsCorrect(string value)
     {
         DoesntStartWithAttribute attribute         = new("start");
