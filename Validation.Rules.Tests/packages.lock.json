@@ -40,6 +40,11 @@
           "Microsoft.Testing.Platform.MSBuild": "1.5.3"
         }
       },
+      "DnsClient": {
+        "type": "Transitive",
+        "resolved": "1.8.0",
+        "contentHash": "RRwtaCXkXWsx0mmsReGDqCbRLtItfUbkRJlet1FpdciVhyMGKcPd57T1+8Jki9ojHlq9fntVhXQroOOgRak8DQ=="
+      },
       "Microsoft.ApplicationInsights": {
         "type": "Transitive",
         "resolved": "2.22.0",
@@ -117,6 +122,7 @@
       "Zhomfr.Validation.Rules": {
         "type": "Project",
         "dependencies": {
+          "DnsClient": "[1.8.0, )",
           "Zhomfr.Helpers.ScalarTypes": "[1.0.0, )",
           "Zhomfr.Validation.Rules.Abstractions": "[1.0.0, )"
         }

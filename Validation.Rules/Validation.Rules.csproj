@@ -11,4 +11,8 @@
         <ProjectReference Include="..\Validation.Rules.Abstractions\Validation.Rules.Abstractions.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="DnsClient" Version="1.8.0"/>
+    </ItemGroup>
+
 </Project>

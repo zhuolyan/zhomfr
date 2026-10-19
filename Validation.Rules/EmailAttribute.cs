@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using System.Net;
 using System.Text.RegularExpressions;
+
+using DnsClient;
 
 using Zhomfr.Validation.Rules.Abstractions;
 using Zhomfr.Validation.Rules.Abstractions.Errors;
@@ -61,7 +62,7 @@ public partial class EmailAttribute : AbstractRule
         if (modes.Length == 0) {
             throw new ArgumentException($"{nameof(modes)} is empty");
         }
-        
+
         this._modes = [.. modes];
         this.AddListAsOneArgumentToMessageArgs([.. modes]);
     }
@@ -96,10 +97,10 @@ public partial class EmailAttribute : AbstractRule
         string host = email.Split('@').Last();
 
         try {
-            // Check if the domain has any IP addresses associated with it.
-            IPHostEntry hostEntry = Dns.GetHostEntry(host);
+            LookupClient      lookupClient = new();
+            IDnsQueryResponse result       = lookupClient.Query(host, QueryType.MX);
 
-            return hostEntry.AddressList.Length > 0;
+            return result.Answers.MxRecords().Any();
         } catch {
             return false;
         }
