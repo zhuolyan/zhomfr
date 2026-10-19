@@ -48,7 +48,7 @@ public class InArrayAttributeTests(object collection)
     [TestCase("wrong")]
     [TestCase(true)]
     [TestCase(1)]
-    public void Should_ReturnSuccess_When_ValuesIsExists(object input)
+    public void Should_ReturnValidationError_When_ValuesIsNotExists(object input)
     {
         InArrayAttribute attribute = new(nameof(ModelWithAnotherField<>.AnotherField)) { ErrorMessage = "The {0} must be exists in {1}." };
 
