@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
+using Zhomfr.Validation.Rules.Abstractions.Errors;
 using Zhomfr.Validation.Rules.Tests.Stubs;
 
 namespace Zhomfr.Validation.Rules.Tests.Unit.InArray;
@@ -58,5 +59,27 @@ public class InArrayAttributeTests(object collection)
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must be exists in SomeField."));
+    }
+
+    [Test]
+    public void Should_ReturnValidationError_When_FieldIsNull()
+    {
+        ModelWithAnotherField<int> model             = new() { Second = 32, First = 32 };
+        InArrayAttribute           attribute         = new(nameof(ModelWithAnotherField<>.Nullable));
+        ValidationContext          validationContext = new(model);
+
+        ValidationResult? result = attribute.GetValidationResult(model.First, validationContext);
+
+        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+    }
+
+    [Test]
+    public void Should_Throw_When_ValueIsUnsupportedType()
+    {
+        ModelWithAnotherField<object> model             = new() { Second = new(), First = new() };
+        InArrayAttribute              attribute         = new(nameof(ModelWithAnotherField<>.First));
+        ValidationContext             validationContext = new(model);
+
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
     }
 }

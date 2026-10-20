@@ -16,15 +16,15 @@ public class InArrayAttribute(string anotherField) : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
+        if (!this._cached) {
+            this.MessageArgs.Add(AbstractRule.GetDisplayNameForProperty(anotherField, context));
+            this._cached = true;
+        }
+
         object? anotherValue = AbstractRule.GetAnotherField<object>(anotherField, context);
 
         if (anotherValue == null) {
             return false;
-        }
-
-        if (!this._cached) {
-            this.MessageArgs.Add(this.GetDisplayNameForProperty(anotherField, context) ?? anotherField);
-            this._cached = true;
         }
 
         return anotherValue switch

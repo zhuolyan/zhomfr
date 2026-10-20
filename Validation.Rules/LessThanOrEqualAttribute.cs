@@ -26,17 +26,15 @@ public class LessThanOrEqualAttribute : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
+        if (!this._cached) {
+            this.MessageArgs.Add(AbstractRule.GetDisplayNameForProperty(this._field, context));
+            this._cached = true;
+        }
+
         object? anotherValue = AbstractRule.GetAnotherField<object>(this._field, context);
 
         if (anotherValue == null) {
             return false;
-        }
-
-        AbstractRule.ThrowIfFieldsHasDifferentTypes(value, anotherValue);
-
-        if (!this._cached) {
-            this.MessageArgs.Add(this.GetDisplayNameForProperty(this._field, context) ?? this._field);
-            this._cached = true;
         }
 
         AbstractRule.ThrowIfFieldsHasDifferentTypes(value, anotherValue);

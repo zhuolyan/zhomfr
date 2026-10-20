@@ -26,12 +26,12 @@ public class DateGreaterThanAttributeTests<T> where T : IParsable<T>, IComparabl
     public void Should_ReturnValidationError_When_IsInvalid(string input)
     {
         T                    fFalue            = T.Parse("2026-10-18 07:00:00", CultureInfo.InvariantCulture);
-        GreaterThanAttribute attribute         = new(nameof(ModelWithAnotherField<>.Second)) { ErrorMessage = "The {0} must be greater than {1}." };
+        GreaterThanAttribute attribute         = new(nameof(ModelWithAnotherField<>.First)) { ErrorMessage = "The {0} must be greater than {1}." };
         ValidationContext    validationContext = new(new ModelWithAnotherField<T> { Second = fFalue, First = fFalue }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(T.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must be greater than SomeField."));
+        Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must be greater than First."));
     }
 }

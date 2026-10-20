@@ -39,4 +39,16 @@ public class DefaultLessThanTests
 
         Assert.Throws<ValuesHasDifferentTypesException>(() => attribute.GetValidationResult(model.First, validationContext));
     }
+
+    [Test]
+    public void Should_ReturnValidationError_When_FieldIsNull()
+    {
+        ModelWithAnotherField<int> model             = new() { Second = 32, First = 32 };
+        LessThanAttribute          attribute         = new(nameof(ModelWithAnotherField<>.Nullable));
+        ValidationContext          validationContext = new(model);
+
+        ValidationResult? result = attribute.GetValidationResult(model.First, validationContext);
+
+        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+    }
 }

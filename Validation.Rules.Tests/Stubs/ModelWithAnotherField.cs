@@ -12,4 +12,7 @@ public class ModelWithAnotherField<T>
     public required T Second { get; set; }
 
     public TestEnum DiffType { get; set; } = TestEnum.TestEnumValue1;
+
+    [Display(Name = null)]
+    public string? Nullable { get; set; }
 }

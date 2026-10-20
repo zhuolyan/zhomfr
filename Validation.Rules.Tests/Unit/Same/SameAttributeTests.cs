@@ -73,6 +73,22 @@ public class SameAttributeTests<T>(string fixedValue) where T : IEquatable<T>, I
     }
 
     [Test]
+    public void Should_ReturnValidationError_When_FieldIsNull()
+    {
+        T             anotherValue = T.Parse(fixedValue, CultureInfo.InvariantCulture);
+        SameAttribute attribute    = new(nameof(ModelWithAnotherField<>.Nullable)) { ErrorMessage = "The {0} and {1} must be same." };
+
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = anotherValue, First = anotherValue }) { DisplayName = "MyProp" };
+
+        ValidationResult? result = attribute.GetValidationResult("something", validationContext);
+
+        using (Assert.EnterMultipleScope()) {
+            Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+            Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp and Nullable must be same."));
+        }
+    }
+
+    [Test]
     public void Should_ReturnSuccess_When_ValuesIsSame()
     {
         T             anotherValue = T.Parse(fixedValue, CultureInfo.InvariantCulture);

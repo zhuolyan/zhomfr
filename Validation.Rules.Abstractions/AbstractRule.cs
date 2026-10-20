@@ -53,11 +53,6 @@ public abstract class AbstractRule : ValidationAttribute
         }
     }
 
-    protected static bool CheckIfFieldExists(string fieldName, ValidationContext context)
-    {
-        return context.ObjectType.GetProperty(fieldName) is not null || context.ObjectType.GetField(fieldName) is not null;
-    }
-
     protected static T? GetAnotherField<T>(string fieldName, ValidationContext context)
     {
         PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
@@ -75,7 +70,7 @@ public abstract class AbstractRule : ValidationAttribute
         throw new MissingFieldException($"The field {fieldName} not present in validated object.");
     }
 
-    protected string? GetDisplayNameForProperty(string fieldName, ValidationContext context)
+    protected static string GetDisplayNameForProperty(string fieldName, ValidationContext context)
     {
         PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
 
@@ -90,13 +85,13 @@ public abstract class AbstractRule : ValidationAttribute
                    : throw new MissingFieldException($"The field {fieldName} not present in validated object.");
     }
 
-    private static string? GetDisplayNameForProperty(MemberInfo property)
+    private static string GetDisplayNameForProperty(MemberInfo property)
     {
         IEnumerable<Attribute> attributes = CustomAttributeExtensions.GetCustomAttributes(property, true);
 
         foreach (Attribute attribute in attributes) {
             if (attribute is DisplayAttribute display) {
-                return display.GetName();
+                return display.GetName() ?? property.Name;
             }
         }
 
