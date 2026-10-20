@@ -2,13 +2,13 @@
 
 public static class DecimalExtensions
 {
-    extension(decimal number)
+    extension(decimal value)
     {
         /// <summary>Gets the number of digits in the integer part of the decimal value.</summary>
         /// <returns>The number of digits before the decimal separator. Returns 1 for values between -1 and 1.</returns>
         public int GetDigitsBeforeSeparator()
         {
-            decimal absoluteValue = decimal.Abs(number);
+            decimal absoluteValue = decimal.Abs(value);
 
             if (absoluteValue < decimal.One) {
                 return 1;
@@ -22,7 +22,7 @@ public static class DecimalExtensions
         /// <returns>The total number of digits represented by the decimal value.</returns>
         public int GetDigits()
         {
-            return number.GetDigitsBeforeSeparator() + number.GetDecimal();
+            return value.GetDigitsBeforeSeparator() + value.GetDecimal();
         }
 
         /// <summary>Gets the number of digits after the decimal separator.</summary>
@@ -30,7 +30,7 @@ public static class DecimalExtensions
         /// <returns>The number of digits after the decimal separator.</returns>
         public int GetDecimal()
         {
-            int[] bits = decimal.GetBits(number);
+            int[] bits = decimal.GetBits(value);
 
             // The scale factor is stored in bits 16-23 of the flags element (index 3).
             return bits[3] >> 16 & 0x7F;

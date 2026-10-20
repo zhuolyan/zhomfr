@@ -1,0 +1,43 @@
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+
+using Zhomfr.Validation.Rules.Tests.Stubs;
+
+namespace Zhomfr.Validation.Rules.Tests.Unit.LessThan;
+
+[TestFixture(typeof(short))]
+[TestFixture(typeof(ushort))]
+[TestFixture(typeof(int))]
+[TestFixture(typeof(uint))]
+[TestFixture(typeof(long))]
+[TestFixture(typeof(ulong))]
+public class IntLessThanAttributeTests<T> where T : IParsable<T>
+{
+    [Test]
+    public void Should_ReturnSuccessResult_When_IsCorrect()
+    {
+        T                 value             = T.Parse("5", CultureInfo.InvariantCulture);
+        LessThanAttribute attribute         = new(nameof(ModelWithAnotherField<>.Second));
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = value, First = value });
+
+        ValidationResult? result = attribute.GetValidationResult(T.Parse("4", CultureInfo.InvariantCulture), validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+
+    [TestCase("3")]
+    [TestCase("2")]
+    public void Should_ReturnValidationError_When_IsInvalid(string input)
+    {
+        T                 value     = T.Parse("2", CultureInfo.InvariantCulture);
+        LessThanAttribute attribute = new(nameof(ModelWithAnotherField<>.First)) { ErrorMessage = "The field {0} must be less than {1}." };
+
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = value, First = value }) { DisplayName = "MyProp" };
+
+        ValidationResult? result = attribute.GetValidationResult(T.Parse(input, CultureInfo.InvariantCulture), validationContext);
+
+        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+
+        Assert.That(result?.ErrorMessage, Is.EqualTo("The field MyProp must be less than First."));
+    }
+}

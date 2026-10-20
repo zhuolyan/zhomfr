@@ -1,0 +1,74 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+
+using Zhomfr.Validation.Rules.Abstractions.Errors;
+
+namespace Zhomfr.Validation.Rules.Tests.Unit.Before;
+
+[TestFixture(typeof(DateTime))]
+[TestFixture(typeof(DateTimeOffset))]
+public class BeforeAttributeTests<T> where T : ISpanParsable<T>
+{
+    private const string MAXIMUM = "2026-10-18 07:00:00";
+
+    [Test]
+    public void Should_ReturnSuccess_When_ValueIsCorrect()
+    {
+        BeforeAttribute   attribute         = new(BeforeAttributeTests<T>.MAXIMUM);
+        ValidationContext validationContext = new(new());
+        T                 value             = T.Parse("2026-10-18 06:59:59", CultureInfo.InvariantCulture);
+
+        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+
+    [TestCase(BeforeAttributeTests<T>.MAXIMUM)]
+    [TestCase("2026-10-18 07:00:01")]
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string input)
+    {
+        BeforeAttribute attribute = new(BeforeAttributeTests<T>.MAXIMUM) { ErrorMessage = "The date in {0} must be before {1}." };
+
+        T value = T.Parse(input, CultureInfo.InvariantCulture);
+
+        ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
+
+        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+
+        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
+
+        Assert.That(result?.ErrorMessage, Is.EqualTo($"The date in MyProp must be before {BeforeAttributeTests<T>.MAXIMUM}."));
+    }
+
+    [Test]
+    public void Should_ReturnSuccess_When_ValueIsCorrectAndExpectedIsDefault()
+    {
+        BeforeAttribute   attribute         = new();
+        ValidationContext validationContext = new(new());
+        T                 value             = T.Parse(DateTime.Now.AddDays(-1).ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
+
+        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+
+    [Test]
+    public void Should_Throw_When_ValueIsUnsupportedType()
+    {
+        BeforeAttribute   attribute         = new();
+        ValidationContext validationContext = new(new());
+
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
+    }
+
+    [Test]
+    public void Should_ReturnSuccess_When_ValueIsNull()
+    {
+        BeforeAttribute   attribute         = new(BeforeAttributeTests<T>.MAXIMUM);
+        ValidationContext validationContext = new(new());
+
+        ValidationResult? result = attribute.GetValidationResult(null, validationContext);
+
+        Assert.That(result, Is.EqualTo(ValidationResult.Success));
+    }
+}
