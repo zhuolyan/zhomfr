@@ -5,12 +5,12 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules.Tests.Unit.Lowercase;
 
 [TestFixture]
-public class LowercaseAttribute
+public class LowercaseAttributeTests
 {
     [Test]
     public void Should_Throw_When_ValueIsUnsupportedType()
     {
-        Rules.LowercaseAttribute    attribute         = new();
+        LowercaseAttribute    attribute         = new();
         ValidationContext validationContext = new(new());
 
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
@@ -19,8 +19,8 @@ public class LowercaseAttribute
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
-        AsciiAttribute    attribute         = new();
-        ValidationContext validationContext = new(new());
+        LowercaseAttribute attribute         = new();
+        ValidationContext  validationContext = new(new());
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -31,8 +31,8 @@ public class LowercaseAttribute
     [TestCase("abs~test")]
     public void Should_ReturnSuccess_When_ValueIsCorrect(string input)
     {
-        AsciiAttribute    attribute         = new();
-        ValidationContext validationContext = new(new());
+        LowercaseAttribute attribute         = new();
+        ValidationContext  validationContext = new(new());
 
         ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
@@ -40,11 +40,11 @@ public class LowercaseAttribute
     }
 
     [TestCase("Abc123!@#")]
-    [TestCase("abs test")]
+    [TestCase("aBs test")]
     [TestCase("abs~Test")]
     public void Should_ReturnValidationError_When_ValueIsInvalid(string inout)
     {
-        AsciiAttribute attribute = new() { ErrorMessage = "The {0} must contain only ASCII characters." };
+        LowercaseAttribute attribute = new() { ErrorMessage = "The {0} must contain only ASCII characters." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 

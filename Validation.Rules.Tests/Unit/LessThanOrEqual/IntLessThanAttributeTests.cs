@@ -3,7 +3,7 @@ using System.Globalization;
 
 using Zhomfr.Validation.Rules.Tests.Stubs;
 
-namespace Zhomfr.Validation.Rules.Tests.Unit.GreaterThanOrEqual;
+namespace Zhomfr.Validation.Rules.Tests.Unit.LessThanOrEqual;
 
 [TestFixture(typeof(short))]
 [TestFixture(typeof(ushort))]
@@ -11,15 +11,15 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.GreaterThanOrEqual;
 [TestFixture(typeof(uint))]
 [TestFixture(typeof(long))]
 [TestFixture(typeof(ulong))]
-public class IntGreaterThanOrEqualAttributeTests<T> where T : IParsable<T>
+public class IntLessThanOrEqualAttributeTests<T> where T : IParsable<T>
 {
     [TestCase("3")]
     [TestCase("2")]
     public void Should_ReturnSuccessResult_When_IsCorrect(string input)
     {
-        T                           value             = T.Parse("2", CultureInfo.InvariantCulture);
-        GreaterThanOrEqualAttribute attribute         = new(nameof(ModelWithAnotherField<>.Second));
-        ValidationContext           validationContext = new(new ModelWithAnotherField<T> { Second = value, First = value });
+        T                        value             = T.Parse("3", CultureInfo.InvariantCulture);
+        LessThanOrEqualAttribute attribute         = new(nameof(ModelWithAnotherField<>.Second));
+        ValidationContext        validationContext = new(new ModelWithAnotherField<T> { Second = value, First = value });
 
         ValidationResult? result = attribute.GetValidationResult(T.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
@@ -31,14 +31,14 @@ public class IntGreaterThanOrEqualAttributeTests<T> where T : IParsable<T>
     {
         T value = T.Parse("3", CultureInfo.InvariantCulture);
 
-        GreaterThanOrEqualAttribute attribute = new(nameof(ModelWithAnotherField<>.First)) { ErrorMessage = "The field {0} must be greater than or equal {1}." };
+        LessThanOrEqualAttribute attribute = new(nameof(ModelWithAnotherField<>.First)) { ErrorMessage = "The field {0} must be less than or equal {1}." };
 
         ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = value, First = value }) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(T.Parse("2", CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(T.Parse("4", CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The field MyProp must be greater than or equal First."));
+        Assert.That(result?.ErrorMessage, Is.EqualTo("The field MyProp must be less than or equal First."));
     }
 }

@@ -41,7 +41,7 @@ public class EnumerableLessThanAttributeTests
     public void Should_ReturnValidationError_When_IsInvalid(int input)
     {
         LessThanAttribute attribute = new(nameof(ModelWithAnotherField<>.Second)) { ErrorMessage = "The field {0} must be less than {1}." };
-        IEnumerable          value     = EnumerableStubs.GetEnumerable(2);
+        IEnumerable       value     = EnumerableStubs.GetEnumerable(2);
 
         ValidationContext validationContext = new(new ModelWithAnotherField<IEnumerable> { Second = value, First = value }) { DisplayName = "MyProp" };
 
@@ -57,7 +57,7 @@ public class EnumerableLessThanAttributeTests
     public void Should_ReturnValidationError_When_IsInvalidDictionary(int input)
     {
         LessThanAttribute attribute = new(nameof(ModelWithAnotherField<>.First)) { ErrorMessage = "The field {0} must be less than {1}." };
-        IDictionary          value     = DictionaryStubs.GetDictionary(2);
+        IDictionary       value     = DictionaryStubs.GetDictionary(2);
 
         ValidationContext validationContext = new(new ModelWithAnotherField<IDictionary> { Second = value, First = value }) { DisplayName = "MyProp" };
 

@@ -12,7 +12,7 @@ public class DefaultLessThanTests
     public void Should_Throw_When_ValueIsUnsupportedType()
     {
         ModelWithAnotherField<object> model             = new() { Second = new(), First = new() };
-        LessThanAttribute          attribute         = new(nameof(ModelWithAnotherField<>.First));
+        LessThanAttribute             attribute         = new(nameof(ModelWithAnotherField<>.First));
         ValidationContext             validationContext = new(model);
 
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new(), validationContext));
@@ -22,7 +22,7 @@ public class DefaultLessThanTests
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
         ModelWithAnotherField<int> model             = new() { Second = 32, First = 32 };
-        LessThanAttribute       attribute         = new(nameof(ModelWithAnotherField<>.DiffType));
+        LessThanAttribute          attribute         = new(nameof(ModelWithAnotherField<>.DiffType));
         ValidationContext          validationContext = new(model);
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
@@ -34,7 +34,7 @@ public class DefaultLessThanTests
     public void Should_Throw_When_FieldsHasDifferentTypes()
     {
         ModelWithAnotherField<int> model             = new() { Second = 32, First = 32 };
-        LessThanAttribute       attribute         = new(nameof(ModelWithAnotherField<>.DiffType));
+        LessThanAttribute          attribute         = new(nameof(ModelWithAnotherField<>.DiffType));
         ValidationContext          validationContext = new(model);
 
         Assert.Throws<ValuesHasDifferentTypesException>(() => attribute.GetValidationResult(model.First, validationContext));

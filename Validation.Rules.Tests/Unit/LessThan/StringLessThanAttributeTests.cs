@@ -10,9 +10,9 @@ public class StringLessThanAttributeTests
     [Test]
     public void Should_ReturnSuccessResult_When_IsCorrect()
     {
-        string               value             = "test";
+        string            value             = "test";
         LessThanAttribute attribute         = new(nameof(ModelWithAnotherField<>.Second));
-        ValidationContext    validationContext = new(new ModelWithAnotherField<string> { Second = value, First = value });
+        ValidationContext validationContext = new(new ModelWithAnotherField<string> { Second = value, First = value });
 
         ValidationResult? result = attribute.GetValidationResult("tes", validationContext);
 
@@ -23,7 +23,7 @@ public class StringLessThanAttributeTests
     [TestCase("test1")]
     public void Should_ReturnValidationError_When_IsInvalid(string input)
     {
-        const string         FIELD_VAL = "test";
+        const string      FIELD_VAL = "test";
         LessThanAttribute attribute = new(nameof(ModelWithAnotherField<>.First)) { ErrorMessage = "The field {0} must be less than {1}." };
 
         ValidationContext validationContext = new(new ModelWithAnotherField<string> { Second = FIELD_VAL, First = FIELD_VAL }) { DisplayName = "MyProp" };
