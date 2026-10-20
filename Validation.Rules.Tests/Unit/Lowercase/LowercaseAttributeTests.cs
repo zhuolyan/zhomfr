@@ -45,7 +45,7 @@ public class LowercaseAttributeTests
     [TestCase("abs~Test")]
     public void Should_ReturnValidationError_When_ValueIsInvalid(string inout)
     {
-        LowercaseAttribute attribute = new() { ErrorMessage = "The {0} must contain only ASCII characters." };
+        LowercaseAttribute attribute = new() { ErrorMessage = "The {0} must contain only lowercase characters." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
@@ -53,6 +53,6 @@ public class LowercaseAttributeTests
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must contain only ASCII characters."));
+        Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must contain only lowercase characters."));
     }
 }
