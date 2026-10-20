@@ -26,6 +26,11 @@
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 
+    <PropertyGroup Condition="!$(MSBuildProjectName.EndsWith('Tests'))">
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(MSBuildThisFileDirectory)docs\$(MSBuildProjectName).xml</DocumentationFile>
+    </PropertyGroup>
+
     <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
         <IsPackable>false</IsPackable>
     </PropertyGroup>

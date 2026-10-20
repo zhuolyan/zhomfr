@@ -5,10 +5,13 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must be a value after a given date.</summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class AfterAttribute : AbstractRule
 {
-    public const     string DEFAULT = "now";
+    /// <summary>Default argument.</summary>
+    public const string DEFAULT = "now";
+
     private readonly string _minDate;
 
     /// <summary>The field under validation must be a value after a given date.</summary>

@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Zhomfr.Helpers.ScalarTypes.Strings;
 
+/// <summary>Extensions method for string what get substring.</summary>
 public static partial class SubstringsExtensions
 {
     [GeneratedRegex("(?=[A-Z])")]

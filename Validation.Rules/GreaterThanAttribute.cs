@@ -7,6 +7,10 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>
+///     The field under validation must be greater than the given field. The two fields must be of the same type.
+///     Strings, numerics, collections are evaluated using the same conventions as the size rule.
+/// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class GreaterThanAttribute : AbstractRule
 {
@@ -31,7 +35,7 @@ public class GreaterThanAttribute : AbstractRule
             this._cached = true;
         }
 
-        object? anotherValue = AbstractRule.GetAnotherField<object>(this._field, context);
+        object? anotherValue = AbstractRule.GetFieldValue<object>(this._field, context);
 
         if (anotherValue == null) {
             return false;

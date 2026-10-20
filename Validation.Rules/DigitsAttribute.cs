@@ -6,6 +6,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The decimal under validation must have an exact length of value or between the given min and max.</summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class DigitsAttribute : AbstractRule
 {

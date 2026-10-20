@@ -1,5 +1,6 @@
 ﻿namespace Zhomfr.Helpers.ScalarTypes;
 
+/// <summary>Extensions method for decimal.</summary>
 public static class DecimalExtensions
 {
     extension(decimal value)

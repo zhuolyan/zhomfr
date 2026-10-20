@@ -2,6 +2,7 @@ using System.Text;
 
 namespace Zhomfr.Helpers.ScalarTypes.Strings;
 
+/// <summary>Extensions method for string what unclassified.</summary>
 public static class OtherExtensions
 {
     extension(string value)

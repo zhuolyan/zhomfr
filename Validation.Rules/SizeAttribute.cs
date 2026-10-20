@@ -8,6 +8,11 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>
+///     The field under validation must have a size matching the given value. For string data, value corresponds to
+///     the number of characters. For numeric data, value corresponds to an expected value. For collection, size
+///     corresponds to the count of the collection.
+/// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class SizeAttribute : AbstractRule
 {

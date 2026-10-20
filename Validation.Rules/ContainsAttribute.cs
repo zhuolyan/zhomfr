@@ -6,6 +6,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must be a collection or string that contains all the given parameter values.</summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ContainsAttribute : AbstractRule
 {
@@ -36,6 +37,9 @@ public class ContainsAttribute : AbstractRule
                };
     }
 
+    /// <summary>Check if enumerable contains value.</summary>
+    /// <param name="value">Expected value.</param>
+    /// <returns><c>true</c> if the value exists in enumerable otherwise <c>false</c>.</returns>
     protected bool IsContains(IEnumerable value)
     {
         foreach (object? element in value) {

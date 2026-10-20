@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Zhomfr.Helpers.ScalarTypes.Strings;
 
+/// <summary>Extensions method for string what modify string.</summary>
 public static partial class ModificationExtensions
 {
     [GeneratedRegex("([a-z0-9])([A-Z])")]

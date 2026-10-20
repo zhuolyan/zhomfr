@@ -7,6 +7,10 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>
+///     The field under validation must be less than or equal to the given field. The two fields must be of the same
+///     type. Strings, numerics, arrays, and files are evaluated using the same conventions as the size rule.
+/// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class LessThanOrEqualAttribute : AbstractRule
 {
@@ -31,7 +35,7 @@ public class LessThanOrEqualAttribute : AbstractRule
             this._cached = true;
         }
 
-        object? anotherValue = AbstractRule.GetAnotherField<object>(this._field, context);
+        object? anotherValue = AbstractRule.GetFieldValue<object>(this._field, context);
 
         if (anotherValue == null) {
             return false;

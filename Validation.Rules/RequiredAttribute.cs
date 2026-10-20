@@ -23,6 +23,7 @@ namespace Zhomfr.Validation.Rules;
 /// </remarks>
 public class RequiredAttribute : AbstractRule
 {
+    /// <inheritdoc/>
     protected override ValidationResult? IsValid(object? value, ValidationContext context)
     {
         return this.CheckCondition(value, context) ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value ?? string.Empty));

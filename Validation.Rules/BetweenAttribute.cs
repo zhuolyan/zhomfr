@@ -8,6 +8,10 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>
+///     The field under validation must have a size between the given min and max (inclusive). Strings, numerics,
+///     arrays, and files are evaluated in the same fashion as the size rule.
+/// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class BetweenAttribute : AbstractRule
 {
@@ -15,6 +19,12 @@ public class BetweenAttribute : AbstractRule
     private readonly string      _max;
     private readonly string      _min;
 
+    /// <summary>
+    ///     The field under validation must have a size between the given min and max (inclusive). Strings, numerics,
+    ///     arrays, and files are evaluated in the same fashion as the size rule.
+    /// </summary>
+    /// <param name="min">Min size.</param>
+    /// <param name="max">Max size.</param>
     public BetweenAttribute(string min, string max)
     {
         this._min = min;

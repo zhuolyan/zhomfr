@@ -14,7 +14,18 @@ namespace Zhomfr.Validation.Rules;
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class IpAttribute(IpAttribute.Modes validationMode = IpAttribute.Modes.Any) : AbstractRule
 {
-    public enum Modes { Any, IPv4, IPv6 }
+    /// <summary>Modes for validation logic.</summary>
+    public enum Modes
+    {
+        /// <summary>Any IP Address type are available.</summary>
+        Any,
+
+        /// <summary>Only IPv4 Address type are available.</summary>
+        IPv4,
+
+        /// <summary>Only IPv6 Address type are available.</summary>
+        IPv6,
+    }
 
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)

@@ -9,4 +9,15 @@
         <PackageTags>zhomfr; extensions; scalar-types; helpers; csharp; dotnet; string; decimal</PackageTags>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.402">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Update="MinVer" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
 </Project>

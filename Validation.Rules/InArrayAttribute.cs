@@ -21,7 +21,7 @@ public class InArrayAttribute(string anotherField) : AbstractRule
             this._cached = true;
         }
 
-        object? anotherValue = AbstractRule.GetAnotherField<object>(anotherField, context);
+        object? anotherValue = AbstractRule.GetFieldValue<object>(anotherField, context);
 
         if (anotherValue == null) {
             return false;

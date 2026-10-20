@@ -8,6 +8,10 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>
+///     The field under validation must be grater than or equal to a minimum value. Strings, numerics, arrays, and
+///     files are evaluated in the same fashion as the size rule.
+/// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class MinAttribute : AbstractRule
 {

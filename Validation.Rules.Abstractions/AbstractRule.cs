@@ -46,6 +46,10 @@ public abstract class AbstractRule : ValidationAttribute
         return result ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value));
     }
 
+    /// <summary>Check if validated fields has same types.</summary>
+    /// <param name="value">Current value.</param>
+    /// <param name="anotherValue">Value of another field.</param>
+    /// <exception cref="ValuesHasDifferentTypesException">If fields has different types/</exception>
     protected static void ThrowIfFieldsHasDifferentTypes(object value, object anotherValue)
     {
         if (value.GetType() != anotherValue.GetType()) {
@@ -53,7 +57,13 @@ public abstract class AbstractRule : ValidationAttribute
         }
     }
 
-    protected static T? GetAnotherField<T>(string fieldName, ValidationContext context)
+    /// <summary>Get field value by name.</summary>
+    /// <param name="fieldName">Field name.</param>
+    /// <param name="context">Validation context.</param>
+    /// <typeparam name="T">Expected type of value.</typeparam>
+    /// <returns>Value of field.</returns>
+    /// <exception cref="MissingFieldException">Then field or property not exists in type.</exception>
+    protected static T? GetFieldValue<T>(string fieldName, ValidationContext context)
     {
         PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
 
@@ -70,6 +80,11 @@ public abstract class AbstractRule : ValidationAttribute
         throw new MissingFieldException($"The field {fieldName} not present in validated object.");
     }
 
+    /// <summary>Return display name by field name.</summary>
+    /// <param name="fieldName">Name of field.</param>
+    /// <param name="context">Validation context.</param>
+    /// <returns>Return display name of field.</returns>
+    /// <exception cref="MissingFieldException">Then field or property not exists in type.</exception>
     protected static string GetDisplayNameForProperty(string fieldName, ValidationContext context)
     {
         PropertyInfo? propertyInfo = context.ObjectType.GetProperty(fieldName);
@@ -98,6 +113,8 @@ public abstract class AbstractRule : ValidationAttribute
         return property.Name;
     }
 
+    /// <summary>Add attribute argument to error message argument like one argument.</summary>
+    /// <param name="args">Arguments what need add.</param>
     protected void AddListAsOneArgumentToMessageArgs(object[] args)
     {
         this.MessageArgs.Add(string.Join(", ", args.Select(i => i is string str ? $"\"{str}\"" : i)));

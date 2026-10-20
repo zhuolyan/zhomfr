@@ -11,6 +11,7 @@ riderModule.iml
 /auth.json
 /.vscode
 cover/
+docs/
 nupkgs/
 # JetBrains Resharper / Rider
 *.DotSettings.user

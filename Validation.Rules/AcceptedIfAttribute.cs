@@ -15,7 +15,7 @@ public class AcceptedIfAttribute<T>(string anotherField, string fixedValue) : Ab
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        T? anotherValue = AbstractRule.GetAnotherField<T>(anotherField, context);
+        T? anotherValue = AbstractRule.GetFieldValue<T>(anotherField, context);
         T  expected     = T.Parse(fixedValue, CultureInfo.InvariantCulture);
 
         return !expected.Equals(anotherValue) || value is "yes" or "on" or "1" or "true" or 1 or true;

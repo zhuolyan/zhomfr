@@ -5,10 +5,13 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must be a value preceding the given date.</summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class BeforeAttribute : AbstractRule
 {
-    public const     string DEFAULT = "now";
+    /// <summary>Default argument.</summary>
+    public const string DEFAULT = "now";
+
     private readonly string _maxDate;
 
     /// <summary>The field under validation must be a value preceding the given date.</summary>

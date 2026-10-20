@@ -15,7 +15,7 @@ public class DeclinedIfAttribute<T>(string anotherField, string fixedValue) : Ab
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        T? anotherValue = AbstractRule.GetAnotherField<T>(anotherField, context);
+        T? anotherValue = AbstractRule.GetFieldValue<T>(anotherField, context);
         T  expected     = T.Parse(fixedValue, CultureInfo.InvariantCulture);
 
         return !expected.Equals(anotherValue) || value is false or 0 or "no" or "off" or "0" or "false";

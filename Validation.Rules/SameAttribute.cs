@@ -4,6 +4,7 @@ using Zhomfr.Validation.Rules.Abstractions;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The given field must match the field under validation.</summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class SameAttribute : AbstractRule
 {
@@ -26,7 +27,7 @@ public class SameAttribute : AbstractRule
             this._cached = true;
         }
 
-        object? anotherValue = AbstractRule.GetAnotherField<object>(this._propertyName, context);
+        object? anotherValue = AbstractRule.GetFieldValue<object>(this._propertyName, context);
 
         if (anotherValue is null) {
             return false;

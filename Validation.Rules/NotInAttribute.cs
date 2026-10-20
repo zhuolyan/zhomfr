@@ -6,6 +6,11 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must not be included in the given list of values.</summary>
+/// <remarks>
+///     For floating-point types (float, double), a tolerance epsilon of 0.000001 is used due to internal precision
+///     limitations that can cause rounding errors.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class NotInAttribute : AbstractRule
 {
