@@ -32,37 +32,35 @@ public class InAttribute : AbstractRule
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
-        object test = value;
-
-        return test switch
+        return value switch
                {
                    string str          => this._values.Any(s => s == str),
-                   short number        => this.CheckIfExists(number),
-                   ushort number       => this.CheckIfExists(number),
-                   int number          => this.CheckIfExists(number),
-                   uint number         => this.CheckIfExists(number),
-                   long number         => this.CheckIfExists(number),
-                   ulong number        => this.CheckIfExists(number),
-                   float number        => this.CheckIfExists(number),
-                   double number       => this.CheckIfExists(number),
-                   decimal number      => this.CheckIfExists(number),
-                   DateTime date       => this.CheckIfExists(date),
-                   DateTimeOffset date => this.CheckIfExists(date),
+                   short number        => this.Check(number),
+                   ushort number       => this.Check(number),
+                   int number          => this.Check(number),
+                   uint number         => this.Check(number),
+                   long number         => this.Check(number),
+                   ulong number        => this.Check(number),
+                   float number        => this.Check(number),
+                   double number       => this.Check(number),
+                   decimal number      => this.Check(number),
+                   DateTime date       => this.Check(date),
+                   DateTimeOffset date => this.Check(date),
                    var _               => throw new UnsupportedTypeException(value.GetType()),
                };
     }
 
-    private bool CheckIfExists(float value)
+    private bool Check(float value)
     {
         return this._values.Any(i => MathF.Abs(float.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001f);
     }
 
-    private bool CheckIfExists(double value)
+    private bool Check(double value)
     {
         return this._values.Any(i => Math.Abs(double.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001);
     }
 
-    private bool CheckIfExists<T>(T value) where T : IParsable<T>, IEquatable<T>
+    private bool Check<T>(T value) where T : IParsable<T>, IEquatable<T>
     {
         return this._values.Any(i => T.Parse(i, this._culture).Equals(value));
     }
