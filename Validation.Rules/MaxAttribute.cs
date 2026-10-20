@@ -14,8 +14,11 @@ public class MaxAttribute : AbstractRule
     private readonly CultureInfo _culture = CultureInfo.InvariantCulture;
     private readonly string      _max;
 
-    /// <summary></summary>
-    /// <param name="max"></param>
+    /// <summary>
+    ///     The field under validation must be less than or equal to a maximum value. Strings, numerics, arrays, and files
+    ///     are evaluated in the same fashion as the size rule.
+    /// </summary>
+    /// <param name="max">Expected value.</param>
     public MaxAttribute(string max)
     {
         this._max = max;
