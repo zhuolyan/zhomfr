@@ -50,16 +50,6 @@ public class NotInAttribute : AbstractRule
                };
     }
 
-    private bool Check(float value)
-    {
-        return !this._values.Any(i => MathF.Abs(float.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001f);
-    }
-
-    private bool Check(double value)
-    {
-        return !this._values.Any(i => Math.Abs(double.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001);
-    }
-
     private bool Check<T>(T value) where T : IParsable<T>, IEquatable<T>
     {
         return !this._values.Any(i => T.Parse(i, this._culture).Equals(value));

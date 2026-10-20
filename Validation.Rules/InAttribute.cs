@@ -13,10 +13,6 @@ public class InAttribute : AbstractRule
     private readonly List<string> _values;
 
     /// <summary>The field under validation must be included in the given list of values.</summary>
-    /// <remarks>
-    ///     For floating-point types (float, double), a tolerance epsilon of 0.000001 is used due to internal precision
-    ///     limitations that can cause rounding errors.
-    /// </remarks>
     /// <param name="items">Expected values.</param>
     public InAttribute(params string[] items)
     {
@@ -48,16 +44,6 @@ public class InAttribute : AbstractRule
                    DateTimeOffset date => this.Check(date),
                    var _               => throw new UnsupportedTypeException(value.GetType()),
                };
-    }
-
-    private bool Check(float value)
-    {
-        return this._values.Any(i => MathF.Abs(float.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001f);
-    }
-
-    private bool Check(double value)
-    {
-        return this._values.Any(i => Math.Abs(double.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001);
     }
 
     private bool Check<T>(T value) where T : IParsable<T>, IEquatable<T>

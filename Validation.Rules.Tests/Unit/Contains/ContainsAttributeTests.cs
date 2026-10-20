@@ -8,7 +8,7 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.Contains;
 [TestFixture]
 public class ContainsAttributeTests
 {
-    public static List<object> TestCases = [DictionaryStubs.Default, StringStubs.CONTAINS, EnumerableStubs.ContainsEnumeration];
+    public static readonly List<object> TestCases = [DictionaryStubs.Default, StringStubs.CONTAINS, EnumerableStubs.ContainsEnumeration];
 
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()

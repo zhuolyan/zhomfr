@@ -30,17 +30,17 @@ public class BetweenAttribute : AbstractRule
         return value switch
                {
                    string str             => this.Check(str),
-                   short number           => this.Checkn(number),
-                   ushort number          => this.Checkn(number),
-                   int number             => this.Checkn(number),
-                   uint number            => this.Checkn(number),
-                   long number            => this.Checkn(number),
-                   ulong number           => this.Checkn(number),
-                   float number           => this.Checkn(number),
-                   double number          => this.Checkn(number),
-                   decimal number         => this.Checkn(number),
-                   DateTime date          => this.Checkn(date),
-                   DateTimeOffset date    => this.Checkn(date),
+                   short number           => this.Check(number),
+                   ushort number          => this.Check(number),
+                   int number             => this.Check(number),
+                   uint number            => this.Check(number),
+                   long number            => this.Check(number),
+                   ulong number           => this.Check(number),
+                   float number           => this.Check(number),
+                   double number          => this.Check(number),
+                   decimal number         => this.Check(number),
+                   DateTime date          => this.Check(date),
+                   DateTimeOffset date    => this.Check(date),
                    ICollection collection => this.Check(collection),
                    IEnumerable collection => collection.CountIsBetween(int.Parse(this._min, this._culture), int.Parse(this._max, this._culture)),
                    var _                  => throw new UnsupportedTypeException(value.GetType()),
@@ -57,7 +57,7 @@ public class BetweenAttribute : AbstractRule
         return value.Length >= int.Parse(this._min, this._culture) && value.Length <= int.Parse(this._max, this._culture);
     }
 
-    private bool Checkn<T>(T value) where T : IComparable, IParsable<T>
+    private bool Check<T>(T value) where T : IComparable, IParsable<T>
     {
         return value.CompareTo(T.Parse(this._min, this._culture)) >= 0 && value.CompareTo(T.Parse(this._max, this._culture)) <= 0;
     }

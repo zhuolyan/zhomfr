@@ -8,8 +8,7 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.In;
 public class FloatInTests<T> where T : IParsable<T>
 {
     [TestCase("0.000001")]
-    [TestCase("0.0000001")]
-    [TestCase("-0.0000002")]
+    [TestCase("-0.000001")]
     [TestCase("1.2")]
     public void Should_ReturnSuccess_When_IsCorrect(string input)
     {
@@ -22,6 +21,8 @@ public class FloatInTests<T> where T : IParsable<T>
     }
 
     [TestCase("0.000002")]
+    [TestCase("0.0000001")]
+    [TestCase("-0.0000002")]
     [TestCase("1.3")]
     public void Should_ReturnValidationError_When_IsInvalid(string input)
     {
