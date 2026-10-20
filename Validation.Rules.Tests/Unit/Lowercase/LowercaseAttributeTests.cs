@@ -10,8 +10,8 @@ public class LowercaseAttributeTests
     [Test]
     public void Should_Throw_When_ValueIsUnsupportedType()
     {
-        LowercaseAttribute    attribute         = new();
-        ValidationContext validationContext = new(new());
+        LowercaseAttribute attribute         = new();
+        ValidationContext  validationContext = new(new());
 
         Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(0, validationContext));
     }
@@ -26,6 +26,7 @@ public class LowercaseAttributeTests
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
+
     [TestCase("abc123!@#")]
     [TestCase("abs test")]
     [TestCase("abs~test")]

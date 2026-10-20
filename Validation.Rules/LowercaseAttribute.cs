@@ -5,13 +5,11 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
-/// <summary>
-/// The field under validation must be lowercase.
-/// </summary>
+/// <summary>The field under validation must be lowercase.</summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class LowercaseAttribute : AbstractRule
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
         return value is not string str ? throw new UnsupportedTypeException(value.GetType()) : str.All(c => !char.IsLetter(c) || char.IsLower(c));
