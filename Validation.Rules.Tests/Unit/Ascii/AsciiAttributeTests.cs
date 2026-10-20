@@ -10,12 +10,12 @@ public class AsciiAttributeTests
     [TestCase("abc123!@#")]
     [TestCase(" ")]
     [TestCase("~")]
-    public void Should_ReturnSuccess_When_ValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_ValueIsCorrect(string input)
     {
         AsciiAttribute    attribute         = new();
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -23,13 +23,13 @@ public class AsciiAttributeTests
     [TestCase("привіт")]
     [TestCase("🚀")]
     [TestCase("€")]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect(string value)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string inout)
     {
         AsciiAttribute attribute = new() { ErrorMessage = "The {0} must contain only ASCII characters." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(inout, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 
@@ -37,7 +37,7 @@ public class AsciiAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         AsciiAttribute    attribute         = new();
         ValidationContext validationContext = new(new());

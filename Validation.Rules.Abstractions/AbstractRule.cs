@@ -72,7 +72,7 @@ public abstract class AbstractRule : ValidationAttribute
             return (T?)fieldInfo.GetValue(context.ObjectInstance);
         }
 
-        throw new MissingFieldException($"The filed {fieldName} not present in validated object.");
+        throw new MissingFieldException($"The field {fieldName} not present in validated object.");
     }
 
     protected string? GetDisplayNameForProperty(string fieldName, ValidationContext context)
@@ -87,7 +87,7 @@ public abstract class AbstractRule : ValidationAttribute
 
         return fieldInfo != null
                    ? AbstractRule.GetDisplayNameForProperty(fieldInfo)
-                   : throw new MissingFieldException($"The filed {fieldName} not present in validated object.");
+                   : throw new MissingFieldException($"The field {fieldName} not present in validated object.");
     }
 
     private static string? GetDisplayNameForProperty(MemberInfo property)

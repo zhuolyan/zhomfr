@@ -9,6 +9,7 @@ namespace Zhomfr.Validation.Rules;
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class InAttribute : AbstractRule
 {
+    private readonly CultureInfo  _culture = CultureInfo.InvariantCulture;
     private readonly List<string> _values;
 
     /// <summary>The field under validation must be included in the given list of values.</summary>
@@ -35,19 +36,34 @@ public class InAttribute : AbstractRule
 
         return test switch
                {
-                   string str          => this._values.Any(s => s                                                                                    == str),
-                   short number        => this._values.Any(s => short.Parse(s, NumberStyles.Integer, CultureInfo.InvariantCulture)                   == number),
-                   ushort number       => this._values.Any(s => ushort.Parse(s, NumberStyles.Integer, CultureInfo.InvariantCulture)                  == number),
-                   int number          => this._values.Any(s => int.Parse(s, NumberStyles.Integer, CultureInfo.InvariantCulture)                     == number),
-                   uint number         => this._values.Any(s => uint.Parse(s, NumberStyles.Integer, CultureInfo.InvariantCulture)                    == number),
-                   long number         => this._values.Any(s => long.Parse(s, NumberStyles.Integer, CultureInfo.InvariantCulture)                    == number),
-                   ulong number        => this._values.Any(s => ulong.Parse(s, NumberStyles.Integer, CultureInfo.InvariantCulture)                   == number),
-                   float number        => this._values.Any(s => MathF.Abs(float.Parse(s, NumberStyles.Float, CultureInfo.InvariantCulture) - number) < 0.000001f),
-                   double number       => this._values.Any(s => Math.Abs(double.Parse(s, NumberStyles.Float, CultureInfo.InvariantCulture) - number) < 0.000001),
-                   decimal number      => this._values.Any(s => decimal.Parse(s, NumberStyles.Float, CultureInfo.InvariantCulture)                   == number),
-                   DateTime date       => this._values.Any(s => DateTime.Parse(s, CultureInfo.InvariantCulture)                                      == date),
-                   DateTimeOffset date => this._values.Any(s => DateTimeOffset.Parse(s, CultureInfo.InvariantCulture)                                == date),
+                   string str          => this._values.Any(s => s == str),
+                   short number        => this.CheckIfExists(number),
+                   ushort number       => this.CheckIfExists(number),
+                   int number          => this.CheckIfExists(number),
+                   uint number         => this.CheckIfExists(number),
+                   long number         => this.CheckIfExists(number),
+                   ulong number        => this.CheckIfExists(number),
+                   float number        => this.CheckIfExists(number),
+                   double number       => this.CheckIfExists(number),
+                   decimal number      => this.CheckIfExists(number),
+                   DateTime date       => this.CheckIfExists(date),
+                   DateTimeOffset date => this.CheckIfExists(date),
                    var _               => throw new UnsupportedTypeException(value.GetType()),
                };
+    }
+
+    private bool CheckIfExists(float value)
+    {
+        return this._values.Any(i => MathF.Abs(float.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001f);
+    }
+
+    private bool CheckIfExists(double value)
+    {
+        return this._values.Any(i => Math.Abs(double.Parse(i, NumberStyles.Float, CultureInfo.InvariantCulture) - value) < 0.000001);
+    }
+
+    private bool CheckIfExists<T>(T value) where T : IParsable<T>, IEquatable<T>
+    {
+        return this._values.Any(i => T.Parse(i, this._culture).Equals(value));
     }
 }

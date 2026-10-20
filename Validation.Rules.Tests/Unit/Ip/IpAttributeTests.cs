@@ -9,7 +9,7 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.Ip;
 public class IpAttributeTests
 {
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         IpAttribute       attribute         = new();
         ValidationContext validationContext = new(new());
@@ -94,7 +94,7 @@ public class IpAttributeTests
     [TestCase("192.168.1.1.1")]
     [TestCase("abc.def.ghi.jkl")]
     [TestCase("2001:db8:::1")]
-    public void Should_ReturnValidationError_When_ValueIsIncorrectAndModeAny(string input)
+    public void Should_ReturnValidationError_When_ValueIsInvalidAndModeAny(string input)
     {
         IpAttribute attribute = new() { ErrorMessage = "The {0} must be correct IP Address." };
 
@@ -114,7 +114,7 @@ public class IpAttributeTests
     [TestCase("8.8.8.8")]
     [TestCase("0.0.0.0")]
     [TestCase("192.168.1.123")]
-    public void Should_ReturnValidationError_When_ValueIsIncorrectStringAndModeIpV6(string input)
+    public void Should_ReturnValidationError_When_ValueIsInvalidStringAndModeIpV6(string input)
     {
         IpAttribute attribute = new(IpAttribute.Modes.IPv6) { ErrorMessage = "The {0} must be correct IPv6 Address." };
 
@@ -133,7 +133,7 @@ public class IpAttributeTests
     [TestCase("2001:0db8:85a3:0000:0000:8a2e:0370:7334")]
     [TestCase("2001:db8::1")]
     [TestCase("::1")]
-    public void Should_ReturnValidationError_When_ValueIsIncorrectStringAndModeIpV4(string input)
+    public void Should_ReturnValidationError_When_ValueIsInvalidStringAndModeIpV4(string input)
     {
         IpAttribute attribute = new(IpAttribute.Modes.IPv4) { ErrorMessage = "The {0} must be correct IPv4 Address." };
 
@@ -149,7 +149,7 @@ public class IpAttributeTests
     [TestCase("8.8.8.8")]
     [TestCase("0.0.0.0")]
     [TestCase("192.168.1.123")]
-    public void Should_ReturnValidationError_When_ValueIsIncorrectIpAddressAndModeIpV6(string input)
+    public void Should_ReturnValidationError_When_ValueIsInvalidIpAddressAndModeIpV6(string input)
     {
         IpAttribute attribute = new(IpAttribute.Modes.IPv6) { ErrorMessage = "The {0} must be correct IPv6 Address." };
 
@@ -164,7 +164,7 @@ public class IpAttributeTests
     [TestCase("2001:0db8:85a3:0000:0000:8a2e:0370:7334")]
     [TestCase("2001:db8::1")]
     [TestCase("::1")]
-    public void Should_ReturnValidationError_When_ValueIsIncorrectIpAddressAndModeIpV4(string input)
+    public void Should_ReturnValidationError_When_ValueIsInvalidIpAddressAndModeIpV4(string input)
     {
         IpAttribute attribute = new(IpAttribute.Modes.IPv4) { ErrorMessage = "The {0} must be correct IPv4 Address." };
 

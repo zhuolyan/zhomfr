@@ -19,7 +19,7 @@ public class EmailAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         EmailAttribute    attribute         = new(EmailAttribute.DNS);
         ValidationContext validationContext = new(new());
@@ -28,7 +28,7 @@ public class EmailAttributeTests
     }
 
     [Test]
-    public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
+    public void ShouldThrow_When_ExpectedIsEmpty()
     {
         Assert.Throws<ArgumentException>(() =>
         {
@@ -46,12 +46,12 @@ public class EmailAttributeTests
     [TestCase("a@b.cd", EmailAttribute.RFC)]
     [TestCase("test@example.com", EmailAttribute.SPOOF)]
     [TestCase("simple@ascii.org", EmailAttribute.SPOOF)]
-    public void Should_ReturnSuccess_When_ValueIsCorrect(string url, string mod)
+    public void Should_ReturnSuccess_When_ValueIsCorrect(string email, string mod)
     {
         EmailAttribute    attribute         = new(mod);
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(url, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(email, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -71,7 +71,7 @@ public class EmailAttributeTests
     [TestCase("tést@exämple.com", EmailAttribute.SPOOF)]
     [TestCase("алекс@почта.рф", EmailAttribute.SPOOF)]
     [TestCase("user@exаmple.com", EmailAttribute.SPOOF)]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect(string email, string mod)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string email, string mod)
     {
         EmailAttribute attribute = new(mod) { ErrorMessage = "The {0} must be correct email." };
 
@@ -84,7 +84,7 @@ public class EmailAttributeTests
     }
 
     [Test]
-    public void Should_ReturnValidationError_When_ModIsNotCorrect()
+    public void Should_ReturnValidationError_When_ModIsInvalid()
     {
         EmailAttribute attribute = new("test") { ErrorMessage = "The {0} must be correct email." };
 

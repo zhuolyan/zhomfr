@@ -20,7 +20,7 @@ public class DigitsAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         DigitsAttribute   attribute         = new(1);
         ValidationContext validationContext = new(new());
@@ -34,12 +34,12 @@ public class DigitsAttributeTests
     [TestCase("1.01")]
     [TestCase("10.0")]
     [TestCase("10.1")]
-    public void Should_ReturnSuccess_When_EqualExpectedAndValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_EqualExpectedAndValueIsCorrect(string input)
     {
         DigitsAttribute   attribute         = new(3);
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -61,12 +61,12 @@ public class DigitsAttributeTests
     [TestCase("10.00")]
     [TestCase("10.1")]
     [TestCase("10.01")]
-    public void Should_ReturnSuccess_When_BetweenExpectedAndValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_BetweenExpectedAndValueIsCorrect(string input)
     {
         DigitsAttribute   attribute         = new(2, 4);
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -82,12 +82,12 @@ public class DigitsAttributeTests
     [TestCase("10")]
     [TestCase("10.00")]
     [TestCase("10.01")]
-    public void Should_ReturnValidationError_When_EqualExpectedAndValueIsIncorrect(string value)
+    public void Should_ReturnValidationError_When_EqualExpectedAndValueIsInvalid(string input)
     {
         DigitsAttribute   attribute         = new(3) { ErrorMessage    = "The {0} must has equal {1} digits." };
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must has equal 3 digits."));
@@ -104,12 +104,12 @@ public class DigitsAttributeTests
     [TestCase("10.000")]
     [TestCase("10")]
     [TestCase("10.001")]
-    public void Should_ReturnValidationError_When_BetweenExpectedAndValueIsIncorrect(string value)
+    public void Should_ReturnValidationError_When_BetweenExpectedAndValueIsInvalid(string input)
     {
         DigitsAttribute   attribute         = new(3, 4) { ErrorMessage = "The {0} must has between {1} and {2} digits." };
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must has between 3 and 4 digits."));

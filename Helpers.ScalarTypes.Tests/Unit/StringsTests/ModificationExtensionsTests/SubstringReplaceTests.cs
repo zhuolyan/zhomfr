@@ -29,7 +29,7 @@ public class SubstringReplaceTests
 
     [TestCase(-1)]
     [TestCase(7)]
-    public void Should_ReturnOriginalValue_When_IncorrectStart(int start)
+    public void Should_ReturnOriginalValue_When_InvalidStart(int start)
     {
         Assert.That(StubValues.SUBSTRING_REPLACE_VALUE.SubstringReplace("test", start), Is.EqualTo(StubValues.SUBSTRING_REPLACE_VALUE));
     }

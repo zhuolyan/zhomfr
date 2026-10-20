@@ -12,9 +12,9 @@ public class InArrayAttributeTests(object collection)
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
-        InArrayAttribute attribute = new(nameof(ModelWithAnotherField<>.AnotherField));
+        InArrayAttribute attribute = new(nameof(ModelWithAnotherField<>.Second));
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<object> { AnotherField = collection, AnotherField2 = collection });
+        ValidationContext validationContext = new(new ModelWithAnotherField<object> { Second = collection, First = collection });
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -26,7 +26,7 @@ public class InArrayAttributeTests(object collection)
     {
         InArrayAttribute attribute = new("wrongField");
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<object> { AnotherField = collection, AnotherField2 = collection });
+        ValidationContext validationContext = new(new ModelWithAnotherField<object> { Second = collection, First = collection });
 
         Assert.Throws<MissingFieldException>(() => attribute.GetValidationResult("something", validationContext));
     }
@@ -36,9 +36,9 @@ public class InArrayAttributeTests(object collection)
     [TestCase("blah")]
     public void Should_ReturnSuccess_When_ValuesIsExists(string input)
     {
-        InArrayAttribute attribute = new(nameof(ModelWithAnotherField<>.AnotherField));
+        InArrayAttribute attribute = new(nameof(ModelWithAnotherField<>.Second));
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<object> { AnotherField = collection, AnotherField2 = collection });
+        ValidationContext validationContext = new(new ModelWithAnotherField<object> { Second = collection, First = collection });
 
         ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
@@ -50,10 +50,9 @@ public class InArrayAttributeTests(object collection)
     [TestCase(1)]
     public void Should_ReturnValidationError_When_ValuesIsNotExists(object input)
     {
-        InArrayAttribute attribute = new(nameof(ModelWithAnotherField<>.AnotherField)) { ErrorMessage = "The {0} must be exists in {1}." };
+        InArrayAttribute attribute = new(nameof(ModelWithAnotherField<>.Second)) { ErrorMessage = "The {0} must be exists in {1}." };
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<object> { AnotherField = collection, AnotherField2 = collection }) { DisplayName = "MyProp" };
+        ValidationContext validationContext = new(new ModelWithAnotherField<object> { Second = collection, First = collection }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 

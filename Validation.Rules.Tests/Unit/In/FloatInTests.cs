@@ -23,7 +23,7 @@ public class FloatInTests<T> where T : IParsable<T>
 
     [TestCase("0.000002")]
     [TestCase("1.3")]
-    public void Should_ReturnValidationError_When_IsIncorrect(string input)
+    public void Should_ReturnValidationError_When_IsInvalid(string input)
     {
         InAttribute       attribute         = new("0.000001", "1.2") { ErrorMessage = "The field {0} must be equal one of: {1}." };
         ValidationContext validationContext = new(new()) { DisplayName              = "MyProp" };

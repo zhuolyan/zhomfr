@@ -19,7 +19,7 @@ public class ActiveUrlAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         ActiveUrlAttribute attribute         = new();
         ValidationContext  validationContext = new(new());
@@ -31,25 +31,25 @@ public class ActiveUrlAttributeTests
     [TestCase("https://microsoft.com")]
     [TestCase("[::1]")]
     [TestCase("https://[2001:4860:4860::8888]")]
-    public void Should_ReturnSuccess_When_ValueIsCorrect(string url)
+    public void Should_ReturnSuccess_When_ValueIsCorrect(string input)
     {
         ActiveUrlAttribute attribute         = new();
         ValidationContext  validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(url, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [TestCase("non-existent-domain-123456789.com")]
     [TestCase("not-a-url")]
-    public void Should_ReturnValidationError_When_ValueIsInvalid(string url)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string input)
     {
         ActiveUrlAttribute attribute = new() { ErrorMessage = "The {0} must be real url." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "Profile Url" };
 
-        ValidationResult? result = attribute.GetValidationResult(url, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The Profile Url must be real url."));

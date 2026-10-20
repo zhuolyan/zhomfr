@@ -8,24 +8,24 @@ public class StringBetweenTests
     [TestCase("tes")]
     [TestCase("test")]
     [TestCase("test1")]
-    public void Should_ReturnSuccessResult_When_IsCorrectString(string value)
+    public void Should_ReturnSuccessResult_When_IsCorrect(string input)
     {
         BetweenAttribute  attribute         = new("3", "5");
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [TestCase("tes")]
     [TestCase("test12")]
-    public void Should_ReturnValidationError_When_IsIncorrectString(string value)
+    public void Should_ReturnValidationError_When_IsInvalid(string input)
     {
         BetweenAttribute  attribute         = new("4", "5") { ErrorMessage = "The field {0} length must be between {1} and {2}." };
         ValidationContext validationContext = new(new()) { DisplayName     = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 

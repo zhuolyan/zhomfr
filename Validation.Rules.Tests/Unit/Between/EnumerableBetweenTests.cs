@@ -8,23 +8,23 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.Between;
 public class EnumerableBetweenTests
 {
     [TestCaseSource(typeof(EnumerableStubs), nameof(EnumerableStubs.Between))]
-    public void Should_ReturnSuccessResult_When_IsCorrectEnumerable(object value)
+    public void Should_ReturnSuccessResult_When_IsCorrect(object input)
     {
         BetweenAttribute  attribute         = new("3", "6");
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [TestCaseSource(typeof(EnumerableStubs), nameof(EnumerableStubs.Between))]
-    public void Should_ReturnValidationError_When_IsIncorrectEnumerable(object value)
+    public void Should_ReturnValidationError_When_IsInvalid(object input)
     {
         BetweenAttribute  attribute         = new("4", "5") { ErrorMessage = "The field {0} length must be between {1} and {2}." };
         ValidationContext validationContext = new(new()) { DisplayName     = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 

@@ -21,7 +21,7 @@ public class DictionaryKeysAttributeTests
     }
 
     [Test]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect()
+    public void Should_ReturnValidationError_When_ValueIsInvalid()
     {
         DictionaryKeysAttribute attribute = new("first", "test") { ErrorMessage = "The {0} keys must contains: {1}." };
 
@@ -45,7 +45,7 @@ public class DictionaryKeysAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         DictionaryKeysAttribute attribute         = new("test", "blah test");
         ValidationContext       validationContext = new(new());
@@ -54,7 +54,7 @@ public class DictionaryKeysAttributeTests
     }
 
     [Test]
-    public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
+    public void ShouldThrow_When_ExpectedIsEmpty()
     {
         Assert.Throws<ArgumentException>(() =>
         {

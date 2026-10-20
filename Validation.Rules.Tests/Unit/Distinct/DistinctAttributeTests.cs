@@ -23,7 +23,7 @@ public class DistinctAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         DistinctAttribute attribute         = new();
         ValidationContext validationContext = new(new());
@@ -32,23 +32,23 @@ public class DistinctAttributeTests
     }
 
     [TestCaseSource(typeof(DistinctAttributeTests), nameof(DistinctAttributeTests.TestedDistinct))]
-    public void Should_ReturnSuccess_When_ValueIsDistinct(object value)
+    public void Should_ReturnSuccess_When_ValueIsDistinct(object input)
     {
         DistinctAttribute attribute         = new();
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [TestCaseSource(typeof(DistinctAttributeTests), nameof(DistinctAttributeTests.TestedNotDistinct))]
-    public void Should_ReturnValidationError_When_ValueIsNotDistinct(object value)
+    public void Should_ReturnValidationError_When_ValueIsNotDistinct(object input)
     {
         DistinctAttribute attribute         = new() { ErrorMessage     = "The {0} must be distinct." };
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must be distinct."));

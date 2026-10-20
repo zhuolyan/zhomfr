@@ -9,13 +9,13 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.In;
 public class DefaultInTests
 {
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
-        InAttribute       attribute         = new("3");
-        ValidationContext validationContext = new(new());
+        ModelWithAnotherField<int> model             = new() { Second = 32, First = 32 };
+        InAttribute                attribute         = new("3");
+        ValidationContext          validationContext = new(new());
 
-        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new ModelWithAnotherField<int> { AnotherField = 32, AnotherField2 = 32 },
-                                                                                    validationContext));
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(model, validationContext));
     }
 
     [Test]
@@ -30,7 +30,7 @@ public class DefaultInTests
     }
 
     [Test]
-    public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
+    public void ShouldThrow_When_ExpectedIsEmpty()
     {
         Assert.Throws<ArgumentException>(() =>
         {

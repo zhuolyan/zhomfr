@@ -20,7 +20,7 @@ public class DecimalAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         DecimalAttribute  attribute         = new(1);
         ValidationContext validationContext = new(new());
@@ -34,12 +34,12 @@ public class DecimalAttributeTests
     [TestCase("1.001")]
     [TestCase("10.000")]
     [TestCase("10.001")]
-    public void Should_ReturnSuccess_When_EqualExpectedAndValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_EqualExpectedAndValueIsCorrect(string input)
     {
         DecimalAttribute  attribute         = new(3);
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -62,12 +62,12 @@ public class DecimalAttributeTests
     [TestCase("10.01")]
     [TestCase("10.001")]
     [TestCase("10.0001")]
-    public void Should_ReturnSuccess_When_BetweenExpectedAndValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_BetweenExpectedAndValueIsCorrect(string input)
     {
         DecimalAttribute  attribute         = new(2, 4);
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -84,12 +84,12 @@ public class DecimalAttributeTests
     [TestCase("10.0000")]
     [TestCase("10.01")]
     [TestCase("10.0001")]
-    public void Should_ReturnValidationError_When_EqualExpectedAndValueIsIncorrect(string value)
+    public void Should_ReturnValidationError_When_EqualExpectedAndValueIsInvalid(string input)
     {
         DecimalAttribute  attribute         = new(3) { ErrorMessage    = "The {0} must has equal {1} numbers of decimal places." };
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must has equal 3 numbers of decimal places."));
@@ -107,12 +107,12 @@ public class DecimalAttributeTests
     [TestCase("10.00000")]
     [TestCase("10.1")]
     [TestCase("10.00001")]
-    public void Should_ReturnValidationError_When_BetweenExpectedAndValueIsIncorrect(string value)
+    public void Should_ReturnValidationError_When_BetweenExpectedAndValueIsInvalid(string input)
     {
         DecimalAttribute  attribute         = new(2, 4) { ErrorMessage = "The {0} must has between {1} and {2} numbers of decimal places." };
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(decimal.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must has between 2 and 4 numbers of decimal places."));

@@ -19,7 +19,7 @@ public class StringInTests
 
     [TestCase("Test1")]
     [TestCase("test5")]
-    public void Should_ReturnValidationError_When_IsIncorrect(string input)
+    public void Should_ReturnValidationError_When_IsInvalid(string input)
     {
         InAttribute       attribute         = new("test1", "test2", "test3") { ErrorMessage = "The field {0} must be equal one of: {1}." };
         ValidationContext validationContext = new(new()) { DisplayName                      = "MyProp" };

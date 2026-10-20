@@ -22,12 +22,12 @@ public class DeclinedAttributeTests
     [TestCase("0")]
     [TestCase(0)]
     [TestCase(false)]
-    public void Should_ReturnSuccess_When_TestedValueIsDeclinable(object value)
+    public void Should_ReturnSuccess_When_ValueIsDeclinable(object input)
     {
         DeclinedAttribute attribute         = new();
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -41,13 +41,13 @@ public class DeclinedAttributeTests
     [TestCase(1)]
     [TestCase(2)]
     [TestCase(true)]
-    public void Should_ReturnFailure_When_TestedValueIsNotDeclinable(object value)
+    public void Should_ReturnFailure_When_ValueIsNotDeclinable(object input)
     {
         DeclinedAttribute attribute = new() { ErrorMessage = "The {0} must be declined." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));

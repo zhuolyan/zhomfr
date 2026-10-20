@@ -11,12 +11,12 @@ public class HexColorAttributeTests
     [TestCase("#FFFFFF")]
     [TestCase("#ABCD")]
     [TestCase("#12345678")]
-    public void Should_ReturnSuccess_When_StringIsCorrect(string value)
+    public void Should_ReturnSuccess_When_StringIsCorrect(string input)
     {
         HexColorAttribute attribute         = new();
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -26,13 +26,13 @@ public class HexColorAttributeTests
     [TestCase("#12345")]
     [TestCase("#1234567")]
     [TestCase("blue")]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect(string value)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string input)
     {
         HexColorAttribute attribute = new() { ErrorMessage = "The {0} must be hex color." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must be hex color."));
@@ -50,7 +50,7 @@ public class HexColorAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         HexColorAttribute attribute         = new();
         ValidationContext validationContext = new(new());

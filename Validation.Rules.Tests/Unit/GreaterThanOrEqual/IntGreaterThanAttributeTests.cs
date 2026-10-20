@@ -15,56 +15,30 @@ public class IntGreaterThanOrEqualAttributeTests<T> where T : IParsable<T>
 {
     [TestCase("3")]
     [TestCase("2")]
-    public void Should_ReturnSuccessResult_When_IsCorrect(string value)
+    public void Should_ReturnSuccessResult_When_IsCorrect(string input)
     {
-        GreaterThanOrEqualAttribute attribute         = new("2");
-        ValidationContext           validationContext = new(new());
+        T                           value             = T.Parse("2", CultureInfo.InvariantCulture);
+        GreaterThanOrEqualAttribute attribute         = new(nameof(ModelWithAnotherField<>.Second));
+        ValidationContext           validationContext = new(new ModelWithAnotherField<T> { Second = value, First = value });
 
-        ValidationResult? result = attribute.GetValidationResult(T.Parse(value, CultureInfo.InvariantCulture), validationContext);
+        ValidationResult? result = attribute.GetValidationResult(T.Parse(input, CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [Test]
-    public void Should_ReturnValidationError_When_IsIncorrect()
+    public void Should_ReturnValidationError_When_IsInvalid()
     {
-        GreaterThanOrEqualAttribute attribute         = new("3") { ErrorMessage  = "The field {0} must be greater than or equal {1}." };
-        ValidationContext           validationContext = new(new()) { DisplayName = "MyProp" };
+        T value = T.Parse("3", CultureInfo.InvariantCulture);
+
+        GreaterThanOrEqualAttribute attribute = new(nameof(ModelWithAnotherField<>.First)) { ErrorMessage = "The field {0} must be greater than or equal {1}." };
+
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = value, First = value }) { DisplayName = "MyProp" };
 
         ValidationResult? result = attribute.GetValidationResult(T.Parse("2", CultureInfo.InvariantCulture), validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The field MyProp must be greater than or equal 3."));
-    }
-
-    [TestCase("3")]
-    [TestCase("2")]
-    public void Should_ReturnSuccessResult_When_IsCorrectField(string value)
-    {
-        T                           fieldVal          = T.Parse("2", CultureInfo.InvariantCulture);
-        GreaterThanOrEqualAttribute attribute         = new(nameof(ModelWithAnotherField<>.AnotherField));
-        ValidationContext           validationContext = new(new ModelWithAnotherField<T> { AnotherField = fieldVal, AnotherField2 = fieldVal });
-
-        ValidationResult? result = attribute.GetValidationResult(T.Parse(value, CultureInfo.InvariantCulture), validationContext);
-
-        Assert.That(result, Is.EqualTo(ValidationResult.Success));
-    }
-
-    [Test]
-    public void Should_ReturnValidationError_When_IsIncorrectField()
-    {
-        T fieldVal = T.Parse("3", CultureInfo.InvariantCulture);
-
-        GreaterThanOrEqualAttribute attribute
-            = new(nameof(ModelWithAnotherField<>.AnotherField2)) { ErrorMessage = "The field {0} must be greater than or equal {1}." };
-
-        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = fieldVal, AnotherField2 = fieldVal }) { DisplayName = "MyProp" };
-
-        ValidationResult? result = attribute.GetValidationResult(T.Parse("2", CultureInfo.InvariantCulture), validationContext);
-
-        Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
-
-        Assert.That(result?.ErrorMessage, Is.EqualTo("The field MyProp must be greater than or equal AnotherField2."));
+        Assert.That(result?.ErrorMessage, Is.EqualTo("The field MyProp must be greater than or equal First."));
     }
 }

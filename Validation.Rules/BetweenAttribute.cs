@@ -11,8 +11,9 @@ namespace Zhomfr.Validation.Rules;
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class BetweenAttribute : AbstractRule
 {
-    private readonly string _max;
-    private readonly string _min;
+    private readonly CultureInfo _culture = CultureInfo.InvariantCulture;
+    private readonly string      _max;
+    private readonly string      _min;
 
     public BetweenAttribute(string min, string max)
     {
@@ -28,32 +29,36 @@ public class BetweenAttribute : AbstractRule
     {
         return value switch
                {
-                   string str => str.Length >= int.Parse(this._min, CultureInfo.InvariantCulture)
-                              && str.Length <= int.Parse(this._max, CultureInfo.InvariantCulture),
-                   short number => number >= short.Parse(this._min, CultureInfo.InvariantCulture)
-                                && number <= short.Parse(this._max, CultureInfo.InvariantCulture),
-                   ushort number => number >= ushort.Parse(this._min, CultureInfo.InvariantCulture)
-                                 && number <= ushort.Parse(this._max, CultureInfo.InvariantCulture),
-                   int number  => number >= int.Parse(this._min, CultureInfo.InvariantCulture)  && number <= int.Parse(this._max, CultureInfo.InvariantCulture),
-                   uint number => number >= uint.Parse(this._min, CultureInfo.InvariantCulture) && number <= uint.Parse(this._max, CultureInfo.InvariantCulture),
-                   long number => number >= long.Parse(this._min, CultureInfo.InvariantCulture) && number <= long.Parse(this._max, CultureInfo.InvariantCulture),
-                   ulong number => number >= ulong.Parse(this._min, CultureInfo.InvariantCulture)
-                                && number <= ulong.Parse(this._max, CultureInfo.InvariantCulture),
-                   float number => number >= float.Parse(this._min, CultureInfo.InvariantCulture)
-                                && number <= float.Parse(this._max, CultureInfo.InvariantCulture),
-                   double number => number >= double.Parse(this._min, CultureInfo.InvariantCulture)
-                                 && number <= double.Parse(this._max, CultureInfo.InvariantCulture),
-                   decimal number => number >= decimal.Parse(this._min, CultureInfo.InvariantCulture)
-                                  && number <= decimal.Parse(this._max, CultureInfo.InvariantCulture),
-                   DateTime date => date >= DateTime.Parse(this._min, CultureInfo.InvariantCulture)
-                                 && date <= DateTime.Parse(this._max, CultureInfo.InvariantCulture),
-                   DateTimeOffset date => date >= DateTimeOffset.Parse(this._min, CultureInfo.InvariantCulture)
-                                       && date <= DateTimeOffset.Parse(this._max, CultureInfo.InvariantCulture),
-                   ICollection collection => collection.Count >= int.Parse(this._min, CultureInfo.InvariantCulture)
-                                          && collection.Count <= int.Parse(this._max, CultureInfo.InvariantCulture),
-                   IEnumerable collection => collection.CountIsBetween(int.Parse(this._min, CultureInfo.InvariantCulture),
-                                                                       int.Parse(this._max, CultureInfo.InvariantCulture)),
-                   var _ => throw new UnsupportedTypeException(value.GetType()),
+                   string str             => this.CheckIfBetween(str),
+                   short number           => this.CheckIfBetween(number),
+                   ushort number          => this.CheckIfBetween(number),
+                   int number             => this.CheckIfBetween(number),
+                   uint number            => this.CheckIfBetween(number),
+                   long number            => this.CheckIfBetween(number),
+                   ulong number           => this.CheckIfBetween(number),
+                   float number           => this.CheckIfBetween(number),
+                   double number          => this.CheckIfBetween(number),
+                   decimal number         => this.CheckIfBetween(number),
+                   DateTime date          => this.CheckIfBetween(date),
+                   DateTimeOffset date    => this.CheckIfBetween(date),
+                   ICollection collection => this.CheckIfBetween(collection),
+                   IEnumerable collection => collection.CountIsBetween(int.Parse(this._min, this._culture), int.Parse(this._max, this._culture)),
+                   var _                  => throw new UnsupportedTypeException(value.GetType()),
                };
+    }
+
+    private bool CheckIfBetween(ICollection value)
+    {
+        return value.Count >= int.Parse(this._min, this._culture) && value.Count <= int.Parse(this._max, this._culture);
+    }
+
+    private bool CheckIfBetween(string value)
+    {
+        return value.Length >= int.Parse(this._min, this._culture) && value.Length <= int.Parse(this._max, this._culture);
+    }
+
+    private bool CheckIfBetween<T>(T value) where T : IComparable, IParsable<T>
+    {
+        return value.CompareTo(T.Parse(this._min, this._culture)) >= 0 && value.CompareTo(T.Parse(this._max, this._culture)) <= 0;
     }
 }

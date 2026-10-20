@@ -10,13 +10,13 @@ namespace Zhomfr.Validation.Rules;
 ///     equal to a specified value. This is useful for validating "Terms of Service" acceptance or similar fields.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
-public class AcceptedIfAttribute<T>(string anotherField, string anotherFieldValue) : AbstractRule where T : IEquatable<T>, IParsable<T>
+public class AcceptedIfAttribute<T>(string anotherField, string fixedValue) : AbstractRule where T : IEquatable<T>, IParsable<T>
 {
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
         T? anotherValue = AbstractRule.GetAnotherField<T>(anotherField, context);
-        T  expected     = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
+        T  expected     = T.Parse(fixedValue, CultureInfo.InvariantCulture);
 
         return !expected.Equals(anotherValue) || value is "yes" or "on" or "1" or "true" or 1 or true;
     }

@@ -19,7 +19,7 @@ public class EndWithAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         EndsWithAttribute attribute         = new("test", "blah test");
         ValidationContext validationContext = new(new());
@@ -28,7 +28,7 @@ public class EndWithAttributeTests
     }
 
     [Test]
-    public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
+    public void ShouldThrow_When_ExpectedIsEmpty()
     {
         Assert.Throws<ArgumentException>(() =>
         {
@@ -50,13 +50,13 @@ public class EndWithAttributeTests
     [TestCase("Start End")]
     [TestCase(" start end ")]
     [TestCase("anything")]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect(string value)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string input)
     {
         EndsWithAttribute attribute = new("end", "not") { ErrorMessage = "The {0} must end with one of: {1}." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must end with one of: \"end\", \"not\"."));

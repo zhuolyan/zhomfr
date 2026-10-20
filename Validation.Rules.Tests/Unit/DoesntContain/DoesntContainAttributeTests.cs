@@ -22,7 +22,7 @@ public class DoesntContainAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         DoesntContainAttribute attribute         = new("test", "blah test");
         ValidationContext      validationContext = new(new());
@@ -31,7 +31,7 @@ public class DoesntContainAttributeTests
     }
 
     [Test]
-    public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
+    public void ShouldThrow_When_ExpectedIsEmpty()
     {
         Assert.Throws<ArgumentException>(() =>
         {
@@ -40,23 +40,23 @@ public class DoesntContainAttributeTests
     }
 
     [TestCaseSource(typeof(DoesntContainAttributeTests), nameof(DoesntContainAttributeTests.TestCases))]
-    public void Should_ReturnSuccess_When_IsCorrectValue(object value)
+    public void Should_ReturnSuccess_When_IsCorrectValue(object input)
     {
-        DoesntContainAttribute attribute         = new("value", "sharp");
+        DoesntContainAttribute attribute         = new("input", "sharp");
         ValidationContext      validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [TestCaseSource(typeof(DoesntContainAttributeTests), nameof(DoesntContainAttributeTests.TestCases))]
-    public void Should_ReturnValidationError_When_IsIncorrectValue(object value)
+    public void Should_ReturnValidationError_When_IsInvalidValue(object input)
     {
         DoesntContainAttribute attribute         = new("test", "blah") { ErrorMessage = "The {0} must doesnt contains: {1}." };
         ValidationContext      validationContext = new(new()) { DisplayName           = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
         Assert.That(result?.ErrorMessage, Is.EqualTo("The MyProp must doesnt contains: \"test\", \"blah\"."));

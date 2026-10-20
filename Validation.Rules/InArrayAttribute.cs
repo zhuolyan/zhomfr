@@ -7,7 +7,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must exist in anotherField's values.</summary>
-/// <param name="anotherField">Filed with collection for check value..</param>
+/// <param name="anotherField">field with collection for check value..</param>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class InArrayAttribute(string anotherField) : AbstractRule
 {

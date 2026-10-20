@@ -9,20 +9,21 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.GreaterThanOrEqual;
 public class DefaultGreaterThanOrEqualTests
 {
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
-        GreaterThanOrEqualAttribute attribute         = new("3");
-        ValidationContext           validationContext = new(new());
+        ModelWithAnotherField<object> model             = new() { Second = new(), First = new() };
+        GreaterThanAttribute          attribute         = new(nameof(ModelWithAnotherField<>.First));
+        ValidationContext             validationContext = new(model);
 
-        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new ModelWithAnotherField<int> { AnotherField = 32, AnotherField2 = 32 },
-                                                                                    validationContext));
+        Assert.Throws<UnsupportedTypeException>(() => attribute.GetValidationResult(new(), validationContext));
     }
 
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
-        GreaterThanOrEqualAttribute attribute         = new("3");
-        ValidationContext           validationContext = new(new());
+        ModelWithAnotherField<int> model             = new() { Second = 32, First = 32 };
+        GreaterThanAttribute       attribute         = new(nameof(ModelWithAnotherField<>.First));
+        ValidationContext          validationContext = new(model);
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -30,12 +31,11 @@ public class DefaultGreaterThanOrEqualTests
     }
 
     [Test]
-    public void Should_ThrowValuesHasDifferentTypesException_When_ValueIsNull()
+    public void Should_Throw_When_ValueIsNull()
     {
-        int                         fieldVal  = 1;
-        GreaterThanOrEqualAttribute attribute = new(nameof(ModelWithAnotherField<>.AnotherField2));
-
-        ValidationContext validationContext = new(new ModelWithAnotherField<int> { AnotherField = fieldVal, AnotherField2 = fieldVal });
+        ModelWithAnotherField<int> model             = new() { Second = 32, First = 32 };
+        GreaterThanAttribute       attribute         = new(nameof(ModelWithAnotherField<>.First));
+        ValidationContext          validationContext = new(model);
 
         Assert.Throws<ValuesHasDifferentTypesException>(() => attribute.GetValidationResult("test", validationContext));
     }

@@ -8,7 +8,7 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.Json;
 public class JsonAttributeTests
 {
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         JsonAttribute     attribute         = new();
         ValidationContext validationContext = new(new());
@@ -49,7 +49,7 @@ public class JsonAttributeTests
     [TestCase("{\"name\": \"John\", \"age\": 30")]
     [TestCase("{\"value\": undefined}")]
     [TestCase("{\n  \"name\": \"John\" // це коментар\n}")]
-    public void Should_ReturnValidationError_When_ValueIsIncorrect(string input)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string input)
     {
         JsonAttribute     attribute         = new() { ErrorMessage     = "The {0} must be a valid json string." };
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };

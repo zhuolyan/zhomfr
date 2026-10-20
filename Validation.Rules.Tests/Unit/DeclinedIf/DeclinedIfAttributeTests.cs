@@ -17,15 +17,15 @@ namespace Zhomfr.Validation.Rules.Tests.Unit.DeclinedIf;
 [TestFixture(typeof(string), "something1")]
 [TestFixture(typeof(DateTime), "2026-09-18 06:40:00")]
 [TestFixture(typeof(DateTimeOffset), "2026-09-18 06:40:00")]
-public class DeclinedIfAttributeTests<T>(string anotherFieldValue) where T : IEquatable<T>, IParsable<T>
+public class DeclinedIfAttributeTests<T>(string fixedValue) where T : IEquatable<T>, IParsable<T>
 {
     [Test]
     public void Should_ReturnSuccess_When_ValueIsNull()
     {
-        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
-        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue);
+        T                      anotherValue = T.Parse(fixedValue, CultureInfo.InvariantCulture);
+        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.Second), fixedValue);
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = anotherValue, First = anotherValue });
 
         ValidationResult? result = attribute.GetValidationResult(null, validationContext);
 
@@ -35,10 +35,10 @@ public class DeclinedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [Test]
     public void Should_Throw_When_FieldNotExists()
     {
-        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
-        DeclinedIfAttribute<T> attribute    = new("wrongField", anotherFieldValue);
+        T                      anotherValue = T.Parse(fixedValue, CultureInfo.InvariantCulture);
+        DeclinedIfAttribute<T> attribute    = new("wrongField", fixedValue);
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = anotherValue, First = anotherValue });
 
         Assert.Throws<MissingFieldException>(() => attribute.GetValidationResult("something", validationContext));
     }
@@ -58,14 +58,14 @@ public class DeclinedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [TestCase(0)]
     [TestCase(2)]
     [TestCase(false)]
-    public void Should_ReturnSuccess_When_AnotherFieldValueIsNotExpected(object value)
+    public void Should_ReturnSuccess_When_AnotherFieldValueIsNotExpected(object input)
     {
-        T                      anotherValue = T.Parse(anotherFieldValue.Replace('1', '2'), CultureInfo.InvariantCulture);
-        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField2), anotherFieldValue);
+        T                      anotherValue = T.Parse(fixedValue.Replace('1', '2'), CultureInfo.InvariantCulture);
+        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.First), fixedValue);
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = anotherValue, First = anotherValue });
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -76,14 +76,14 @@ public class DeclinedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [TestCase("0")]
     [TestCase(0)]
     [TestCase(false)]
-    public void Should_ReturnSuccess_When_TestedValueIsDeclinable(object value)
+    public void Should_ReturnSuccess_When_ValueIsDeclinable(object input)
     {
-        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
-        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue);
+        T                      anotherValue = T.Parse(fixedValue, CultureInfo.InvariantCulture);
+        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.Second), fixedValue);
 
-        ValidationContext validationContext = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue });
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = anotherValue, First = anotherValue });
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -97,15 +97,14 @@ public class DeclinedIfAttributeTests<T>(string anotherFieldValue) where T : IEq
     [TestCase(1)]
     [TestCase(2)]
     [TestCase(true)]
-    public void Should_ReturnFailure_When_TestedValueIsNotDeclinable(object value)
+    public void Should_ReturnFailure_When_ValueIsNotDeclinable(object input)
     {
-        T                      anotherValue = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
-        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.AnotherField), anotherFieldValue) { ErrorMessage = "The {0} must be declined." };
+        T                      anotherValue = T.Parse(fixedValue, CultureInfo.InvariantCulture);
+        DeclinedIfAttribute<T> attribute    = new(nameof(ModelWithAnotherField<>.Second), fixedValue) { ErrorMessage = "The {0} must be declined." };
 
-        ValidationContext validationContext
-            = new(new ModelWithAnotherField<T> { AnotherField = anotherValue, AnotherField2 = anotherValue }) { DisplayName = "MyProp" };
+        ValidationContext validationContext = new(new ModelWithAnotherField<T> { Second = anotherValue, First = anotherValue }) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));

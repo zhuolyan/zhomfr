@@ -19,7 +19,7 @@ public class DoesntEndWithAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         DoesntEndWithAttribute attribute         = new("test", "blah test");
         ValidationContext      validationContext = new(new());
@@ -28,7 +28,7 @@ public class DoesntEndWithAttributeTests
     }
 
     [Test]
-    public void Should_ThrowArgumentException_When_ExpectedIsEmpty()
+    public void ShouldThrow_When_ExpectedIsEmpty()
     {
         Assert.Throws<ArgumentException>(() =>
         {
@@ -39,18 +39,18 @@ public class DoesntEndWithAttributeTests
     [TestCase("Start End")]
     [TestCase(" start end ")]
     [TestCase("anything")]
-    public void Should_ReturnSuccess_When_ValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_ValueIsCorrect(string input)
     {
         DoesntEndWithAttribute attribute         = new("end");
         ValidationContext      validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
 
     [Test]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect()
+    public void Should_ReturnValidationError_When_ValueIsInvalid()
     {
         DoesntEndWithAttribute attribute = new("end", "not") { ErrorMessage = "The {0} must not start with: {1}." };
 

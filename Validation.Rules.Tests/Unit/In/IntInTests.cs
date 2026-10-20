@@ -27,7 +27,7 @@ public class IntInTests<T> where T : IParsable<T>
     [TestCase("4")]
     [TestCase("5")]
     [TestCase("6")]
-    public void Should_ReturnValidationError_When_IsIncorrect(string input)
+    public void Should_ReturnValidationError_When_IsInvalid(string input)
     {
         InAttribute       attribute         = new("1", "2", "3") { ErrorMessage = "The field {0} must be equal one of: {1}." };
         ValidationContext validationContext = new(new()) { DisplayName          = "MyProp" };

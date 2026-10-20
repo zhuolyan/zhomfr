@@ -12,12 +12,12 @@ public class AlphaAttributeTests
     [TestCase("abcABC")]
     [TestCase("abcABC")]
     [TestCase("світ")]
-    public void Should_ReturnSuccess_When_ValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_ValueIsCorrect(string input)
     {
         AlphaAttribute    attribute         = new();
         ValidationContext validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -26,13 +26,13 @@ public class AlphaAttributeTests
     [TestCase("abc-")]
     [TestCase("abc ")]
     [TestCase("світ1")]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect(string value)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string input)
     {
         AlphaAttribute attribute = new() { ErrorMessage = "The value of {0} must contain only letters." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 
@@ -40,7 +40,7 @@ public class AlphaAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         AlphaAttribute    attribute         = new();
         ValidationContext validationContext = new(new());

@@ -10,13 +10,13 @@ namespace Zhomfr.Validation.Rules;
 ///     equal to a specified value.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
-public class DeclinedIfAttribute<T>(string anotherField, string anotherFieldValue) : AbstractRule where T : IEquatable<T>, IParsable<T>
+public class DeclinedIfAttribute<T>(string anotherField, string fixedValue) : AbstractRule where T : IEquatable<T>, IParsable<T>
 {
     /// <inheritdoc/>
     protected override bool CheckCondition(object value, ValidationContext context)
     {
         T? anotherValue = AbstractRule.GetAnotherField<T>(anotherField, context);
-        T  expected     = T.Parse(anotherFieldValue, CultureInfo.InvariantCulture);
+        T  expected     = T.Parse(fixedValue, CultureInfo.InvariantCulture);
 
         return !expected.Equals(anotherValue) || value is false or 0 or "no" or "off" or "0" or "false";
     }

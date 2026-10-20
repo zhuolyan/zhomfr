@@ -10,12 +10,12 @@ public class AlphaNumericAttributeTests
     [TestCase("abc123")]
     [TestCase("abc")]
     [TestCase("123")]
-    public void Should_ReturnSuccess_When_ValueIsCorrect(string value)
+    public void Should_ReturnSuccess_When_ValueIsCorrect(string inout)
     {
         AlphaNumericAttribute attribute         = new();
         ValidationContext     validationContext = new(new());
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(inout, validationContext);
 
         Assert.That(result, Is.EqualTo(ValidationResult.Success));
     }
@@ -23,13 +23,13 @@ public class AlphaNumericAttributeTests
     [TestCase("abc-123")]
     [TestCase("abc 123")]
     [TestCase("abc_")]
-    public void Should_ReturnValidationError_When_ValueIsNotCorrect(string value)
+    public void Should_ReturnValidationError_When_ValueIsInvalid(string input)
     {
         AlphaNumericAttribute attribute = new() { ErrorMessage = "The {0} must contain only letters and numbers." };
 
         ValidationContext validationContext = new(new()) { DisplayName = "MyProp" };
 
-        ValidationResult? result = attribute.GetValidationResult(value, validationContext);
+        ValidationResult? result = attribute.GetValidationResult(input, validationContext);
 
         Assert.That(result, Is.Not.EqualTo(ValidationResult.Success));
 
@@ -37,7 +37,7 @@ public class AlphaNumericAttributeTests
     }
 
     [Test]
-    public void Should_ThrowUnsupportedTypeException_When_TestedValueIsUnsupportedTypeValue()
+    public void Should_Throw_When_ValueIsUnsupportedType()
     {
         AlphaNumericAttribute attribute         = new();
         ValidationContext     validationContext = new(new());
