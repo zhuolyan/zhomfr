@@ -39,8 +39,6 @@ public class GreaterThanAttribute : AbstractRule
             this._cached = true;
         }
 
-        AbstractRule.ThrowIfFieldsHasDifferentTypes(value, anotherValue);
-
         return value switch
                {
                    string str             => str.Length       > ((string)anotherValue).Length,

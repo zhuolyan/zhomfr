@@ -29,35 +29,35 @@ public class BetweenAttribute : AbstractRule
     {
         return value switch
                {
-                   string str             => this.CheckIfBetween(str),
-                   short number           => this.CheckIfBetween(number),
-                   ushort number          => this.CheckIfBetween(number),
-                   int number             => this.CheckIfBetween(number),
-                   uint number            => this.CheckIfBetween(number),
-                   long number            => this.CheckIfBetween(number),
-                   ulong number           => this.CheckIfBetween(number),
-                   float number           => this.CheckIfBetween(number),
-                   double number          => this.CheckIfBetween(number),
-                   decimal number         => this.CheckIfBetween(number),
-                   DateTime date          => this.CheckIfBetween(date),
-                   DateTimeOffset date    => this.CheckIfBetween(date),
-                   ICollection collection => this.CheckIfBetween(collection),
+                   string str             => this.Check(str),
+                   short number           => this.Checkn(number),
+                   ushort number          => this.Checkn(number),
+                   int number             => this.Checkn(number),
+                   uint number            => this.Checkn(number),
+                   long number            => this.Checkn(number),
+                   ulong number           => this.Checkn(number),
+                   float number           => this.Checkn(number),
+                   double number          => this.Checkn(number),
+                   decimal number         => this.Checkn(number),
+                   DateTime date          => this.Checkn(date),
+                   DateTimeOffset date    => this.Checkn(date),
+                   ICollection collection => this.Check(collection),
                    IEnumerable collection => collection.CountIsBetween(int.Parse(this._min, this._culture), int.Parse(this._max, this._culture)),
                    var _                  => throw new UnsupportedTypeException(value.GetType()),
                };
     }
 
-    private bool CheckIfBetween(ICollection value)
+    private bool Check(ICollection value)
     {
         return value.Count >= int.Parse(this._min, this._culture) && value.Count <= int.Parse(this._max, this._culture);
     }
 
-    private bool CheckIfBetween(string value)
+    private bool Check(string value)
     {
         return value.Length >= int.Parse(this._min, this._culture) && value.Length <= int.Parse(this._max, this._culture);
     }
 
-    private bool CheckIfBetween<T>(T value) where T : IComparable, IParsable<T>
+    private bool Checkn<T>(T value) where T : IComparable, IParsable<T>
     {
         return value.CompareTo(T.Parse(this._min, this._culture)) >= 0 && value.CompareTo(T.Parse(this._max, this._culture)) <= 0;
     }
