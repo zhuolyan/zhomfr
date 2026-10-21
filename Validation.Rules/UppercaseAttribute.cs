@@ -6,6 +6,19 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be uppercase.</summary>
+/// <example>
+///     <code>
+///         public class UppercaseDto
+///         {
+///             [Uppercase]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [Uppercase]
+///             public string StringValid = "SOMETHING"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class UppercaseAttribute : AbstractRule
 {

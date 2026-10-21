@@ -5,6 +5,23 @@ using Zhomfr.Validation.Rules.Abstractions;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The given field must match the field under validation.</summary>
+/// <example>
+///     <code>
+///         public class SameDto
+///         {
+///             [Same("ObjectInvalidSecond")]
+///             public object ObjectInvalid = 2; // ValidationError
+///         
+///             public object ObjectInvalidSecond = 3;
+///         
+///             [Same("ObjectValidSecond")]
+///             public object ObjectValid = "test"; // Success
+///         
+///             public object ObjectValidSecond = "test";
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class SameAttribute : AbstractRule
 {

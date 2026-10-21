@@ -21,6 +21,19 @@ namespace Zhomfr.Validation.Rules;
 ///         </item>
 ///     </list>
 /// </remarks>
+/// <example>
+///     <code>
+///         public class RequiredDto
+///         {
+///             [Required]
+///             public object? ObjectInvalid = null; // ValidationError
+///         
+///             [Required]
+///             public object ObjectValid = new(); // Success
+///         }
+///         
+///     </code>
+/// </example>
 public class RequiredAttribute : AbstractRule
 {
     /// <inheritdoc/>

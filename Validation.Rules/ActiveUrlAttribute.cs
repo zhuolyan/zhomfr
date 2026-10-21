@@ -7,6 +7,19 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must have a valid A or AAAA record.</summary>
+/// <example>
+///     <code>
+///         public class ActiveUrlDto
+///         {
+///             [ActiveUrl]
+///             public string StringInvalid = "non-existent-domain-123456789.com"; // ValidationError
+///         
+///             [ActiveUrl]
+///             public string StringValid = "https://microsoft.com"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ActiveUrlAttribute : AbstractRule
 {

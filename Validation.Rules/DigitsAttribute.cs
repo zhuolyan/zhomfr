@@ -7,6 +7,19 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The decimal under validation must have an exact length of value or between the given min and max.</summary>
+/// <example>
+///     <code>
+///         public class DigitsDto
+///         {
+///             [Digits(5)]
+///             public decimal DecimalInvalid = 12.01M; // ValidationError
+///         
+///             [Digits(3, 5)]
+///             public decimal DecimalValid = 12.35M; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class DigitsAttribute : AbstractRule
 {

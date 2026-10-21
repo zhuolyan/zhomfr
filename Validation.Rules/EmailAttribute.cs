@@ -28,6 +28,19 @@ namespace Zhomfr.Validation.Rules;
 ///         </item>
 ///     </list>
 /// </remarks>
+/// <example>
+///     <code>
+///         public class EmailDto
+///         {
+///             [Email(EmailAttribute.SPOOF)]
+///             public string StringInvalid = "tést@exämple.com"; // ValidationError
+///         
+///             [Email(EmailAttribute.DNS)]
+///             public string StringValid = "test@google.com"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public partial class EmailAttribute : AbstractRule
 {

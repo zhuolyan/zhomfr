@@ -7,6 +7,19 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must match the given regular expression.</summary>
+/// <example>
+///     <code>
+///         public class RegexpDto
+///         {
+///             [Regexp("^[0-9]+$")]
+///             public string StringInvalid = "abc"; // ValidationError
+///         
+///             [Regexp("^[0-9]+$")]
+///             public string StringValid = "123"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class RegexpAttribute : AbstractRule
 {

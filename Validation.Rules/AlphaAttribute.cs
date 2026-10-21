@@ -6,6 +6,19 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be entirely Unicode alphabetic characters.</summary>
+/// <example>
+///     <code>
+///         public class AlphaDto
+///         {
+///             [Alpha]
+///             public string StringInvalid = "abc "; // ValidationError
+///         
+///             [Alpha]
+///             public string StringValid = "abcABC"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class AlphaAttribute : AbstractRule
 {

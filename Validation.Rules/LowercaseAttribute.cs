@@ -6,6 +6,19 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be lowercase.</summary>
+/// <example>
+///     <code>
+///         public class LowercaseDto
+///         {
+///             [Lowercase]
+///             public string StringInvalid = "sOmething"; // ValidationError
+///         
+///             [Lowercase]
+///             public string StringValid = "something"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class LowercaseAttribute : AbstractRule
 {

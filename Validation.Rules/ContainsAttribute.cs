@@ -7,6 +7,26 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be a collection or string that contains all the given parameter values.</summary>
+/// <example>
+///     <code>
+///         public class ContainsDto
+///         {
+///             [Contains(1, 2)]
+///             public ICollection CollectionInvalid = new List<int>
+///             { 3, 4, 5 }; // ValidationError [Contains(1, 2)]
+///             public ICollection CollectionValid = new List
+///             <int>
+///                 { 1, 2, 4 }; // Success [Contains("2", "3")] public IEnumerable EnumerableInvalid = new List
+///                 <string>
+///                     { "something", "else" }; // ValidationError [Contains("something", "else")] public IEnumerable
+///                     EnumerableValid = new List
+///                     <string>
+///                         { "something", "else" }; // Success [Contains("test", "not")] public string StringInvalid
+///                         = "something"; // ValidationError [Contains("some", "thin")] public string StringValid =
+///                         "something"; // Success }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ContainsAttribute : AbstractRule
 {

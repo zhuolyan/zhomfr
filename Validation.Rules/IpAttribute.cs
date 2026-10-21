@@ -11,6 +11,25 @@ namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be an IP address.</summary>
 /// <param name="validationMode">The validation mode. By default any address family are correct.</param>
+/// <example>
+///     <code>
+///         public class IpDto
+///         {
+///             [Ip(IpAttribute.Modes.IPv4)]
+///             public IPAddress IPAddressInvalid = IPAddress.IPv6Any; // ValidationError
+///         
+///             [Ip(IpAttribute.Modes.IPv6)]
+///             public IPAddress IPAddressValid = IPAddress.Any; // Success
+///         
+///             [Ip(IpAttribute.Modes.IPv4)]
+///             public string StringInvalid = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"; // ValidationError
+///         
+///             [Ip(IpAttribute.Modes.IPv6)]
+///             public string StringValid = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class IpAttribute(IpAttribute.Modes validationMode = IpAttribute.Modes.Any) : AbstractRule
 {

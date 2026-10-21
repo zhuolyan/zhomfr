@@ -6,6 +6,25 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be a value preceding the given date.</summary>
+/// <example>
+///     <code>
+///         public class BeforeOrEqualDto
+///         {
+///             [BeforeOrEqual("2026-10-18 06:59:59")]
+///             public DateTime DateTimeInvalid = DateTime.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [BeforeOrEqual("2026-10-18 06:59:59")]
+///             public DateTimeOffset DateTimeOffsetInvalid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [BeforeOrEqual("2026-10-18 07:00:00")]
+///             public DateTimeOffset DateTimeOffsetValid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             [BeforeOrEqual("2026-10-18 07:00:00")]
+///             public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class BeforeOrEqualAttribute : AbstractRule
 {

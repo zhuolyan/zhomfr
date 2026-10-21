@@ -12,6 +12,18 @@ namespace Zhomfr.Validation.Rules;
 ///         as validation rule parameters.
 ///     </remarks>
 /// </summary>
+/// <example>
+///     <code>
+///         public class UrlDto
+///         {
+///             [Url("https")]
+///             public string StringInvalid = "http://example.com"; // ValidationError
+///         
+///             [Url]
+///             public string StringValid = "http://example.com"; // Success
+///         }
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class UrlAttribute : AbstractRule
 {

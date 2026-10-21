@@ -7,6 +7,24 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>Under validation must not have any duplicate values:</summary>
+/// <example>
+///     <code>
+///         public class DistinctDto
+///         {
+///             [Distinct]
+///             public IDictionary DictionaryInvalid = new Dictionary<string, string>
+///             { { "first", "test" }, { "second",
+///             "test" }, { "third", "blah" } }; // ValidationError [Distinct] public IDictionary DictionaryValid = new
+///             Dictionary
+///             <string, string>
+///                 { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // Success [Distinct]
+///                 public IEnumerable EnumerableInvalid = new List
+///                 <int>
+///                     { 1, 2, 2 }; // ValidationError [Distinct] public IEnumerable EnumerableValid = new List
+///                     <int> { 1, 2, 3 }; // Success }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class DistinctAttribute : AbstractRule
 {
