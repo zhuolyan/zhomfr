@@ -3,6 +3,8 @@
     <Project Path="Helpers.ScalarTypes/Helpers.ScalarTypes.csproj"/>
     <Project Path="ReadmeGeneratorTool/ReadmeGeneratorTool.csproj"/>
     <Project Path="Validation.Rules.Abstractions/Validation.Rules.Abstractions.csproj"/>
+    <Project Path="Validation.Rules.Database.Tests/Validation.Rules.Database.Tests.csproj"/>
+    <Project Path="Validation.Rules.Database/Validation.Rules.Database.csproj"/>
     <Project Path="Validation.Rules.Tests/Validation.Rules.Tests.csproj"/>
     <Project Path="Validation.Rules/Validation.Rules.csproj"/>
 </Solution>
