@@ -5,6 +5,7 @@ using Zhomfr.Validation.Rules.Abstractions;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be "no", "off", 0, "0", false, or "false".</summary>
+/// <target-type>bool,string,int</target-type>
 /// <example>
 ///     <code>
 ///         public class DeclinedDto

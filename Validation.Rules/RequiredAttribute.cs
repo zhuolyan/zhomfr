@@ -21,6 +21,7 @@ namespace Zhomfr.Validation.Rules;
 ///         </item>
 ///     </list>
 /// </remarks>
+/// <target-type>object</target-type>
 /// <example>
 ///     <code>
 ///         public class RequiredDto

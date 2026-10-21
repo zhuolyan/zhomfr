@@ -6,14 +6,15 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must not end with one of the given values.</summary>
+/// <target-type>string</target-type>
 /// <example>
 ///     <code>
 ///         public class DoesntEndWithDto
 ///         {
-///             [DoesntEndWith("start", "ing")]
+///             [DoesntEndWith("start","ing")]
 ///             public string StringInvalid = "something"; // ValidationError
 ///         
-///             [DoesntEndWith("start", "end")]
+///             [DoesntEndWith("start","end")]
 ///             public string StringValid = "something"; // Success
 ///         }
 ///         

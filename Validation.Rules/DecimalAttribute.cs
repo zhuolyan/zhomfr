@@ -7,6 +7,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be decimal and must contain the specified number of decimal places.</summary>
+/// <target-type>decimal</target-type>
 /// <example>
 ///     <code>
 ///         public class DecimalDto
@@ -17,7 +18,6 @@ namespace Zhomfr.Validation.Rules;
 ///             [Decimal(2, 5)]
 ///             public decimal DecimalValid = 3.345M; // Success
 ///         }
-///         
 ///     </code>
 /// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]

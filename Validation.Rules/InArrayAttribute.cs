@@ -8,6 +8,7 @@ namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must exist in anotherField's values.</summary>
 /// <param name="anotherField">field with collection for check value..</param>
+/// <target-type>ICollection,IEnumerable</target-type>
 /// <example>
 ///     <code>
 ///         public class InArrayDto
@@ -24,9 +25,8 @@ namespace Zhomfr.Validation.Rules;
 ///             [InArray(nameof(InArrayDto.ExpectedEnumerable))]
 ///             public int EnumerableValid = 2; // Success
 ///         
-///             public ICollection ExpectedCollection = new List<int>
-///             { 1, 2, 3 }; public IEnumerable ExpectedEnumerable =
-///             new List<int> { 1, 2, 3 }; }
+///             public ICollection ExpectedCollection = new List&lt;int&gt; { 1, 2, 3 };
+///             public IEnumerable ExpectedEnumerable = new List&lt;int&gt; { 1, 2, 3 }; }
 ///         
 ///     </code>
 /// </example>

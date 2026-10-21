@@ -5,6 +5,7 @@ using Zhomfr.Validation.Rules.Abstractions;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The given field must match the field under validation.</summary>
+/// <target-type>object</target-type>
 /// <example>
 ///     <code>
 ///         public class SameDto

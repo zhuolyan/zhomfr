@@ -6,6 +6,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must start with one of the given values.</summary>
+/// <target-type>string</target-type>
 /// <example>
 ///     <code>
 ///         public class StartsWithDto

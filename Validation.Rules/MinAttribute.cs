@@ -12,38 +12,95 @@ namespace Zhomfr.Validation.Rules;
 ///     The field under validation must be grater than or equal to a minimum value. Strings, numerics, arrays, and
 ///     files are evaluated in the same fashion as the size rule.
 /// </summary>
+/// <target-type>string,short,ushort,int,uint,long,ulong,float,double,decimal,DateTime,DateTimeOffset,ICollection,IEnumerable</target-type>
 /// <example>
 ///     <code>
 ///         public class MinDto
 ///         {
+///             [Min("2026-10-18 07:00:01")]
+///             public DateTime DateTimeInvalid = DateTime.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [Min("2026-10-18 07:00:01")]
+///             public DateTimeOffset DateTimeOffsetInvalid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [Min("2026-10-18 07:00:00")]
+///             public DateTimeOffset DateTimeOffsetValid = DateTimeOffset.Parse("2026-10-18 07:00:02"); // Success
+///         
+///             [Min("2026-10-18 07:00:00")]
+///             public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             [Min("3.3")]
+///             public decimal DecimalInvalid = 3.2M; // ValidationError
+///         
+///             [Min("3.3")]
+///             public decimal DecimalValid = 3.3M; // Success
+///         
+///             [Min("3.3")]
+///             public double DoubleInvalid = 3.2; // ValidationError
+///         
+///             [Min("3.3")]
+///             public double DoubleValid = 3.3; // Success
+///         
+///             [Min("3.3")]
+///             public float FloatInvalid = 3.2f; // ValidationError
+///         
+///             [Min("3.3")]
+///             public float FloatValid = 3.3f; // Success
+///         
 ///             [Min("3")]
-///             public ICollection CollectionInvalid = new List<int>
-///             { 1, 2 }; // ValidationError [Min("3")] public
-///             ICollection CollectionValid = new List
-///             <int>
-///                 { 1, 2, 3 }; // Success [Min("2026-10-18 07:00:01")] public DateTime DateTimeInvalid =
-///                 DateTime.Parse("2026-10-18 07:00:00"); // ValidationError [Min("2026-10-18 07:00:01")] public
-///                 DateTimeOffset DateTimeOffsetInvalid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // ValidationError
-///                 [Min("2026-10-18 07:00:00")] public DateTimeOffset DateTimeOffsetValid =
-///                 DateTimeOffset.Parse("2026-10-18 07:00:02"); // Success [Min("2026-10-18 07:00:00")] public DateTime
-///                 DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success [Min("3.3")] public decimal
-///                 DecimalInvalid = 3.2M; // ValidationError [Min("3.3")] public decimal DecimalValid = 3.3M; // Success
-///                 [Min("3.3")] public double DoubleInvalid = 3.2; // ValidationError [Min("3.3")] public double
-///                 DoubleValid = 3.3; // Success [Min("3")] public IEnumerable EnumerableInvalid = new List
-///                 <int>
-///                     { 1, 2 }; // ValidationError [Min("3")] public IEnumerable EnumerableValid = new List
-///                     <int>
-///                         { 1, 2, 4, 5 }; // Success [Min("3.3")] public float FloatInvalid = 3.2f; // ValidationError
-///                         [Min("3.3")] public float FloatValid = 3.3f; // Success [Min("3")] public int IntInvalid = 1;
-///                         // ValidationError [Min("3")] public int IntValid = 4; // Success [Min("3")] public long
-///                         LongInvalid = 1; // ValidationError [Min("3")] public long LongValid = 4; // Success [Min("3")]
-///                         public short ShortInvalid = 1; // ValidationError [Min("3")] public short ShortValid = 4; //
-///                         Success [Min("3")] public string StringInvalid = "te"; // ValidationError [Min("3")] public
-///                         string StringValid = "test"; // Success [Min("3")] public uint UintInvalid = 1; //
-///                         ValidationError [Min("3")] public uint UintValid = 4; // Success [Min("3")] public ulong
-///                         UlongInvalid = 1; // ValidationError [Min("3")] public ulong UlongValid = 4; // Success
-///                         [Min("3")] public ushort UshortInvalid = 1; // ValidationError [Min("3")] public ushort
-///                         UshortValid = 4; // Success }
+///             public ICollection CollectionInvalid = new List&lt;int&gt;() { 1, 2 }; // ValidationError
+///         
+///             [Min("3")]
+///             public ICollection CollectionValid = new List&lt;int&gt;() { 1, 2, 3 }; // Success
+///         
+///             [Min("3")]
+///             public IEnumerable EnumerableInvalid = new List&lt;int&gt;() { 1, 2 }; // ValidationError
+///         
+///             [Min("3")]
+///             public IEnumerable EnumerableValid = new List&lt;int&gt;() { 1, 2, 4, 5 }; // Success
+///         
+///             [Min("3")]
+///             public int IntInvalid = 1; // ValidationError
+///         
+///             [Min("3")]
+///             public int IntValid = 4; // Success
+///         
+///             [Min("3")]
+///             public long LongInvalid = 1; // ValidationError
+///         
+///             [Min("3")]
+///             public long LongValid = 4; // Success
+///         
+///             [Min("3")]
+///             public short ShortInvalid = 1; // ValidationError
+///         
+///             [Min("3")]
+///             public short ShortValid = 4; // Success
+///         
+///             [Min("3")]
+///             public string StringInvalid = "te"; // ValidationError
+///         
+///             [Min("3")]
+///             public string StringValid = "test"; // Success
+///         
+///             [Min("3")]
+///             public uint UintInvalid = 1; // ValidationError
+///         
+///             [Min("3")]
+///             public uint UintValid = 4; // Success
+///         
+///             [Min("3")]
+///             public ulong UlongInvalid = 1; // ValidationError
+///         
+///             [Min("3")]
+///             public ulong UlongValid = 4; // Success
+///         
+///             [Min("3")]
+///             public ushort UshortInvalid = 1; // ValidationError
+///         
+///             [Min("3")]
+///             public ushort UshortValid = 4; // Success
+///         }
 ///         
 ///     </code>
 /// </example>

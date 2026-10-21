@@ -4,6 +4,7 @@ namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must have a different value than field.</summary>
 /// <param name="anotherField">Name of another field.</param>
+/// <target-type>object</target-type>
 /// <example>
 ///     <code>
 ///         public class DifferentDto

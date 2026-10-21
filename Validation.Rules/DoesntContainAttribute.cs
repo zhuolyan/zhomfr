@@ -7,25 +7,29 @@ namespace Zhomfr.Validation.Rules;
 ///     values.
 /// </summary>
 /// <param name="values">The seek values.</param>
+/// <target-type>string,IDictionary,IEnumerable</target-type>
 /// <example>
 ///     <code>
 ///         public class DoesntContainDto
 ///         {
 ///             [DoesntContain("input", "sharp")]
-///             public IDictionary DictionaryInvalid = new Dictionary<string, string>
-///             { { "first", "input" }, { "second",
-///             "not" }, { "third", "blah" } }; // ValidationError [DoesntContain("input", "sharp")] public IDictionary
-///             DictionaryValid = new Dictionary
-///             <string, string>
-///                 { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // Success
-///                 [DoesntContain(4, 5)] public IEnumerable EnumerableInvalid = new List
-///                 <int>
-///                     { 1, 2, 3 }; // ValidationError [DoesntContain(1, 2)] public IEnumerable EnumerableValid = new
-///                     List
-///                     <int>
-///                         { 1, 2, 3 }; // Success [DoesntContain("some")] public string StringInvalid = "something"; //
-///                         ValidationError [DoesntContain("end", "start")] public string StringValid = "something"; //
-///                         Success }
+///             public IDictionary DictionaryInvalid = new Dictionary&lt;string, string&gt;() { { "first", "input" }, { "second", "not" }, { "third", "blah" } }; // ValidationError
+///         
+///             [DoesntContain("input", "sharp")]
+///             public IDictionary DictionaryValid = new Dictionary&lt;string, string&gt;() { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // Success
+///         
+///             [DoesntContain(4, 5)]
+///             public IEnumerable EnumerableInvalid = new List&lt;int&gt;() { 1, 2, 3 }; // ValidationError
+///         
+///             [DoesntContain(1, 2)]
+///             public IEnumerable EnumerableValid = new List&lt;int&gt;() { 1, 2, 3 }; // Success
+///         
+///             [DoesntContain("some")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [DoesntContain("end", "start")]
+///             public string StringValid = "something"; // Success
+///         }
 ///         
 ///     </code>
 /// </example>

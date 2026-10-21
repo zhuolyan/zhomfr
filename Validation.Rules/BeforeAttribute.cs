@@ -6,6 +6,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be a value preceding the given date.</summary>
+/// <target-type>DateTime,DateTimeOffset</target-type>
 /// <example>
 ///     <code>
 ///         public class BeforeDto

@@ -7,6 +7,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must have a valid A or AAAA record.</summary>
+/// <target-type>string</target-type>
 /// <example>
 ///     <code>
 ///         public class ActiveUrlDto

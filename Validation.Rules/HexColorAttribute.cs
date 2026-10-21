@@ -24,6 +24,7 @@ namespace Zhomfr.Validation.Rules;
 ///         </item>
 ///     </list>
 /// </remarks>
+/// <target-type>string</target-type>
 /// <example>
 ///     <code>
 ///         public class HexColorDto

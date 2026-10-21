@@ -9,46 +9,49 @@ namespace Zhomfr.Validation.Rules;
 ///     The field under validation must be "yes", "on", 1, "1", true, or "true" if another field under validation is
 ///     equal to a specified value. This is useful for validating "Terms of Service" acceptance or similar fields.
 /// </summary>
+/// <target-type>bool,string,int</target-type>
 /// <example>
 ///     <code>
 ///         public class AcceptedIfDto
 ///         {
-///             [AcceptedIf<string>
-///             ("ExpectedField", "expected value")] public bool BoolInvalid = false; // ValidationError
-///             [AcceptedIf
-///             <string>
-///                 ("ExpectedField", "another value")] public bool BoolNotValidateInvalid = false; // Success
-///                 [AcceptedIf
-///                 <string>
-///                     ("ExpectedField", "another value")] public bool BoolNotValidateValid = true; // Success
-///                     [AcceptedIf
-///                     <string>
-///                         ("ExpectedField", "expected value")] public bool BoolValid = true; // Success public string
-///                         ExpectedField = "expected value"; [AcceptedIf
-///                         <string>
-///                             ("ExpectedField", "expected value")] public int IntInvalid = 0; // ValidationError
-///                             [AcceptedIf
-///                             <string>
-///                                 ("ExpectedField", "another value")] public int IntNotValidateInvalid = 0; //
-///                                 Success [AcceptedIf
-///                                 <string>
-///                                     ("ExpectedField", "another value")] public int IntNotValidateValid = 1; //
-///                                     Success [AcceptedIf
-///                                     <string>
-///                                         ("ExpectedField", "expected value")] public int IntValid = 1; // Success
-///                                         [AcceptedIf
-///                                         <string>
-///                                             ("ExpectedField", "expected value")] public string StringInvalid =
-///                                             "something"; // ValidationError [AcceptedIf
-///                                             <string>
-///                                                 ("ExpectedField", "another value")] public string
-///                                                 StringNotValidateInvalid = "something"; // Success [AcceptedIf
-///                                                 <string>
-///                                                     ("ExpectedField", "another value")] public string
-///                                                     StringNotValidateValid = "yes"; // Success [AcceptedIf
-///                                                     <string>
-///                                                         ("ExpectedField", "expected value")] public string
-///                                                         StringValid = "yes"; // Success }
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "expected value")]
+///             public bool BoolInvalid = false; // ValidationError
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "expected value")]
+///             public bool BoolValid = true; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "expected value")]
+///             public int IntInvalid = 0; // ValidationError
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "expected value")]
+///             public int IntValid = 1; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "expected value")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "expected value")]
+///             public string StringValid = "yes"; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "another value")]
+///             public bool BoolNotValidateInvalid = false; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "another value")]
+///             public bool BoolNotValidateValid = true; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "another value")]
+///             public int IntNotValidateInvalid = 0; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "another value")]
+///             public int IntNotValidateValid = 1; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "another value")]
+///             public string StringNotValidateInvalid = "something"; // Success
+///         
+///             [AcceptedIf&lt;string&gt;("ExpectedField", "another value")]
+///             public string StringNotValidateValid = "yes"; // Success
+///         
+///             public string ExpectedField = "expected value";
+///         }
 ///         
 ///     </code>
 /// </example>

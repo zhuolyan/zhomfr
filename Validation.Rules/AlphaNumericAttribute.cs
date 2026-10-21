@@ -6,6 +6,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be entirely Unicode alphanumeric characters.</summary>
+/// <target-type>string</target-type>
 /// <example>
 ///     <code>
 ///         public class AlphaNumericDto

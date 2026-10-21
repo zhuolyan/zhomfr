@@ -11,6 +11,7 @@ namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be an IP address.</summary>
 /// <param name="validationMode">The validation mode. By default any address family are correct.</param>
+/// <target-type>string,IPAddress</target-type>
 /// <example>
 ///     <code>
 ///         public class IpDto

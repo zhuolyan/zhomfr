@@ -7,6 +7,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The decimal under validation must have an exact length of value or between the given min and max.</summary>
+/// <target-type>decimal</target-type>
 /// <example>
 ///     <code>
 ///         public class DigitsDto

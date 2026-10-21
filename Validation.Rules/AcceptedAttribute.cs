@@ -8,6 +8,7 @@ namespace Zhomfr.Validation.Rules;
 ///     The field under validation must be "yes", "on", 1, "1", true, or "true". This is useful for validating "Terms
 ///     of Service" acceptance or similar fields.
 /// </summary>
+/// <target-type>bool,string,int</target-type>
 /// <example>
 ///     <code>
 ///         public class AcceptedDto
@@ -33,6 +34,7 @@ namespace Zhomfr.Validation.Rules;
 ///         
 ///     </code>
 /// </example>
+/// <target-type>bool,string,int</target-type>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class AcceptedAttribute : AbstractRule
 {

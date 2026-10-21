@@ -12,6 +12,7 @@ namespace Zhomfr.Validation.Rules;
 ///         as validation rule parameters.
 ///     </remarks>
 /// </summary>
+/// <target-type>string</target-type>
 /// <example>
 ///     <code>
 ///         public class UrlDto

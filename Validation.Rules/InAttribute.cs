@@ -7,6 +7,7 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be included in the given list of values.</summary>
+/// <target-type>string,short,ushort,int,uint,long,ulong,float,double,decimal,DateTime,DateTimeOffset</target-type>
 /// <example>
 ///     <code>
 ///         public class InDto
