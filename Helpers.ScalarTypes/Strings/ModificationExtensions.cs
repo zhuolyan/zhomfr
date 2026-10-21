@@ -20,6 +20,14 @@ public static partial class ModificationExtensions
         /// <summary>Removes the first occurrence of any of the specified values from the start of the string.</summary>
         /// <param name="parts">The values to remove if they appear at the start of the string.</param>
         /// <returns>The resulting string after removing the starting value, or the original string if no match is found.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "https://example.com";
+        /// 
+        ///         string result1 = value.ChopStart("https://");            // example.com
+        ///         string result2 = value.ChopStart("https://", "http://"); // example.com
+        ///     </code>
+        /// </example>
         public string ChopStart(params string[] parts)
         {
             foreach (string needle in parts) {
@@ -34,6 +42,14 @@ public static partial class ModificationExtensions
         /// <summary>Removes the first occurrence of any of the specified values from the end of the string.</summary>
         /// <param name="parts">The values to remove if they appear at the end of the string.</param>
         /// <returns>The resulting string after removing the ending value, or the original string if no match is found.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "example.com/";
+        /// 
+        ///         string result1 = value.ChopEnd("/");      // example.com
+        ///         string result2 = value.ChopEnd("/", "."); // example.com
+        ///     </code>
+        /// </example>
         public string ChopEnd(params string[] parts)
         {
             foreach (string needle in parts) {
@@ -51,6 +67,13 @@ public static partial class ModificationExtensions
         /// </summary>
         /// <param name="search">The substring to deduplicate.</param>
         /// <returns>The resulting string with consecutive duplicate substrings replaced by a single instance.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello   world";
+        /// 
+        ///         string result = value.Deduplicate(); // hello world
+        ///     </code>
+        /// </example>
         public string Deduplicate(string search = " ")
         {
             return Regex.Replace(value, $"({Regex.Escape(search)})+", search);
@@ -59,6 +82,13 @@ public static partial class ModificationExtensions
         /// <summary>Ends the string with a single instance of the specified value if it does not already end with it.</summary>
         /// <param name="end">The value to append to the string.</param>
         /// <returns>The resulting string ending with the specified value.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "example";
+        ///
+        ///         string result = value.EndWith(".com"); // example.com
+        ///     </code>
+        /// </example>
         public string EndWith(string end)
         {
             if (string.IsNullOrWhiteSpace(end) || value.EndsWith(end)) {
@@ -73,6 +103,13 @@ public static partial class ModificationExtensions
         /// <param name="radius">The number of characters to include on each side of the truncated string (defaults to 100).</param>
         /// <param name="omission">The string to prepend and append as an omission indicator.</param>
         /// <returns>The extracted excerpt containing the matched phrase.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "The quick brown fox jumps over the lazy dog";
+        /// 
+        ///         string result = value.Excerpt("fox", radius: 5); // ...own fox jump...
+        ///     </code>
+        /// </example>
         public string Excerpt(string search, int radius = 100, string omission = "...")
         {
             if (string.IsNullOrWhiteSpace(value) || string.IsNullOrWhiteSpace(search)) {
@@ -104,6 +141,13 @@ public static partial class ModificationExtensions
 
         /// <summary>Decodes the given Base64 string, or returns null if the string is not a valid Base64 encoding.</summary>
         /// <returns>The decoded string, or null if the input is not valid Base64.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "SGVsbG8=";
+        /// 
+        ///         string result = value.FromBase64(); // Hello
+        ///     </code>
+        /// </example>
         public string? FromBase64()
         {
             try {
@@ -115,6 +159,13 @@ public static partial class ModificationExtensions
 
         /// <summary>Returns the string with its first character converted to lowercase.</summary>
         /// <returns>The resulting string with a lowercase first character.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "HELLO";
+        ///
+        ///         string result = value.LcFirst(); // hELLO
+        ///     </code>
+        /// </example>
         public string LcFirst()
         {
             if (string.IsNullOrEmpty(value) || char.IsLower(value[0])) {
@@ -132,6 +183,12 @@ public static partial class ModificationExtensions
         /// <param name="end">The optional character index from the end at which to stop masking.</param>
         /// <param name="mask">The character used to replace the masked portion.</param>
         /// <returns>The resulting masked string.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "john@example.com";
+        ///         string result = value.Mask(4, 4); // john*********e.com
+        ///     </code>
+        /// </example>
         public string Mask(int start, int end = 0, char mask = '*')
         {
             if (string.IsNullOrEmpty(value)) {
@@ -189,6 +246,12 @@ public static partial class ModificationExtensions
         /// <param name="length">The total length of the resulting string.</param>
         /// <param name="pad">The string to use for padding.</param>
         /// <returns>The resulting padded string.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "title";
+        ///         string result = value.PadBoth(9, "-"); // --title--
+        ///     </code>
+        /// </example>
         public string PadBoth(int length, string pad = " ")
         {
             int totalPadLength = length - value.Length;
@@ -219,6 +282,12 @@ public static partial class ModificationExtensions
         /// <summary>Removes the specified values from the string in a case-sensitive manner.</summary>
         /// <param name="search">The values to remove from the string.</param>
         /// <returns>The resulting string with the specified values removed.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "a-b-c";
+        ///         string result = value.Remove("-"); // abc
+        ///     </code>
+        /// </example>
         public string Remove(params string[] search)
         {
             if (string.IsNullOrWhiteSpace(value)) {
@@ -241,6 +310,12 @@ public static partial class ModificationExtensions
         /// <summary>Removes the specified values from the string in a case-insensitive manner.</summary>
         /// <param name="search">The values to remove from the string.</param>
         /// <returns>The resulting string with the specified values removed.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "Hello HELLO World";
+        ///         string result = value.RemoveIgnoreCase("hello"); // World
+        ///     </code>
+        /// </example>
         public string RemoveIgnoreCase(params string[] search)
         {
             if (string.IsNullOrWhiteSpace(value)) {
@@ -269,6 +344,12 @@ public static partial class ModificationExtensions
         /// <param name="replacements">The array of replacement values to apply sequentially.</param>
         /// <param name="caseSensitive">true to perform a case-sensitive comparison; otherwise, false.</param>
         /// <returns>The resulting string with the specified replacements made.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "a-b-c";
+        ///         string result = value.Replace("-", ["1", "2"]); // a1b2c
+        ///      </code>
+        /// </example>
         public string Replace(string search, string[] replacements, bool caseSensitive = false)
         {
             if (string.IsNullOrWhiteSpace(search)) {
@@ -296,6 +377,12 @@ public static partial class ModificationExtensions
         /// <param name="replacement">The string to replace the first occurrence with.</param>
         /// <param name="caseSensitive">true to perform a case-sensitive comparison; otherwise, false.</param>
         /// <returns>The resulting string with the first occurrence replaced.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "foo foo";
+        ///         string result = value.ReplaceFirst("foo", "bar"); // bar foo
+        ///     </code>
+        /// </example>
         public string ReplaceFirst(string search, string replacement, bool caseSensitive = false)
         {
             if (string.IsNullOrWhiteSpace(search)) {
@@ -321,6 +408,12 @@ public static partial class ModificationExtensions
         /// <param name="replacement">The string to replace the first occurrence with.</param>
         /// <param name="caseSensitive">true to perform a case-sensitive comparison; otherwise, false.</param>
         /// <returns>The resulting string with the last occurrence replaced.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "foo foo";
+        ///         string result = value.ReplaceLast("foo", "bar"); // foo bar
+        ///     </code>
+        /// </example>
         public string ReplaceLast(string search, string replacement, bool caseSensitive = false)
         {
             if (string.IsNullOrEmpty(search)) {
@@ -342,6 +435,12 @@ public static partial class ModificationExtensions
         /// <param name="pattern">The regular expression pattern to match against.</param>
         /// <param name="replacement">The string to replace each matched portion with.</param>
         /// <returns>The resulting string with the pattern matches replaced.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "foo123 bar456";
+        ///         string result = value.ReplaceMatches(@"\d+", "#"); // foo# bar#
+        ///     </code>
+        /// </example>
         public string ReplaceMatches(string pattern, string replacement)
         {
             return Regex.Replace(value, pattern, replacement);
@@ -349,6 +448,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Reverses the given string.</summary>
         /// <returns>The resulting string with its characters in reverse order.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello";
+        ///         string result = value.Reverse(); // olleh
+        ///     </code>
+        /// </example>
         public string Reverse()
         {
             if (string.IsNullOrEmpty(value)) {
@@ -366,6 +471,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Removes all extraneous white space from the string, including extra white space between words.</summary>
         /// <returns>The resulting string with all extraneous white space removed.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "  hello   world  ";
+        ///         string result = value.Squish(); // hello world
+        ///     </code>
+        /// </example>
         public string Squish()
         {
             return string.IsNullOrWhiteSpace(value) ? value.Trim() : ModificationExtensions.SquishRegex().Replace(value.Trim(), " ");
@@ -374,6 +485,12 @@ public static partial class ModificationExtensions
         /// <summary>Begins the string with a single instance of the specified value if it does not already start with it.</summary>
         /// <param name="start">The value to prepend to the string.</param>
         /// <returns>The resulting string starting with the specified value.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "example.com";
+        ///         string result = value.StartWith("https://"); // https://example.com
+        ///     </code>
+        /// </example>
         public string StartWith(string start)
         {
             if (string.IsNullOrWhiteSpace(start) || value.StartsWith(start)) {
@@ -395,6 +512,12 @@ public static partial class ModificationExtensions
         ///     characters.
         /// </param>
         /// <returns>The resulting string with the replacement or insertion made.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello world";
+        ///         string result = value.SubstringReplace("C#", 6, 5); // hello C#
+        ///     </code>
+        /// </example>
         public string SubstringReplace(string replacement, int start, int length = -1)
         {
             if (start < 0 || start >= value.Length) {
@@ -414,6 +537,12 @@ public static partial class ModificationExtensions
         ///     as values.
         /// </param>
         /// <returns>The resulting string with all specified replacements made.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello world";
+        ///         string result = value.Swap(new() { ["hello"] = "hi", ["world"] = "there" }); // hi there
+        ///     </code>
+        /// </example>
         public string Swap(Dictionary<string, string> replacements)
         {
             if (string.IsNullOrEmpty(value) || replacements.Count == 0) {
@@ -425,6 +554,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Converts the given string to its Base64-encoded representation.</summary>
         /// <returns>The resulting Base64-encoded string.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "Hello";
+        ///         string result = value.ToBase64(); // SGVsbG8=
+        ///     </code>
+        /// </example>
         public string ToBase64()
         {
             return string.IsNullOrEmpty(value) ? value : Convert.ToBase64String(Encoding.UTF8.GetBytes(value));
@@ -432,6 +567,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Converts the given string to camelCase.</summary>
         /// <returns>The string converted to camelCase.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello_world";
+        ///         string result = value.ToCamelCase(); // helloWorld
+        ///     </code>
+        /// </example>
         public string ToCamelCase()
         {
             return value.ToPascalCase().LcFirst();
@@ -439,6 +580,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Converts the string to kebab-case.</summary>
         /// <returns>The resulting string in kebab-case.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello world";
+        ///         string result = value.ToKebabCase(); // hello-world
+        ///     </code>
+        /// </example>
         public string ToKebabCase()
         {
             return value.ToSnakeCase().Replace("_", "-");
@@ -446,6 +593,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Converts the given string to PascalCase.</summary>
         /// <returns>The resulting string in PascalCase format.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello world";
+        ///         string result = value.ToKebabCase(); // hello-world
+        ///     </code>
+        /// </example>
         public string ToPascalCase()
         {
             if (string.IsNullOrEmpty(value)) {
@@ -465,6 +618,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Converts the given string to snake_case.</summary>
         /// <returns>The resulting string in snake_case format.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "helloWorld";
+        ///         string result = value.ToSnakeCase(); // hello_world
+        ///     </code>
+        /// </example>
         public string ToSnakeCase()
         {
             if (string.IsNullOrEmpty(value)) {
@@ -485,6 +644,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Capitalizes the first character of the given string.</summary>
         /// <returns>The resulting string with its first character capitalized.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello";
+        ///         string result = value.UcFirst(); // Hello
+        ///     </code>
+        /// </example>
         public string UcFirst()
         {
             if (string.IsNullOrEmpty(value) || char.IsUpper(value[0])) {
@@ -496,6 +661,12 @@ public static partial class ModificationExtensions
 
         /// <summary>Converts the first character of each word in the given string to uppercase.</summary>
         /// <returns>The resulting string with the first character of each word capitalized.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello world";
+        ///         string result = value.UcWord(); // Hello World
+        ///     </code>
+        /// </example>
         public string UcWord()
         {
             if (string.IsNullOrEmpty(value)) {

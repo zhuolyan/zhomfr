@@ -13,6 +13,12 @@ public static partial class SubstringsExtensions
         /// <summary>Returns everything after the given value in a string, or the entire string if the value is not found.</summary>
         /// <param name="search">The value to search for within the string.</param>
         /// <returns>The substring after the specified value, or the entire string if the value is not found.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "one/two/three";
+        ///         string result = value.After("/"); // two/three
+        ///     </code>
+        /// </example>
         public string After(string search)
         {
             if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(search)) {
@@ -39,6 +45,12 @@ public static partial class SubstringsExtensions
         ///     The substring after the last occurrence of the specified value, or the entire string if the value is not
         ///     found.
         /// </returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "one/two/three";
+        ///         string result = value.AfterLast("/"); // three
+        ///     </code>
+        /// </example>
         public string AfterLast(string search)
         {
             if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(search)) {
@@ -63,6 +75,12 @@ public static partial class SubstringsExtensions
         /// <summary>Returns everything before the given value in a string.</summary>
         /// <param name="search">The value to search for within the string.</param>
         /// <returns>The substring before the specified value, or the entire string if the value is not found.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "one/two/three";
+        ///         string result = value.Before("/"); // one
+        ///     </code>
+        /// </example>
         public string Before(string search)
         {
             if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(search)) {
@@ -85,6 +103,12 @@ public static partial class SubstringsExtensions
         ///     The substring before the last occurrence of the specified value, or the entire string if the value is not
         ///     found.
         /// </returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "one/two/three";
+        ///         string result = value.BeforeLast("/"); // one/two
+        ///     </code>
+        /// </example>
         public string BeforeLast(string search)
         {
             if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(search)) {
@@ -106,6 +130,12 @@ public static partial class SubstringsExtensions
         /// <param name="after">The value after which to start extracting.</param>
         /// <param name="before">The value before which to stop extracting.</param>
         /// <returns>The substring between the specified values.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "[hello] [world]";
+        ///         string result = value.Between("[", "]"); // hello] [world
+        ///     </code>
+        /// </example>
         public string Between(string after, string before)
         {
             return value.After(after).BeforeLast(before);
@@ -115,6 +145,12 @@ public static partial class SubstringsExtensions
         /// <param name="after">The value after which to start extracting.</param>
         /// <param name="before">The value before which to stop extracting.</param>
         /// <returns>The smallest substring between the specified values.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "[hello] [world]";
+        ///         string result = value.BetweenFirst("[", "]"); // hello
+        ///     </code>
+        /// </example>
         public string BetweenFirst(string after, string before)
         {
             return value.After(after).Before(before);
@@ -124,6 +160,12 @@ public static partial class SubstringsExtensions
         /// <param name="after">The value after which to start extracting.</param>
         /// <param name="before">The value before which to stop extracting.</param>
         /// <returns>The smallest substring between the specified values.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "[hello] [world]";
+        ///         string result = value.BetweenLast("[", "]"); // world
+        ///     </code>
+        /// </example>
         public string BetweenLast(string after, string before)
         {
             return value.AfterLast(after).BeforeLast(before);
@@ -137,6 +179,12 @@ public static partial class SubstringsExtensions
         /// <param name="end">The optional string to append to the end of the truncated string.</param>
         /// <param name="preserveWords">Specifies whether to truncate at the nearest complete word boundary.</param>
         /// <returns>The resulting truncated string.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "The quick brown fox";
+        ///         string result = value.Limit(12); // The quick ...
+        ///     </code>
+        /// </example>
         public string Limit(int limit, string end = " ...", bool preserveWords = false)
         {
             if (string.IsNullOrEmpty(value) || value.Length <= limit) {
@@ -154,6 +202,12 @@ public static partial class SubstringsExtensions
 
         /// <summary>Splits the string into a list by uppercase characters.</summary>
         /// <returns>A list of strings resulting from the split.</returns>
+        /// <example>
+        ///     <code>
+        ///         string value = "hello";
+        ///         string result = value.UcFirst(); // Hello
+        ///     </code>
+        /// </example>
         public List<string> UcSplit()
         {
             return string.IsNullOrEmpty(value) ? [] : [.. SubstringsExtensions.UcSplitRegex().Split(value).Where(s => !string.IsNullOrEmpty(s))];
