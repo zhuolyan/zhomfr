@@ -66,7 +66,8 @@ public abstract class AbstractTask(string project)
 
         string[] lines = example.Split("\n                    ");
 
-        foreach (string line in lines) { ;
+        foreach (string line in lines) {
+            ;
             result.AppendLine(line);
         }
 
