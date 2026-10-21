@@ -76,26 +76,33 @@ public abstract class AbstractTask(string project)
 
     protected static StringBuilder GenerateTable(string[] items)
     {
-        StringBuilder result    = new();
-        int           rowsCount = (items.Length + 2) / 3;
+        StringBuilder result = new();
+        int           rowsCount;
+        int           celCount;
+
+        if (items.Length == 4) {
+            rowsCount = 2;
+            celCount  = 2;
+        } else {
+            rowsCount = (items.Length + 2) / 3;
+            celCount  = 3;
+        }
 
         result.AppendLine("<table>");
 
         result.AppendLine("<tr valign=\"top\">");
 
-        for (int j = 1; j <= 3; j++) {
+        for (int j = 0; j < celCount; j++) {
             result.AppendLine("<td>");
             result.AppendLine();
 
             for (int i = 0; i < rowsCount; i++) {
-                int current = i * j;
+                int current = i + j * rowsCount;
 
-                if (current >= items.Length) {
-                    continue;
+                if (current < items.Length) {
+                    string item = items[current];
+                    result.AppendLine($" - [{item}](#{item.ToLowerInvariant()})");
                 }
-
-                string item = items[i * j];
-                result.AppendLine($" - [{item}](#{item.ToLowerInvariant()})");
             }
 
             result.AppendLine();

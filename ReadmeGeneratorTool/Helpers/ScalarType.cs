@@ -7,10 +7,11 @@ namespace Zhomfr.ReadmeGeneratorTool.Helpers;
 
 public class ScalarType() : AbstractTask("Helpers.ScalarTypes")
 {
-    private readonly List<string>                 _decimalMethods    = [];
-    private readonly List<string>                 _enumerableMethods = [];
-    private readonly Dictionary<string, XElement> _feature           = new();
-    private readonly List<string>                 _stringMethods     = [];
+    private readonly List<string> _decimalMethods    = [];
+    private readonly List<string> _enumerableMethods = [];
+
+    private readonly Dictionary<string, XElement> _feature       = new();
+    private readonly List<string>                 _stringMethods = [];
 
     /// <inheritdoc/>
     protected override Dictionary<string, StringBuilder> Execute(IEnumerable<XElement> members)
@@ -18,12 +19,13 @@ public class ScalarType() : AbstractTask("Helpers.ScalarTypes")
         Dictionary<string, StringBuilder> results = new();
 
         foreach (XElement member in members) {
-            string name       = member.Attribute("name")?.Value!;
-            string methodName = name.Before("(").AfterLast(".");
+            string name = member.Attribute("name")?.Value!;
 
             if (!name.StartsWith("M:")) {
                 continue;
             }
+
+            string methodName = name.Before("(").AfterLast(".");
 
             if (name.Contains("ScalarTypes.DecimalExtensions")) {
                 this._decimalMethods.Add(methodName);

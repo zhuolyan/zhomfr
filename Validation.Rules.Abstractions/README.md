@@ -121,7 +121,7 @@ public virtual object TypeId { get; }
 
 ## Constructors
 
-### **AbstractRule()**
+### **AbstractRule ()**
 
 ```csharp
 protected AbstractRule()
@@ -129,7 +129,7 @@ protected AbstractRule()
 
 ## Methods
 
-### **CheckCondition(Object, ValidationContext)**
+### **CheckCondition (Object, ValidationContext)**
 
 Checks the validation condition for the specified value.
 
@@ -158,7 +158,7 @@ Thrown when the rule cannot process the data type.
 [Exception](https://learn.microsoft.com/en-us/dotnet/api/system.exception)<br>
 Any other exceptions thrown by the logic.
 
-### **FormatedMessage(String, Object)**
+### **FormatedMessage (String, Object)**
 
 Formats the error message using the display name, message arguments, and value.
 
@@ -179,7 +179,7 @@ The value that failed validation.
 [String](https://learn.microsoft.com/en-us/dotnet/api/system.string)<br>
 The formatted error message string.
 
-### **IsValid(Object, ValidationContext)**
+### **IsValid (Object, ValidationContext)**
 
 ```csharp
 protected override ValidationResult? IsValid(object? value, ValidationContext context)
@@ -203,7 +203,7 @@ Thrown when the rule cannot process the data type.
 [Exception](https://learn.microsoft.com/en-us/dotnet/api/system.exception)<br>
 Any other exceptions thrown by the logic.
 
-### **ThrowIfFieldsHasDifferentTypes(Object, Object)**
+### **ThrowIfFieldsHasDifferentTypes (Object, Object)**
 
 Check if validated fields has same types.
 
@@ -224,7 +224,7 @@ Value of another field.
 [ValuesHasDifferentTypesException](./zhomfr.validation.rules.abstractions.errors.valueshasdifferenttypesexception.md)<br>
 If fields has different types/
 
-### **GetFieldValue&lt;T&gt;(String, ValidationContext)**
+### **GetFieldValue&lt;T&gt; (String, ValidationContext)**
 
 Get field value by name.
 
@@ -255,7 +255,7 @@ Value of field.
 [MissingFieldException](https://learn.microsoft.com/en-us/dotnet/api/system.missingfieldexception)<br>
 Then field or property not exists in type.
 
-### **GetDisplayNameForProperty(String, ValidationContext)**
+### **GetDisplayNameForProperty (String, ValidationContext)**
 
 Return display name by field name.
 
@@ -281,7 +281,7 @@ Return display name of field.
 [MissingFieldException](https://learn.microsoft.com/en-us/dotnet/api/system.missingfieldexception)<br>
 Then field or property not exists in type.
 
-### **AddListAsOneArgumentToMessageArgs(Object[])**
+### **AddListAsOneArgumentToMessageArgs (Object[])**
 
 Add attribute argument to error message argument like one argument.
 
@@ -391,7 +391,7 @@ public virtual string? StackTrace { get; }
 
 ## Constructors
 
-### **UnsupportedTypeException(Type)**
+### **UnsupportedTypeException (Type)**
 
 Exception what indicate what rule can't process type of value.
 
@@ -410,13 +410,15 @@ Type of value what can't be processed.
 
 #### Caution
 
-BinaryFormatter serialization is obsolete and should not be used. See https://aka.ms/binaryformatter for more information.
+BinaryFormatter serialization is obsolete and should not be used. See https://aka.ms/binaryformatter for more
+information.
 
 ---
 
 ```csharp
 protected event EventHandler<SafeSerializationEventArgs>? SerializeObjectState;
 ```
+
 # ValuesHasDifferentTypesException
 
 Namespace: Zhomfr.Validation.Rules.Abstractions.Errors
@@ -514,7 +516,7 @@ public virtual string? StackTrace { get; }
 
 ## Constructors
 
-### **ValuesHasDifferentTypesException(String)**
+### **ValuesHasDifferentTypesException (String)**
 
 Exception what indicates what 2 fields what validated has different type when rule expect same types.
 
@@ -533,7 +535,8 @@ Custom error message.
 
 #### Caution
 
-BinaryFormatter serialization is obsolete and should not be used. See https://aka.ms/binaryformatter for more information.
+BinaryFormatter serialization is obsolete and should not be used. See https://aka.ms/binaryformatter for more
+information.
 
 ---
 

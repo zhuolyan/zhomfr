@@ -17,11 +17,11 @@ namespace Zhomfr.Validation.Rules;
 ///         {
 ///             [DictionaryKeys("first", "second")]
 ///             public IDictionary DictionaryInvalid = new Dictionary&lt;string, string&gt;() { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // ValidationError
-///
+/// 
 ///             [DictionaryKeys("first", "test")]
 ///             public IDictionary DictionaryValid = new Dictionary&lt;string, string&gt;() { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // Success
 ///         }
-///
+/// 
 ///     </code>
 /// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]

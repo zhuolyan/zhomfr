@@ -1,8 +1,7 @@
 # Helpers for scalar types
 
 A collection of convenient and productive extension methods for some types in C# (`string`, `decimal`, `IEnumerable`),
-designed
-to simplify everyday data processing and formatting tasks.
+designed to simplify everyday data processing and formatting tasks.
 
 ## 📦 Installation
 
