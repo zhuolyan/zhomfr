@@ -49,8 +49,8 @@ the .NET ecosystem — while remaining a natural extension of the platform rathe
 
 |||
 |:---|:---|
-| Generated on: | 10/21/2026 - 10:17:49 |
-| Coverage date: | 10/21/2026 - 10:17:46 - 10/21/2026 - 10:17:47 |
+| Generated on: | 10/21/2026 - 10:31:58 |
+| Coverage date: | 10/21/2026 - 10:31:55 - 10/21/2026 - 10:31:56 |
 | Parser: | MultiReport (2x Cobertura) |
 | Assemblies: | 3 |
 | Classes: | 55 |
