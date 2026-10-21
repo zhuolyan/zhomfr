@@ -7,6 +7,20 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must be a valid JSON string.</summary>
+/// <target-type>string</target-type>
+/// <example>
+///     <code>
+///         public class JsonDto
+///         {
+///             [Json]
+///             public string StringInvalid = "\"{'name': 'John', 'age': 30}\""; // ValidationError
+///         
+///             [Json]
+///             public string StringValid = "{\"name\": \"John\", \"age\": 30, \"isVerified\": true}"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class JsonAttribute : AbstractRule
 {

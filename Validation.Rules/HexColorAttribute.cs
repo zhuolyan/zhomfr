@@ -24,6 +24,20 @@ namespace Zhomfr.Validation.Rules;
 ///         </item>
 ///     </list>
 /// </remarks>
+/// <target-type>string</target-type>
+/// <example>
+///     <code>
+///         public class HexColorDto
+///         {
+///             [HexColor]
+///             public string StringInvalid = "FFF"; // ValidationError
+///         
+///             [HexColor]
+///             public string StringValid = "#FFFFFF"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public partial class HexColorAttribute : AbstractRule
 {

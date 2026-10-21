@@ -9,6 +9,20 @@ namespace Zhomfr.Validation.Rules;
 ///     The field under validation must be entirely Unicode alphanumeric characters, as well as ASCII dashes (-) and
 ///     ASCII underscores (_).
 /// </summary>
+/// <target-type>string</target-type>
+/// <example>
+///     <code>
+///         public class AlphaDashDto
+///         {
+///             [AlphaDash]
+///             public string StringInvalid = "abc-123_"; // ValidationError
+///         
+///             [AlphaDash]
+///             public string StringValid = "abc 123"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class AlphaDashAttribute : AbstractRule
 {

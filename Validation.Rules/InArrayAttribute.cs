@@ -8,6 +8,28 @@ namespace Zhomfr.Validation.Rules;
 
 /// <summary>The field under validation must exist in anotherField's values.</summary>
 /// <param name="anotherField">field with collection for check value..</param>
+/// <target-type>ICollection,IEnumerable</target-type>
+/// <example>
+///     <code>
+///         public class InArrayDto
+///         {
+///             [InArray(nameof(InArrayDto.ExpectedCollection))]
+///             public int CollectionInvalid = 5; // ValidationError
+///         
+///             [InArray(nameof(InArrayDto.ExpectedCollection))]
+///             public int CollectionValid = 1; // Success
+///         
+///             [InArray(nameof(InArrayDto.ExpectedEnumerable))]
+///             public int EnumerableInvalid = 0; // ValidationError
+///         
+///             [InArray(nameof(InArrayDto.ExpectedEnumerable))]
+///             public int EnumerableValid = 2; // Success
+///         
+///             public ICollection ExpectedCollection = new List&lt;int&gt; { 1, 2, 3 };
+///             public IEnumerable ExpectedEnumerable = new List&lt;int&gt; { 1, 2, 3 }; }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class InArrayAttribute(string anotherField) : AbstractRule
 {
@@ -21,7 +43,7 @@ public class InArrayAttribute(string anotherField) : AbstractRule
             this._cached = true;
         }
 
-        object? anotherValue = AbstractRule.GetAnotherField<object>(anotherField, context);
+        object? anotherValue = AbstractRule.GetFieldValue<object>(anotherField, context);
 
         if (anotherValue == null) {
             return false;

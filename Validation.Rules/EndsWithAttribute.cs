@@ -5,6 +5,21 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must end with one of the given values.</summary>
+/// <target-type>string</target-type>
+/// <example>
+///     <code>
+///         public class EndsWithDto
+///         {
+///             [EndsWith("ing","end")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [EndsWith("start","end")]
+///             public string StringValid = "something"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class EndsWithAttribute : AbstractRule
 {

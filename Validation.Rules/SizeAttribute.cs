@@ -8,6 +8,103 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>
+///     The field under validation must have a size matching the given value. For string data, value corresponds to
+///     the number of characters. For numeric data, value corresponds to an expected value. For collection, size
+///     corresponds to the count of the collection.
+/// </summary>
+/// <target-type>string,short,ushort,int,uint,long,ulong,float,double,decimal,DateTime,DateTimeOffset,ICollection,IEnumerable</target-type>
+/// <example>
+///     <code>
+///         public class SizeDto
+///         {
+///             [Size("2026-10-18 07:00:01")]
+///             public DateTime DateTimeInvalid = DateTime.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [Size("2026-10-18 07:00:01")]
+///             public DateTimeOffset DateTimeOffsetInvalid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [Size("2026-10-18 07:00:00")]
+///             public DateTimeOffset DateTimeOffsetValid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             [Size("2026-10-18 07:00:00")]
+///             public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             [Size("3.3")]
+///             public decimal DecimalInvalid = 3.2M; // ValidationError
+///         
+///             [Size("3.3")]
+///             public decimal DecimalValid = 3.3M; // Success
+///         
+///             [Size("3.3")]
+///             public double DoubleInvalid = 3.3; // ValidationError
+///         
+///             [Size("3.3")]
+///             public double DoubleValid = 3.3; // Success
+///         
+///             [Size("3.3")]
+///             public float FloatInvalid = 3.2f; // ValidationError
+///         
+///             [Size("3.3")]
+///             public float FloatValid = 3.3f; // Success
+///         
+///             [Size("3")]
+///             public ICollection CollectionInvalid = new List&lt;int&gt;() { 1, 2 }; // ValidationError
+///         
+///             [Size("3")]
+///             public ICollection CollectionValid = new List&lt;int&gt;() { 1, 2, 3 }; // Success
+///         
+///             [Size("3")]
+///             public IEnumerable EnumerableInvalid = new List&lt;int&gt;() { 1, 2 }; // ValidationError
+///         
+///             [Size("3")]
+///             public IEnumerable EnumerableValid = new List&lt;int&gt;() { 1, 2, 3 }; // Success
+///         
+///             [Size("3")]
+///             public int IntInvalid = 1; // ValidationError
+///         
+///             [Size("3")]
+///             public int IntValid = 3; // Success
+///         
+///             [Size("3")]
+///             public long LongInvalid = 1; // ValidationError
+///         
+///             [Size("3")]
+///             public long LongValid = 3; // Success
+///         
+///             [Size("3")]
+///             public short ShortInvalid = 1; // ValidationError
+///         
+///             [Size("3")]
+///             public short ShortValid = 3; // Success
+///         
+///             [Size("3")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [Size("3")]
+///             public string StringValid = "tes"; // Success
+///         
+///             [Size("3")]
+///             public uint UintInvalid = 1; // ValidationError
+///         
+///             [Size("3")]
+///             public uint UintValid = 3; // Success
+///         
+///             [Size("3")]
+///             public ulong UlongInvalid = 1; // ValidationError
+///         
+///             [Size("3")]
+///             public ulong UlongValid = 3; // Success
+///         
+///             [Size("3")]
+///             public ushort UshortInvalid = 1; // ValidationError
+///         
+///             [Size("3")]
+///             public ushort UshortValid = 3; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class SizeAttribute : AbstractRule
 {

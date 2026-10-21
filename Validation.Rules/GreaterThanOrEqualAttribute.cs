@@ -7,6 +7,158 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>
+///     The field under validation must be greater than the given fielde. The two fields must be of the same type.
+///     Strings, numerics, collections are evaluated using the same conventions as the size rule.
+/// </summary>
+/// <target-type>string,short,ushort,int,uint,long,ulong,float,double,decimal,DateTime,DateTimeOffset,ICollection,IEnumerable</target-type>
+/// <example>
+///     <code>
+///         public class GreaterThanOrEqualDto
+///         {
+///             [GreaterThanOrEqual("DateTimeInvalidSecond")]
+///             public DateTime DateTimeInvalid = DateTime.Parse("2026-10-18 07:00:01"); // ValidationError
+///         
+///             public DateTime DateTimeInvalidSecond = DateTime.Parse("2026-10-18 07:00:00");
+///         
+///             [GreaterThanOrEqual("DateTimeOffsetInvalidSecond")]
+///             public DateTimeOffset DateTimeOffsetInvalid = DateTimeOffset.Parse("2026-10-18 07:00:01"); // ValidationError
+///         
+///             public DateTimeOffset DateTimeOffsetInvalidSecond = DateTimeOffset.Parse("2026-10-18 07:00:00");
+///         
+///             [GreaterThanOrEqual("DateTimeOffsetValidSecond")]
+///             public DateTimeOffset DateTimeOffsetValid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             public DateTimeOffset DateTimeOffsetValidSecond = DateTimeOffset.Parse("2026-10-18 07:00:00");
+///         
+///             [GreaterThanOrEqual("DateTimeValidSecond")]
+///             public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             public DateTime DateTimeValidSecond = DateTime.Parse("2026-10-18 07:00:00");
+///         
+///             [GreaterThanOrEqual("DecimalInvalidSecond")]
+///             public decimal DecimalInvalid = 3.3M; // ValidationError
+///         
+///             public decimal DecimalInvalidSecond = 3.2999M;
+///         
+///             [GreaterThanOrEqual("DecimalValidSecond")]
+///             public decimal DecimalValid = 3.3M; // Success
+///         
+///             public decimal DecimalValidSecond = 3.3M;
+///         
+///             [GreaterThanOrEqual("DoubleInvalidSecond")]
+///             public double DoubleInvalid = 3.3; // ValidationError
+///         
+///             public double DoubleInvalidSecond = 3.2999;
+///         
+///             [GreaterThanOrEqual("DoubleValidSecond")]
+///             public double DoubleValid = 3.3; // Success
+///         
+///             public double DoubleValidSecond = 3.3;
+///         
+///             [GreaterThanOrEqual("FloatInvalidSecond")]
+///             public float FloatInvalid = 3.3f; // ValidationError
+///         
+///             public float FloatInvalidSecond = 3.2999f;
+///         
+///             [GreaterThanOrEqual("FloatValidSecond")]
+///             public float FloatValid = 3.3f; // Success
+///         
+///             public float FloatValidSecond = 3.3f;
+///         
+///             [GreaterThanOrEqual("CollectionInvalidSecond")]
+///             public ICollection CollectionInvalid = new List&lt;int&gt;(){1,2}; // ValidationError
+///         
+///             public ICollection CollectionInvalidSecond = new List&lt;int&gt;(){1,2,3};
+///         
+///             [GreaterThanOrEqual("CollectionValidSecond")]
+///             public ICollection CollectionValid = new List&lt;int&gt;(){1,2,3}; // Success
+///         
+///             public ICollection CollectionValidSecond = new List&lt;int&gt;(){1,2,3};
+///         
+///             [GreaterThanOrEqual("EnumerableInvalidSecond")]
+///             public IEnumerable EnumerableInvalid = new List&lt;int&gt;(){1,2}; // ValidationError
+///         
+///             public IEnumerable EnumerableInvalidSecond = new List&lt;int&gt;(){1,2,3};
+///         
+///             [GreaterThanOrEqual("EnumerableValidSecond")]
+///             public IEnumerable EnumerableValid = new List&lt;int&gt;(){1,2,3}; // Success
+///         
+///             public IEnumerable EnumerableValidSecond = new List&lt;int&gt;(){1,2,3};
+///         
+///             [GreaterThanOrEqual("IntInvalidSecond")]
+///             public int IntInvalid = 0; // ValidationError
+///         
+///             public int IntInvalidSecond = 1;
+///         
+///             [GreaterThanOrEqual("IntValidSecond")]
+///             public int IntValid = 1; // Success
+///         
+///             public int IntValidSecond = 1;
+///         
+///             [GreaterThanOrEqual("LongInvalidSecond")]
+///             public long LongInvalid = 0; // ValidationError
+///         
+///             public long LongInvalidSecond = 1;
+///         
+///             [GreaterThanOrEqual("LongValidSecond")]
+///             public long LongValid = 1; // Success
+///         
+///             public long LongValidSecond = 1;
+///         
+///             [GreaterThanOrEqual("ShortInvalidSecond")]
+///             public short ShortInvalid = 0; // ValidationError
+///         
+///             public short ShortInvalidSecond = 1;
+///         
+///             [GreaterThanOrEqual("ShortValidSecond")]
+///             public short ShortValid = 1; // Success
+///         
+///             public short ShortValidSecond = 1;
+///         
+///             [GreaterThanOrEqual("StringInvalidSecond")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             public string StringInvalidSecond = "something";
+///         
+///             [GreaterThanOrEqual("StringValidSecond")]
+///             public string StringValid = "somethin"; // Success
+///         
+///             public string StringValidSecond = "something";
+///         
+///             [GreaterThanOrEqual("UintInvalidSecond")]
+///             public uint UintInvalid = 0; // ValidationError
+///         
+///             public uint UintInvalidSecond = 1;
+///         
+///             [GreaterThanOrEqual("UintValidSecond")]
+///             public uint UintValid = 1; // Success
+///         
+///             public uint UintValidSecond = 1;
+///         
+///             [GreaterThanOrEqual("UlongInvalidSecond")]
+///             public ulong UlongInvalid = 0; // ValidationError
+///         
+///             public ulong UlongInvalidSecond = 1;
+///         
+///             [GreaterThanOrEqual("UlongValidSecond")]
+///             public ulong UlongValid = 1; // Success
+///         
+///             public ulong UlongValidSecond = 1;
+///         
+///             [GreaterThanOrEqual("UshortInvalidSecond")]
+///             public ushort UshortInvalid = 0; // ValidationError
+///         
+///             public ushort UshortInvalidSecond = 1;
+///         
+///             [GreaterThanOrEqual("UshortValidSecond")]
+///             public ushort UshortValid = 1; // Success
+///         
+///             public ushort UshortValidSecond = 1;
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class GreaterThanOrEqualAttribute : AbstractRule
 {
@@ -31,7 +183,7 @@ public class GreaterThanOrEqualAttribute : AbstractRule
             this._cached = true;
         }
 
-        object? anotherValue = AbstractRule.GetAnotherField<object>(this._field, context);
+        object? anotherValue = AbstractRule.GetFieldValue<object>(this._field, context);
 
         if (anotherValue == null) {
             return false;

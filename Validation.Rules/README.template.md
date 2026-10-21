@@ -1,0 +1,72 @@
+# Validation Rules
+
+A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
+`System.ComponentModel.DataAnnotations` infrastructure. Designed to eliminate boilerplate code, this library brings a
+rich set of production-ready validation rules—inspired by robust ecosystem standards (like Laravel's validation
+features)
+—allowing you to validate models cleanly using declarative attributes without reinventing the wheel.
+
+## Key Features
+
+* **Standard DataAnnotations Integration:** Seamlessly works with ASP.NET Core, Entity Framework, and standard
+  `Validator` methods out of the box.
+* **Rich Set of Built-in Rules:** Covers frequent validation scenarios that are missing from standard .NET, preventing
+  you from writing repetitive custom validators over and over again.
+* **Intuitive Declarative Syntax:** Clean and expressive attributes to keep your domain models and DTOs readable and
+  maintainable.
+* **Customizable Error Messages:** Fully supports localized and custom error message templates via standard
+  `ErrorMessage` properties.
+
+## 📦 Installation
+
+Install package:
+
+```shell
+dotnet add package Zhomfr.Validation.Rules
+```
+
+After add namespace in using section:
+
+```csharp
+using Zhomfr.Validation.Rules;
+```
+
+---
+
+## Available Rules
+
+### Booleans
+
+{{TABLE_BOOLEAN}}
+
+### Integer
+
+{{TABLE_INT}}
+
+### Float
+
+{{TABLE_FLOAT}}
+
+### Decimal
+
+{{TABLE_DECIMAL}}
+
+### String
+
+{{TABLE_STRING}}
+
+### DateTime
+
+{{TABLE_DATETIME}}
+
+### Collection
+
+{{TABLE_COLLECTION}}
+
+### Dictionary
+
+{{TABLE_DICTIONARY}}
+
+## 🛠️ Features and Examples
+
+{{FEATURES}}

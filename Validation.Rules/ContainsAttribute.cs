@@ -6,6 +6,33 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must be a collection or string that contains all the given parameter values.</summary>
+/// <target-type>string,ICollection,IEnumerable</target-type>
+/// <example>
+///     <code>
+///         public class ContainsDto
+///         {
+///             [Contains(1, 2)]
+///             public ICollection CollectionInvalid = new List&lt;int&gt;() { 3, 4, 5 }; // ValidationError
+///         
+///             [Contains(1, 2)]
+///             public ICollection CollectionValid = new List&lt;int&gt;() { 1, 2, 4 }; // Success
+///         
+///             [Contains("2", "3")]
+///             public IEnumerable EnumerableInvalid = new List&lt;string&gt;() { "something", "else" }; // ValidationError
+///         
+///             [Contains("something", "else")]
+///             public IEnumerable EnumerableValid = new List&lt;string&gt;() { "something", "else" }; // Success
+///         
+///             [Contains("test", "not")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [Contains("some", "thin")]
+///             public string StringValid = "something"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ContainsAttribute : AbstractRule
 {
@@ -36,6 +63,9 @@ public class ContainsAttribute : AbstractRule
                };
     }
 
+    /// <summary>Check if enumerable contains value.</summary>
+    /// <param name="value">Expected value.</param>
+    /// <returns><c>true</c> if the value exists in enumerable otherwise <c>false</c>.</returns>
     protected bool IsContains(IEnumerable value)
     {
         foreach (object? element in value) {

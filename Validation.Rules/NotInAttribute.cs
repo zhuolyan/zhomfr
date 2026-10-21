@@ -6,6 +6,103 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must not be included in the given list of values.</summary>
+/// <remarks>
+///     For floating-point types (float, double), a tolerance epsilon of 0.000001 is used due to internal precision
+///     limitations that can cause rounding errors.
+/// </remarks>
+/// <target-type>string,short,ushort,int,uint,long,ulong,float,double,decimal,DateTime,DateTimeOffset,ICollection,IEnumerable</target-type>
+/// <example>
+///     <code>
+///         public class NotInDto
+///         {
+///             [NotIn("2026-10-17 07:00:00", "2026-10-19 07:00:00")]
+///             public DateTime DateTimeInvalid = DateTime.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [NotIn("2026-10-17 07:00:00", "2026-10-19 07:00:00")]
+///             public DateTimeOffset DateTimeOffsetInvalid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // ValidationError
+///         
+///             [NotIn("2026-10-18 07:00:00", "2026-10-19 07:00:00")]
+///             public DateTimeOffset DateTimeOffsetValid = DateTimeOffset.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             [NotIn("2026-10-18 07:00:00", "2026-10-19 07:00:00")]
+///             public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
+///         
+///             [NotIn("3.2", "3.4")]
+///             public decimal DecimalInvalid = 3.2M; // ValidationError
+///         
+///             [NotIn("3.2", "3.4")]
+///             public decimal DecimalValid = 3.3M; // Success
+///         
+///             [NotIn("3.2", "3.4")]
+///             public double DoubleInvalid = 3.2; // ValidationError
+///         
+///             [NotIn("3.2", "3.4")]
+///             public double DoubleValid = 3.3; // Success
+///         
+///             [NotIn("3.2", "3.4")]
+///             public float FloatInvalid = 3.2f; // ValidationError
+///         
+///             [NotIn("3.2", "3.4")]
+///             public float FloatValid = 3.3f; // Success
+///         
+///             [NotIn("1", "2")]
+///             public ICollection CollectionInvalid = new List&lt;int&gt;() { 1, 2, 3 }; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public ICollection CollectionValid = new List&lt;int&gt;() { 4, 5, 6 }; // Success
+///         
+///             [NotIn("1", "2")]
+///             public IEnumerable EnumerableInvalid = new List&lt;int&gt;() { 1, 2, 3 }; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public IEnumerable EnumerableValid = new List&lt;int&gt;() { 4, 5, 6 }; // Success
+///         
+///             [NotIn("1", "2")]
+///             public int IntInvalid = 1; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public int IntValid = 3; // Success
+///         
+///             [NotIn("1", "2")]
+///             public long LongInvalid = 1; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public long LongValid = 3; // Success
+///         
+///             [NotIn("1", "2")]
+///             public short ShortInvalid = 1; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public short ShortValid = 3; // Success
+///         
+///             [NotIn("something", "test")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [NotIn("test", "else")]
+///             public string StringValid = "something"; // Success
+///         
+///             [NotIn("1", "2")]
+///             public uint UintInvalid = 1; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public uint UintValid = 3; // Success
+///         
+///             [NotIn("1", "2")]
+///             public ulong UlongInvalid = 1; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public ulong UlongValid = 3; // Success
+///         
+///             [NotIn("1", "2")]
+///             public ushort UshortInvalid = 1; // ValidationError
+///         
+///             [NotIn("1", "2")]
+///             public ushort UshortValid = 3; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class NotInAttribute : AbstractRule
 {

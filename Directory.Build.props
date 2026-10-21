@@ -26,11 +26,16 @@
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 
-    <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
+    <PropertyGroup Condition="'$(MSBuildProjectName)' != 'ReadmeGeneratorTool' and !$(MSBuildProjectName.EndsWith('Tests'))">
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(MSBuildThisFileDirectory)docs\$(MSBuildProjectName).xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(MSBuildProjectName)' == 'ReadmeGeneratorTool' and $(MSBuildProjectName.EndsWith('.Tests'))">
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
-    <ItemGroup Condition="!$(MSBuildProjectName.EndsWith('.Tests'))">
+    <ItemGroup Condition="'$(MSBuildProjectName)' != 'ReadmeGeneratorTool' and !$(MSBuildProjectName.EndsWith('.Tests'))">
         <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="true" PackagePath="\" Visible="false"/>
         <None Include="README.md" Pack="true" PackagePath="\"/>
 

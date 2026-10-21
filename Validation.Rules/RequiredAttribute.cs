@@ -21,8 +21,23 @@ namespace Zhomfr.Validation.Rules;
 ///         </item>
 ///     </list>
 /// </remarks>
+/// <target-type>object</target-type>
+/// <example>
+///     <code>
+///         public class RequiredDto
+///         {
+///             [Required]
+///             public object? ObjectInvalid = null; // ValidationError
+///         
+///             [Required]
+///             public object ObjectValid = new(); // Success
+///         }
+///         
+///     </code>
+/// </example>
 public class RequiredAttribute : AbstractRule
 {
+    /// <inheritdoc/>
     protected override ValidationResult? IsValid(object? value, ValidationContext context)
     {
         return this.CheckCondition(value, context) ? ValidationResult.Success : new(this.FormatedMessage(context.DisplayName, value ?? string.Empty));

@@ -9,6 +9,39 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>Validates an email address using one or more configurable strategies.</summary>
+/// <remarks>
+///     This attribute supports multiple modes that can be combined:
+///     <list type="bullet">
+///         <item>
+///             <term>dns</term><description>Verifies that the domain has valid DNS records.</description>
+///         </item>
+///         <item>
+///             <term>filter_unicode</term><description>Checks for a basic "user@domain" structure.</description>
+///         </item>
+///         <item>
+///             <term>rfc</term><description>Applies a strict, RFC-compliant regular expression.</description>
+///         </item>
+///         <item>
+///             <term>spoof</term>
+///             <description>Restricts the email to ASCII characters only to prevent homograph attacks.</description>
+///         </item>
+///     </list>
+/// </remarks>
+/// <target-type>string</target-type>
+/// <example>
+///     <code>
+///         public class EmailDto
+///         {
+///             [Email(EmailAttribute.SPOOF)]
+///             public string StringInvalid = "tést@exämple.com"; // ValidationError
+///         
+///             [Email(EmailAttribute.DNS)]
+///             public string StringValid = "test@google.com"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public partial class EmailAttribute : AbstractRule
 {

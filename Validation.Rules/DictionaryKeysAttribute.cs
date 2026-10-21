@@ -10,6 +10,20 @@ namespace Zhomfr.Validation.Rules;
 ///     key must be provided.
 /// </summary>
 /// <param name="keys">The seek values.</param>
+/// <target-type>IDictionary</target-type>
+/// <example>
+///     <code>
+///         public class DictionaryKeysDto
+///         {
+///             [DictionaryKeys("first", "second")]
+///             public IDictionary DictionaryInvalid = new Dictionary&lt;string, string&gt;() { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // ValidationError
+/// 
+///             [DictionaryKeys("first", "test")]
+///             public IDictionary DictionaryValid = new Dictionary&lt;string, string&gt;() { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // Success
+///         }
+/// 
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class DictionaryKeysAttribute(params object[] keys) : ContainsAttribute(keys)
 {

@@ -5,6 +5,21 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 
 namespace Zhomfr.Validation.Rules;
 
+/// <summary>The field under validation must start with one of the given values.</summary>
+/// <target-type>string</target-type>
+/// <example>
+///     <code>
+///         public class StartsWithDto
+///         {
+///             [StartsWith("end", "start")]
+///             public string StringInvalid = "something"; // ValidationError
+///         
+///             [StartsWith("some", "start")]
+///             public string StringValid = "something"; // Success
+///         }
+///         
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class StartsWithAttribute : AbstractRule
 {
