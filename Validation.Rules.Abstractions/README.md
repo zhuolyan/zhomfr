@@ -1,4 +1,7 @@
-# Validation rule abstractions
+# Validation Rule Abstractions
+
+[![NuGet Status](https://img.shields.io/nuget/v/Zhomfr.Validation.Rules.Abstractions.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Abstractions/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Validation.Rules.Abstractions.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Abstractions/)
 
 A lightweight, extensible foundational library for building custom validation rules in .NET. It provides a robust base
 class with essential infrastructure, property access helpers, and a dedicated set of validation exceptions to build

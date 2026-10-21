@@ -1,5 +1,8 @@
 # Validation Rules
 
+[![NuGet Status](https://img.shields.io/nuget/v/Zhomfr.Validation.Rules.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Validation.Rules.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules/)
+
 A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
 `System.ComponentModel.DataAnnotations` infrastructure. Designed to eliminate boilerplate code, this library brings a
 rich set of production-ready validation rules—inspired by robust ecosystem standards (like Laravel's validation
