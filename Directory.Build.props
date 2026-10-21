@@ -31,7 +31,7 @@
         <DocumentationFile>$(MSBuildThisFileDirectory)docs\$(MSBuildProjectName).xml</DocumentationFile>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(MSBuildProjectName)' == 'ReadmeGeneratorTool' and $(MSBuildProjectName.EndsWith('.Tests'))">
+    <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
