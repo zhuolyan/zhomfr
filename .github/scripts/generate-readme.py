@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import re
+import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -83,4 +84,5 @@ def generate_readme() -> None:
 
 
 if __name__ == "__main__":
+    subprocess.run(["dotnet", "run", "--project", "ReadmeGeneratorTool"], check=True)
     generate_readme()

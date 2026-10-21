@@ -15,7 +15,7 @@ public abstract class AbstractTask(string project)
 
     public async Task Run(CancellationToken ct = default)
     {
-        string basePath     = Path.Combine("..", "..", "..", "..");
+        string basePath     = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..");
         string templatePath = Path.Combine(basePath, project, AbstractTask.TEMPLATE);
         string resultPath   = Path.Combine(basePath, project, AbstractTask.RESULT);
         string docPath      = Path.Combine(basePath, "docs", $"{project}.xml");
