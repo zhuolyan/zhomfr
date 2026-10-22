@@ -27,7 +27,9 @@ public abstract class AbstractRule : ValidationAttribute
     /// <returns>The formatted error message string.</returns>
     protected virtual string FormatedMessage(string displayName, object value)
     {
-        object?[] arg = value is IEnumerable enumerable ? [displayName, .. this.MessageArgs, .. enumerable] : [displayName, .. this.MessageArgs, value];
+        object?[] arg = value is IEnumerable enumerable and not string
+                            ? [displayName, .. this.MessageArgs, .. enumerable]
+                            : [displayName, .. this.MessageArgs, value];
 
         return string.Format(CultureInfo.CurrentCulture, this.ErrorMessageString, arg);
     }

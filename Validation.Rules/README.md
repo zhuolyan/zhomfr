@@ -41,19 +41,18 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
 
 </td>
 <td>
 
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
 
 </td>
 </tr>
 </table>
-
 
 ### Integer
 
@@ -61,33 +60,32 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [Between](#between)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [Between](#between)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
 
 </td>
 <td>
 
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Float
 
@@ -95,29 +93,28 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
+- [Between](#between)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
 
 </td>
 <td>
 
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
- - [Max](#max)
- - [Min](#min)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
+- [Max](#max)
+- [Min](#min)
 
 </td>
 <td>
 
- - [NotIn](#notin)
- - [Size](#size)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Decimal
 
@@ -125,31 +122,30 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [Decimal](#decimal)
- - [Digits](#digits)
- - [GreaterThan](#greaterthan)
+- [Between](#between)
+- [Decimal](#decimal)
+- [Digits](#digits)
+- [GreaterThan](#greaterthan)
 
 </td>
 <td>
 
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### String
 
@@ -157,54 +153,53 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [ActiveUrl](#activeurl)
- - [Alpha](#alpha)
- - [AlphaDash](#alphadash)
- - [AlphaNumeric](#alphanumeric)
- - [Ascii](#ascii)
- - [Between](#between)
- - [Contains](#contains)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
- - [DoesntContain](#doesntcontain)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [ActiveUrl](#activeurl)
+- [Alpha](#alpha)
+- [AlphaDash](#alphadash)
+- [AlphaNumeric](#alphanumeric)
+- [Ascii](#ascii)
+- [Between](#between)
+- [Contains](#contains)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
+- [DoesntContain](#doesntcontain)
 
 </td>
 <td>
 
- - [DoesntEndWith](#doesntendwith)
- - [DoesntStartWith](#doesntstartwith)
- - [Email](#email)
- - [EndsWith](#endswith)
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [HexColor](#hexcolor)
- - [In](#in)
- - [Ip](#ip)
- - [Json](#json)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [DoesntEndWith](#doesntendwith)
+- [DoesntStartWith](#doesntstartwith)
+- [Email](#email)
+- [EndsWith](#endswith)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [HexColor](#hexcolor)
+- [In](#in)
+- [Ip](#ip)
+- [Json](#json)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Lowercase](#lowercase)
- - [MacAddress](#macaddress)
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [NotRegexp](#notregexp)
- - [Regexp](#regexp)
- - [Size](#size)
- - [StartsWith](#startswith)
- - [Uppercase](#uppercase)
- - [Url](#url)
+- [Lowercase](#lowercase)
+- [MacAddress](#macaddress)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [NotRegexp](#notregexp)
+- [Regexp](#regexp)
+- [Size](#size)
+- [StartsWith](#startswith)
+- [Uppercase](#uppercase)
+- [Url](#url)
 
 </td>
 </tr>
 </table>
-
 
 ### DateTime
 
@@ -212,33 +207,32 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [After](#after)
- - [AfterOrEqual](#afterorequal)
- - [Before](#before)
- - [BeforeOrEqual](#beforeorequal)
- - [Between](#between)
+- [After](#after)
+- [AfterOrEqual](#afterorequal)
+- [Before](#before)
+- [BeforeOrEqual](#beforeorequal)
+- [Between](#between)
 
 </td>
 <td>
 
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Collection
 
@@ -246,32 +240,31 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [Contains](#contains)
- - [Distinct](#distinct)
- - [DoesntContain](#doesntcontain)
- - [GreaterThan](#greaterthan)
+- [Between](#between)
+- [Contains](#contains)
+- [Distinct](#distinct)
+- [DoesntContain](#doesntcontain)
+- [GreaterThan](#greaterthan)
 
 </td>
 <td>
 
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [InArray](#inarray)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
- - [Max](#max)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [InArray](#inarray)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
+- [Max](#max)
 
 </td>
 <td>
 
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Dictionary
 
@@ -279,22 +272,21 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [DictionaryKeys](#dictionarykeys)
+- [DictionaryKeys](#dictionarykeys)
 
 </td>
 <td>
 
- - [Distinct](#distinct)
+- [Distinct](#distinct)
 
 </td>
 <td>
 
- - [DoesntContain](#doesntcontain)
+- [DoesntContain](#doesntcontain)
 
 </td>
 </tr>
 </table>
-
 
 ## 🛠️ Features and Examples
 
@@ -325,6 +317,7 @@ public class AcceptedDto
     public string StringValid = "yes"; // Success
 }
 ```
+
 ### AcceptedIf
 
 The field under validation must be "yes", "on", 1, "1", true, or "true" if another field under validation is
@@ -372,6 +365,7 @@ public class AcceptedIfDto
     public string ExpectedField = "expected value";
 }
 ```
+
 ### ActiveUrl
 
 The field under validation must have a valid A or AAAA record.
@@ -386,6 +380,7 @@ public class ActiveUrlDto
     public string StringValid = "https://microsoft.com"; // Success
 }
 ```
+
 ### After
 
 The field under validation must be a value after a given date.
@@ -406,6 +401,7 @@ public class AfterDto
     public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
 }
 ```
+
 ### AfterOrEqual
 
 The field under validation must be a value after a given date.
@@ -426,6 +422,7 @@ public class AfterOrEqualDto
     public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
 }
 ```
+
 ### Alpha
 
 The field under validation must be entirely Unicode alphabetic characters.
@@ -440,6 +437,7 @@ public class AlphaDto
     public string StringValid = "abcABC"; // Success
 }
 ```
+
 ### AlphaDash
 
 The field under validation must be entirely Unicode alphanumeric characters, as well as ASCII dashes (-) and
@@ -455,6 +453,7 @@ public class AlphaDashDto
     public string StringValid = "abc 123"; // Success
 }
 ```
+
 ### AlphaNumeric
 
 The field under validation must be entirely Unicode alphanumeric characters.
@@ -469,6 +468,7 @@ public class AlphaNumericDto
     public string StringValid = "abc-123"; // Success
 }
 ```
+
 ### Ascii
 
 The field under validation must be entirely 7-bit ASCII characters.
@@ -483,6 +483,7 @@ public class AsciiDto
     public string StringValid = "привіт"; // Success
 }
 ```
+
 ### Before
 
 The field under validation must be a value preceding the given date.
@@ -503,6 +504,7 @@ public class BeforeDto
     public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
 }
 ```
+
 ### BeforeOrEqual
 
 The field under validation must be a value preceding the given date.
@@ -523,6 +525,7 @@ public class BeforeOrEqualDto
     public DateTime DateTimeValid = DateTime.Parse("2026-10-18 07:00:00"); // Success
 }
 ```
+
 ### Between
 
 The field under validation must have a size between the given min and max (inclusive). Strings, numerics,
@@ -616,6 +619,7 @@ public class BetweenDto
     public ushort UshortValid = 2; // Success
 }
 ```
+
 ### Contains
 
 The field under validation must be a collection or string that contains all the given parameter values.
@@ -642,6 +646,7 @@ public class ContainsDto
     public string StringValid = "something"; // Success
 }
 ```
+
 ### Decimal
 
 The field under validation must be decimal and must contain the specified number of decimal places.
@@ -656,6 +661,7 @@ public class DecimalDto
     public decimal DecimalValid = 3.345M; // Success
 }
 ```
+
 ### Declined
 
 The field under validation must be "no", "off", 0, "0", false, or "false".
@@ -682,6 +688,7 @@ public class DeclinedDto
     public string StringValid = "off"; // Success
 }
 ```
+
 ### DeclinedIf
 
 The field under validation must be "no", "off", 0, "0", false, or "false" if another field under validation is
@@ -711,6 +718,7 @@ public class DeclinedIfDto
     public string StringValid = "0"; // Success
 }
 ```
+
 ### DictionaryKeys
 
 The field under validation must be a Dictionary whose keys are all included in the given list. At least one
@@ -726,6 +734,7 @@ public class DictionaryKeysDto
     public IDictionary DictionaryValid = new Dictionary<string, string>() { { "first", "test" }, { "second", "not" }, { "third", "blah" } }; // Success
 }
 ```
+
 ### Different
 
 The field under validation must have a different value than field.
@@ -744,6 +753,7 @@ public class DifferentDto
     public object ObjectValidSecond = "test";
 }
 ```
+
 ### Digits
 
 The decimal under validation must have an exact length of value or between the given min and max.
@@ -758,6 +768,7 @@ public class DigitsDto
     public decimal DecimalValid = 12.35M; // Success
 }
 ```
+
 ### Distinct
 
 Under validation must not have any duplicate values:
@@ -778,6 +789,7 @@ public class DistinctDto
     public IEnumerable EnumerableValid = new List<int>() { 1, 2, 3 }; // Success
 }
 ```
+
 ### DoesntContain
 
 The field under validation must be a collection or string that does not contain any of the given parameter
@@ -805,6 +817,7 @@ public class DoesntContainDto
     public string StringValid = "something"; // Success
 }
 ```
+
 ### DoesntEndWith
 
 The field under validation must not end with one of the given values.
@@ -819,6 +832,7 @@ public class DoesntEndWithDto
     public string StringValid = "something"; // Success
 }
 ```
+
 ### DoesntStartWith
 
 The field under validation must not start with one of the given values.
@@ -833,6 +847,7 @@ public class DoesntStartWithDto
     public string StringValid = "something"; // Success
 }
 ```
+
 ### Email
 
 Validates an email address using one or more configurable strategies.
@@ -847,6 +862,7 @@ public class EmailDto
     public string StringValid = "test@google.com"; // Success
 }
 ```
+
 ### EndsWith
 
 The field under validation must end with one of the given values.
@@ -861,6 +877,7 @@ public class EndsWithDto
     public string StringValid = "something"; // Success
 }
 ```
+
 ### GreaterThan
 
 The field under validation must be greater than the given field. The two fields must be of the same type.
@@ -1010,6 +1027,7 @@ public class GreaterThanDto
     public ushort UshortValidSecond = 0;
 }
 ```
+
 ### GreaterThanOrEqual
 
 The field under validation must be greater than the given fielde. The two fields must be of the same type.
@@ -1159,6 +1177,7 @@ public class GreaterThanOrEqualDto
     public ushort UshortValidSecond = 1;
 }
 ```
+
 ### HexColor
 
 Validates that a string is a valid hexadecimal color code.
@@ -1173,6 +1192,7 @@ public class HexColorDto
     public string StringValid = "#FFFFFF"; // Success
 }
 ```
+
 ### In
 
 The field under validation must be included in the given list of values.
@@ -1253,6 +1273,7 @@ public class InDto
     public ushort UshortValid = 1; // Success
 }
 ```
+
 ### InArray
 
 The field under validation must exist in anotherField's values.
@@ -1275,6 +1296,7 @@ public class InArrayDto
     public ICollection ExpectedCollection = new List<int> { 1, 2, 3 };
     public IEnumerable ExpectedEnumerable = new List<int> { 1, 2, 3 }; }
 ```
+
 ### Ip
 
 The field under validation must be an IP address.
@@ -1295,6 +1317,7 @@ public class IpDto
     public string StringValid = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"; // Success
 }
 ```
+
 ### Json
 
 The field under validation must be a valid JSON string.
@@ -1309,6 +1332,7 @@ public class JsonDto
     public string StringValid = "{\"name\": \"John\", \"age\": 30, \"isVerified\": true}"; // Success
 }
 ```
+
 ### LessThan
 
 The field under validation must be less than the given field. The two fields must be of the same type.
@@ -1458,6 +1482,7 @@ public class LessThanDto
     public ushort UshortValidSecond = 0;
 }
 ```
+
 ### LessThanOrEqual
 
 The field under validation must be less than or equal to the given field. The two fields must be of the same
@@ -1607,6 +1632,7 @@ public class LessThanOrEqualDto
     public ushort UshortValidSecond = 1;
 }
 ```
+
 ### Lowercase
 
 The field under validation must be lowercase.
@@ -1621,6 +1647,7 @@ public class LowercaseDto
     public string StringValid = "something"; // Success
 }
 ```
+
 ### MacAddress
 
 The field under validation must be a MAC address..
@@ -1635,6 +1662,7 @@ public class MacAddressDto
     public string StringValid = "AC:DE:48:23:45:67"; // Success
 }
 ```
+
 ### Max
 
 The field under validation must be less than or equal to a maximum value. Strings, numerics, arrays, and files
@@ -1728,6 +1756,7 @@ public class MaxDto
     public ushort UshortValid = 1; // Success
 }
 ```
+
 ### Min
 
 The field under validation must be grater than or equal to a minimum value. Strings, numerics, arrays, and
@@ -1821,6 +1850,7 @@ public class MinDto
     public ushort UshortValid = 4; // Success
 }
 ```
+
 ### Modes
 
 Modes for validation logic.
@@ -1917,6 +1947,7 @@ public class NotInDto
     public ushort UshortValid = 3; // Success
 }
 ```
+
 ### NotRegexp
 
 The field under validation must match the given regular expression.
@@ -1931,6 +1962,7 @@ public class NotRegexpDto
     public string StringValid = "abc"; // Success
 }
 ```
+
 ### Regexp
 
 The field under validation must match the given regular expression.
@@ -1945,6 +1977,7 @@ public class RegexpDto
     public string StringValid = "123"; // Success
 }
 ```
+
 ### Required
 
 The field under validation must be present in the input data and not empty.
@@ -1959,6 +1992,7 @@ public class RequiredDto
     public object ObjectValid = new(); // Success
 }
 ```
+
 ### Same
 
 The given field must match the field under validation.
@@ -1977,6 +2011,7 @@ public class SameDto
     public object ObjectValidSecond = "test";
 }
 ```
+
 ### Size
 
 The field under validation must have a size matching the given value. For string data, value corresponds to
@@ -2071,6 +2106,7 @@ public class SizeDto
     public ushort UshortValid = 3; // Success
 }
 ```
+
 ### StartsWith
 
 The field under validation must start with one of the given values.
@@ -2085,6 +2121,7 @@ public class StartsWithDto
     public string StringValid = "something"; // Success
 }
 ```
+
 ### Uppercase
 
 The field under validation must be uppercase.
@@ -2099,6 +2136,7 @@ public class UppercaseDto
     public string StringValid = "SOMETHING"; // Success
 }
 ```
+
 ### Url
 
 The field under validation must be a valid URL.

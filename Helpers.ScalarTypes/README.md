@@ -28,59 +28,58 @@ using Zhomfr.Helpers.ScalarTypes.Strings;
 <tr valign="top">
 <td>
 
- - [After](#after)
- - [AfterLast](#afterlast)
- - [Before](#before)
- - [BeforeLast](#beforelast)
- - [Between](#between)
- - [BetweenFirst](#betweenfirst)
- - [BetweenLast](#betweenlast)
- - [CharAt](#charat)
- - [ChopEnd](#chopend)
- - [ChopStart](#chopstart)
- - [Deduplicate](#deduplicate)
- - [EndWith](#endwith)
- - [Excerpt](#excerpt)
- - [FromBase64](#frombase64)
+- [After](#after)
+- [AfterLast](#afterlast)
+- [Before](#before)
+- [BeforeLast](#beforelast)
+- [Between](#between)
+- [BetweenFirst](#betweenfirst)
+- [BetweenLast](#betweenlast)
+- [CharAt](#charat)
+- [ChopEnd](#chopend)
+- [ChopStart](#chopstart)
+- [Deduplicate](#deduplicate)
+- [EndWith](#endwith)
+- [Excerpt](#excerpt)
+- [FromBase64](#frombase64)
 
 </td>
 <td>
 
- - [Initials](#initials)
- - [LcFirst](#lcfirst)
- - [Limit](#limit)
- - [Mask](#mask)
- - [PadBoth](#padboth)
- - [Remove](#remove)
- - [RemoveIgnoreCase](#removeignorecase)
- - [Replace](#replace)
- - [ReplaceFirst](#replacefirst)
- - [ReplaceLast](#replacelast)
- - [ReplaceMatches](#replacematches)
- - [Reverse](#reverse)
- - [Squish](#squish)
- - [StartWith](#startwith)
+- [Initials](#initials)
+- [LcFirst](#lcfirst)
+- [Limit](#limit)
+- [Mask](#mask)
+- [PadBoth](#padboth)
+- [Remove](#remove)
+- [RemoveIgnoreCase](#removeignorecase)
+- [Replace](#replace)
+- [ReplaceFirst](#replacefirst)
+- [ReplaceLast](#replacelast)
+- [ReplaceMatches](#replacematches)
+- [Reverse](#reverse)
+- [Squish](#squish)
+- [StartWith](#startwith)
 
 </td>
 <td>
 
- - [SubstringCount](#substringcount)
- - [SubstringReplace](#substringreplace)
- - [Swap](#swap)
- - [ToBase64](#tobase64)
- - [ToCamelCase](#tocamelcase)
- - [ToKebabCase](#tokebabcase)
- - [ToPascalCase](#topascalcase)
- - [ToSnakeCase](#tosnakecase)
- - [UcFirst](#ucfirst)
- - [UcSplit](#ucsplit)
- - [UcWord](#ucword)
- - [WordCount](#wordcount)
+- [SubstringCount](#substringcount)
+- [SubstringReplace](#substringreplace)
+- [Swap](#swap)
+- [ToBase64](#tobase64)
+- [ToCamelCase](#tocamelcase)
+- [ToKebabCase](#tokebabcase)
+- [ToPascalCase](#topascalcase)
+- [ToSnakeCase](#tosnakecase)
+- [UcFirst](#ucfirst)
+- [UcSplit](#ucsplit)
+- [UcWord](#ucword)
+- [WordCount](#wordcount)
 
 </td>
 </tr>
 </table>
-
 
 ### Decimal Methods
 
@@ -88,22 +87,21 @@ using Zhomfr.Helpers.ScalarTypes.Strings;
 <tr valign="top">
 <td>
 
- - [GetDecimal](#getdecimal)
+- [GetDecimal](#getdecimal)
 
 </td>
 <td>
 
- - [GetDigits](#getdigits)
+- [GetDigits](#getdigits)
 
 </td>
 <td>
 
- - [GetDigitsBeforeSeparator](#getdigitsbeforeseparator)
+- [GetDigitsBeforeSeparator](#getdigitsbeforeseparator)
 
 </td>
 </tr>
 </table>
-
 
 ### Enumerable Methods
 
@@ -111,24 +109,23 @@ using Zhomfr.Helpers.ScalarTypes.Strings;
 <tr valign="top">
 <td>
 
- - [CountIsBetween](#countisbetween)
- - [CountIsGreatThan](#countisgreatthan)
+- [CountIsBetween](#countisbetween)
+- [CountIsGreatThan](#countisgreatthan)
 
 </td>
 <td>
 
- - [CountIsGreatThanOrEqual](#countisgreatthanorequal)
- - [CountIsLessThan](#countislessthan)
+- [CountIsGreatThanOrEqual](#countisgreatthanorequal)
+- [CountIsLessThan](#countislessthan)
 
 </td>
 <td>
 
- - [CountIsLessThanOrEqual](#countislessthanorequal)
+- [CountIsLessThanOrEqual](#countislessthanorequal)
 
 </td>
 </tr>
 </table>
-
 
 ## 🛠️ Features and Examples
 
@@ -140,6 +137,7 @@ Returns everything after the given value in a string, or the entire string if th
 string value = "one/two/three";
 string result = value.After("/"); // two/three
 ```
+
 ### AfterLast
 
 Returns everything after the last occurrence of the given value in a string, or the entire string if the value
@@ -149,6 +147,7 @@ is not found.
 string value = "one/two/three";
 string result = value.AfterLast("/"); // three
 ```
+
 ### Before
 
 Returns everything before the given value in a string.
@@ -157,6 +156,7 @@ Returns everything before the given value in a string.
 string value = "one/two/three";
 string result = value.Before("/"); // one
 ```
+
 ### BeforeLast
 
 Returns everything before the last occurrence of the given value in a string.
@@ -165,6 +165,7 @@ Returns everything before the last occurrence of the given value in a string.
 string value = "one/two/three";
 string result = value.BeforeLast("/"); // one/two
 ```
+
 ### Between
 
 Returns the portion of a string between two specified values.
@@ -173,6 +174,7 @@ Returns the portion of a string between two specified values.
 string value = "[hello] [world]";
 string result = value.Between("[", "]"); // hello] [world
 ```
+
 ### BetweenFirst
 
 Returns the smallest possible portion of a string between two specified values.
@@ -181,6 +183,7 @@ Returns the smallest possible portion of a string between two specified values.
 string value = "[hello] [world]";
 string result = value.BetweenFirst("[", "]"); // hello
 ```
+
 ### BetweenLast
 
 Returns the last smallest possible portion of a string between two specified values.
@@ -189,6 +192,7 @@ Returns the last smallest possible portion of a string between two specified val
 string value = "[hello] [world]";
 string result = value.BetweenLast("[", "]"); // world
 ```
+
 ### CharAt
 
 Returns the character at the specified index, or null if the index is out of bounds.
@@ -197,6 +201,7 @@ Returns the character at the specified index, or null if the index is out of bou
 string value = "hello";
 char? result = value.CharAt(1); // e
 ```
+
 ### ChopEnd
 
 Removes the first occurrence of any of the specified values from the end of the string.
@@ -207,6 +212,7 @@ string value = "example.com/";
 string result1 = value.ChopEnd("/");      // example.com
 string result2 = value.ChopEnd("/", "."); // example.com
 ```
+
 ### ChopStart
 
 Removes the first occurrence of any of the specified values from the start of the string.
@@ -217,6 +223,7 @@ string value = "https://example.com";
 string result1 = value.ChopStart("https://");            // example.com
 string result2 = value.ChopStart("https://", "http://"); // example.com
 ```
+
 ### CountIsBetween
 
 Determines whether the number of elements in the collection is within the specified range (inclusive).
@@ -237,6 +244,7 @@ EnumerableStub.GetValue().CountIsGreatThan(3,5) // true
 EnumerableStub.GetValue().CountIsGreatThan(4,6) // false
 EnumerableStub.GetValue().CountIsGreatThan(1,2) // false
 ```
+
 ### CountIsGreatThan
 
 Determines whether the number of elements in the collection is greater than the specified minimum value.
@@ -256,6 +264,7 @@ EnumerableStub.GetValue().CountIsGreatThan(2) // true
 EnumerableStub.GetValue().CountIsGreatThan(3) // false
 EnumerableStub.GetValue().CountIsGreatThan(4) // false
 ```
+
 ### CountIsGreatThanOrEqual
 
 Determines whether the number of elements in the collection is greater than or equal to the specified minimum
@@ -276,6 +285,7 @@ EnumerableStub.GetValue().CountIsGreatThanOrEqual(2) // true
 EnumerableStub.GetValue().CountIsGreatThanOrEqual(3) // true
 EnumerableStub.GetValue().CountIsGreatThanOrEqual(4) // false
 ```
+
 ### CountIsLessThan
 
 Determines whether the number of elements in the collection is less than the specified maximum value.
@@ -295,6 +305,7 @@ EnumerableStub.GetValue().CountIsLessThan(2) // false
 EnumerableStub.GetValue().CountIsLessThan(3) // false
 EnumerableStub.GetValue().CountIsLessThan(4) // true
 ```
+
 ### CountIsLessThanOrEqual
 
 Determines whether the number of elements in the collection is less than or equal to the specified maximum
@@ -315,6 +326,7 @@ EnumerableStub.GetValue().CountIsLessThanOrEqual(2) // false
 EnumerableStub.GetValue().CountIsLessThanOrEqual(3) // true
 EnumerableStub.GetValue().CountIsLessThanOrEqual(4) // true
 ```
+
 ### Deduplicate
 
 Replaces consecutive instances of the specified substring with a single instance in the string. By default,
@@ -325,6 +337,7 @@ string value = "hello   world";
             
 string result = value.Deduplicate(); // hello world
 ```
+
 ### EndWith
 
 Ends the string with a single instance of the specified value if it does not already end with it.
@@ -334,6 +347,7 @@ string value = "example";
             
  string result = value.EndWith(".com"); // example.com
 ```
+
 ### Excerpt
 
 Extracts an excerpt from the string that matches the first instance of the specified phrase.
@@ -343,6 +357,7 @@ string value = "The quick brown fox jumps over the lazy dog";
             
 string result = value.Excerpt("fox", radius: 5); // ...own fox jump...
 ```
+
 ### FromBase64
 
 Decodes the given Base64 string, or returns null if the string is not a valid Base64 encoding.
@@ -352,6 +367,7 @@ string value = "SGVsbG8=";
             
 string result = value.FromBase64(); // Hello
 ```
+
 ### GetDecimal
 
 Gets the number of digits after the decimal separator.
@@ -360,6 +376,7 @@ Gets the number of digits after the decimal separator.
 decimal value = 123.45m;
 int result = value.GetDigits(); // 5
 ```
+
 ### GetDigits
 
 Gets the total number of digits before and after the decimal separator.
@@ -368,6 +385,7 @@ Gets the total number of digits before and after the decimal separator.
 decimal value = 123.45m;
 int result = value.GetDigits(); // 5
 ```
+
 ### GetDigitsBeforeSeparator
 
 Gets the number of digits in the integer part of the decimal value.
@@ -376,6 +394,7 @@ Gets the number of digits in the integer part of the decimal value.
 decimal value = 123.45m;
 int result = value.GetDigitsBeforeSeparator(); // 3
 ```
+
 ### Initials
 
 Returns the initials of the string, optionally capitalizing them.
@@ -384,6 +403,7 @@ Returns the initials of the string, optionally capitalizing them.
 string value = "John Ronald Reuel Tolkien";
 string result = value.Initials(); // JRRT
 ```
+
 ### LcFirst
 
 Returns the string with its first character converted to lowercase.
@@ -393,6 +413,7 @@ string value = "HELLO";
             
  string result = value.LcFirst(); // hELLO
 ```
+
 ### Limit
 
 Truncates the string to the specified length, optionally appending a custom string to the end of the truncated
@@ -402,6 +423,7 @@ result. Can preserve complete words at the nearest word boundary when specified.
 string value = "The quick brown fox";
 string result = value.Limit(12); // The quick ...
 ```
+
 ### Mask
 
 Masks a portion of a string with a repeated character, which can be used to obfuscate segments of sensitive
@@ -411,6 +433,7 @@ strings such as email addresses and phone numbers.
 string value = "john@example.com";
 string result = value.Mask(4, 4); // john*********e.com
 ```
+
 ### PadBoth
 
 Pads both sides of a string with another string until the final string reaches the specified length.
@@ -419,6 +442,7 @@ Pads both sides of a string with another string until the final string reaches t
 string value = "title";
 string result = value.PadBoth(9, "-"); // --title--
 ```
+
 ### Remove
 
 Removes the specified values from the string in a case-sensitive manner.
@@ -427,6 +451,7 @@ Removes the specified values from the string in a case-sensitive manner.
 string value = "a-b-c";
 string result = value.Remove("-"); // abc
 ```
+
 ### RemoveIgnoreCase
 
 Removes the specified values from the string in a case-insensitive manner.
@@ -435,6 +460,7 @@ Removes the specified values from the string in a case-insensitive manner.
 string value = "Hello HELLO World";
 string result = value.RemoveIgnoreCase("hello"); // World
 ```
+
 ### Replace
 
 Replaces a given value in the string sequentially using an array of replacement values.
@@ -443,6 +469,7 @@ Replaces a given value in the string sequentially using an array of replacement 
 string value = "a-b-c";
 string result = value.Replace("-", ["1", "2"]); // a1b2c
 ```
+
 ### ReplaceFirst
 
 Replaces the first occurrence of a specified string with another string, with an option to control case
@@ -452,6 +479,7 @@ sensitivity.
 string value = "foo foo";
 string result = value.ReplaceFirst("foo", "bar"); // bar foo
 ```
+
 ### ReplaceLast
 
 Replaces the last occurrence of a specified string with another string, with an option to control case
@@ -461,6 +489,7 @@ sensitivity.
 string value = "foo foo";
 string result = value.ReplaceLast("foo", "bar"); // foo bar
 ```
+
 ### ReplaceMatches
 
 Replaces all portions of a string matching a regular expression pattern with the specified replacement string.
@@ -469,6 +498,7 @@ Replaces all portions of a string matching a regular expression pattern with the
 string value = "foo123 bar456";
 string result = value.ReplaceMatches(@"\d+", "#"); // foo# bar#
 ```
+
 ### Reverse
 
 Reverses the given string.
@@ -477,6 +507,7 @@ Reverses the given string.
 string value = "hello";
 string result = value.Reverse(); // olleh
 ```
+
 ### Squish
 
 Removes all extraneous white space from the string, including extra white space between words.
@@ -485,6 +516,7 @@ Removes all extraneous white space from the string, including extra white space 
 string value = "  hello   world  ";
 string result = value.Squish(); // hello world
 ```
+
 ### StartWith
 
 Begins the string with a single instance of the specified value if it does not already start with it.
@@ -493,6 +525,7 @@ Begins the string with a single instance of the specified value if it does not a
 string value = "example.com";
 string result = value.StartWith("https://"); // https://example.com
 ```
+
 ### SubstringCount
 
 Returns the number of occurrences of a given value in the string.
@@ -501,6 +534,7 @@ Returns the number of occurrences of a given value in the string.
 string value = "one two one";
 int result = value.SubstringCount("one"); // 2
 ```
+
 ### SubstringReplace
 
 Replaces text within a portion of a string, starting at the specified position and replacing the number of
@@ -511,6 +545,7 @@ characters.
 string value = "hello world";
 string result = value.SubstringReplace("C#", 6, 5); // hello C#
 ```
+
 ### Swap
 
 Replaces multiple values in the string.
@@ -519,6 +554,7 @@ Replaces multiple values in the string.
 string value = "hello world";
 string result = value.Swap(new() { ["hello"] = "hi", ["world"] = "there" }); // hi there
 ```
+
 ### ToBase64
 
 Converts the given string to its Base64-encoded representation.
@@ -527,6 +563,7 @@ Converts the given string to its Base64-encoded representation.
 string value = "Hello";
 string result = value.ToBase64(); // SGVsbG8=
 ```
+
 ### ToCamelCase
 
 Converts the given string to camelCase.
@@ -535,6 +572,7 @@ Converts the given string to camelCase.
 string value = "hello_world";
 string result = value.ToCamelCase(); // helloWorld
 ```
+
 ### ToKebabCase
 
 Converts the string to kebab-case.
@@ -543,6 +581,7 @@ Converts the string to kebab-case.
 string value = "hello world";
 string result = value.ToKebabCase(); // hello-world
 ```
+
 ### ToPascalCase
 
 Converts the given string to PascalCase.
@@ -551,6 +590,7 @@ Converts the given string to PascalCase.
 string value = "hello world";
 string result = value.ToKebabCase(); // hello-world
 ```
+
 ### ToSnakeCase
 
 Converts the given string to snake_case.
@@ -559,6 +599,7 @@ Converts the given string to snake_case.
 string value = "helloWorld";
 string result = value.ToSnakeCase(); // hello_world
 ```
+
 ### UcFirst
 
 Capitalizes the first character of the given string.
@@ -567,6 +608,7 @@ Capitalizes the first character of the given string.
 string value = "hello";
 string result = value.UcFirst(); // Hello
 ```
+
 ### UcSplit
 
 Splits the string into a list by uppercase characters.
@@ -575,6 +617,7 @@ Splits the string into a list by uppercase characters.
 string value = "hello";
 string result = value.UcFirst(); // Hello
 ```
+
 ### UcWord
 
 Converts the first character of each word in the given string to uppercase.
@@ -583,6 +626,7 @@ Converts the first character of each word in the given string to uppercase.
 string value = "hello world";
 string result = value.UcWord(); // Hello World
 ```
+
 ### WordCount
 
 Returns the number of words that the string contains.
