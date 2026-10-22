@@ -4,9 +4,12 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Title>Helpers for scalar types</Title>
-        <Description>Convenient extension methods for common scalar types such as string and decimal.</Description>
-        <PackageTags>zhomfr; extensions; scalar-types; helpers; csharp; dotnet; string; decimal</PackageTags>
+        <Title>Helpers for Scalar Types</Title>
+        <Description>
+            A collection of convenient and productive extension methods for some types in C# (string, decimal,
+            IEnumerable), designed to simplify everyday data processing and formatting tasks.
+        </Description>
+        <PackageTags>zhomfr; extensions; scalar-types; helpers; csharp; dotnet; string; decimal; enumerable</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
