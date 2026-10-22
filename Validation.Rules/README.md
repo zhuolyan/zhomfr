@@ -44,15 +44,14 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
 
 </td>
 </tr>
 </table>
-
 
 ### Integer
 
@@ -60,33 +59,32 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [Between](#between)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [Between](#between)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
 
 </td>
 <td>
 
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Float
 
@@ -94,29 +92,28 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
+- [Between](#between)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
 
 </td>
 <td>
 
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
- - [Max](#max)
- - [Min](#min)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
+- [Max](#max)
+- [Min](#min)
 
 </td>
 <td>
 
- - [NotIn](#notin)
- - [Size](#size)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Decimal
 
@@ -124,31 +121,30 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [Decimal](#decimal)
- - [Digits](#digits)
- - [GreaterThan](#greaterthan)
+- [Between](#between)
+- [Decimal](#decimal)
+- [Digits](#digits)
+- [GreaterThan](#greaterthan)
 
 </td>
 <td>
 
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### String
 
@@ -156,54 +152,53 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [ActiveUrl](#activeurl)
- - [Alpha](#alpha)
- - [AlphaDash](#alphadash)
- - [AlphaNumeric](#alphanumeric)
- - [Ascii](#ascii)
- - [Between](#between)
- - [Contains](#contains)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
- - [DoesntContain](#doesntcontain)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [ActiveUrl](#activeurl)
+- [Alpha](#alpha)
+- [AlphaDash](#alphadash)
+- [AlphaNumeric](#alphanumeric)
+- [Ascii](#ascii)
+- [Between](#between)
+- [Contains](#contains)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
+- [DoesntContain](#doesntcontain)
 
 </td>
 <td>
 
- - [DoesntEndWith](#doesntendwith)
- - [DoesntStartWith](#doesntstartwith)
- - [Email](#email)
- - [EndsWith](#endswith)
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [HexColor](#hexcolor)
- - [In](#in)
- - [Ip](#ip)
- - [Json](#json)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [DoesntEndWith](#doesntendwith)
+- [DoesntStartWith](#doesntstartwith)
+- [Email](#email)
+- [EndsWith](#endswith)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [HexColor](#hexcolor)
+- [In](#in)
+- [Ip](#ip)
+- [Json](#json)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Lowercase](#lowercase)
- - [MacAddress](#macaddress)
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [NotRegexp](#notregexp)
- - [Regexp](#regexp)
- - [Size](#size)
- - [StartsWith](#startswith)
- - [Uppercase](#uppercase)
- - [Url](#url)
+- [Lowercase](#lowercase)
+- [MacAddress](#macaddress)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [NotRegexp](#notregexp)
+- [Regexp](#regexp)
+- [Size](#size)
+- [StartsWith](#startswith)
+- [Uppercase](#uppercase)
+- [Url](#url)
 
 </td>
 </tr>
 </table>
-
 
 ### DateTime
 
@@ -211,33 +206,32 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [After](#after)
- - [AfterOrEqual](#afterorequal)
- - [Before](#before)
- - [BeforeOrEqual](#beforeorequal)
- - [Between](#between)
+- [After](#after)
+- [AfterOrEqual](#afterorequal)
+- [Before](#before)
+- [BeforeOrEqual](#beforeorequal)
+- [Between](#between)
 
 </td>
 <td>
 
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Collection
 
@@ -245,32 +239,31 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [Contains](#contains)
- - [Distinct](#distinct)
- - [DoesntContain](#doesntcontain)
- - [GreaterThan](#greaterthan)
+- [Between](#between)
+- [Contains](#contains)
+- [Distinct](#distinct)
+- [DoesntContain](#doesntcontain)
+- [GreaterThan](#greaterthan)
 
 </td>
 <td>
 
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [InArray](#inarray)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
- - [Max](#max)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [InArray](#inarray)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
+- [Max](#max)
 
 </td>
 <td>
 
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
 </table>
-
 
 ### Dictionary
 
@@ -278,14 +271,13 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [DictionaryKeys](#dictionarykeys)
- - [Distinct](#distinct)
- - [DoesntContain](#doesntcontain)
+- [DictionaryKeys](#dictionarykeys)
+- [Distinct](#distinct)
+- [DoesntContain](#doesntcontain)
 
 </td>
 </tr>
 </table>
-
 
 ## 🛠️ Features and Examples
 
@@ -293,7 +285,6 @@ using Zhomfr.Validation.Rules;
 
 The field under validation must be "yes", "on", 1, "1", true, or "true". This is useful for validating "Terms
 of Service" acceptance or similar fields.
-
 
 ```csharp
 public class AcceptedDto
@@ -322,7 +313,6 @@ public class AcceptedDto
 
 The field under validation must be "yes", "on", 1, "1", true, or "true" if another field under validation is
 equal to a specified value. This is useful for validating "Terms of Service" acceptance or similar fields.
-
 
 ```csharp
 public class AcceptedIfDto
@@ -371,7 +361,6 @@ public class AcceptedIfDto
 
 The field under validation must have a valid A or AAAA record.
 
-
 ```csharp
 public class ActiveUrlDto
 {
@@ -386,7 +375,6 @@ public class ActiveUrlDto
 ### After
 
 The field under validation must be a value after a given date.
-
 
 ```csharp
 public class AfterDto
@@ -409,7 +397,6 @@ public class AfterDto
 
 The field under validation must be a value after a given date.
 
-
 ```csharp
 public class AfterOrEqualDto
 {
@@ -431,7 +418,6 @@ public class AfterOrEqualDto
 
 The field under validation must be entirely Unicode alphabetic characters.
 
-
 ```csharp
 public class AlphaDto
 {
@@ -448,7 +434,6 @@ public class AlphaDto
 The field under validation must be entirely Unicode alphanumeric characters, as well as ASCII dashes (-) and
 ASCII underscores (_).
 
-
 ```csharp
 public class AlphaDashDto
 {
@@ -463,7 +448,6 @@ public class AlphaDashDto
 ### AlphaNumeric
 
 The field under validation must be entirely Unicode alphanumeric characters.
-
 
 ```csharp
 public class AlphaNumericDto
@@ -480,7 +464,6 @@ public class AlphaNumericDto
 
 The field under validation must be entirely 7-bit ASCII characters.
 
-
 ```csharp
 public class AsciiDto
 {
@@ -495,7 +478,6 @@ public class AsciiDto
 ### Before
 
 The field under validation must be a value preceding the given date.
-
 
 ```csharp
 public class BeforeDto
@@ -518,7 +500,6 @@ public class BeforeDto
 
 The field under validation must be a value preceding the given date.
 
-
 ```csharp
 public class BeforeOrEqualDto
 {
@@ -540,7 +521,6 @@ public class BeforeOrEqualDto
 
 The field under validation must have a size between the given min and max (inclusive). Strings, numerics,
 arrays, and files are evaluated in the same fashion as the size rule.
-
 
 ```csharp
 public class BetweenDto
@@ -635,7 +615,6 @@ public class BetweenDto
 
 The field under validation must be a collection or string that contains all the given parameter values.
 
-
 ```csharp
 public class ContainsDto
 {
@@ -663,7 +642,6 @@ public class ContainsDto
 
 The field under validation must be decimal and must contain the specified number of decimal places.
 
-
 ```csharp
 public class DecimalDto
 {
@@ -678,7 +656,6 @@ public class DecimalDto
 ### Declined
 
 The field under validation must be "no", "off", 0, "0", false, or "false".
-
 
 ```csharp
 public class DeclinedDto
@@ -707,7 +684,6 @@ public class DeclinedDto
 
 The field under validation must be "no", "off", 0, "0", false, or "false" if another field under validation is
 equal to a specified value.
-
 
 ```csharp
 public class DeclinedIfDto
@@ -739,7 +715,6 @@ public class DeclinedIfDto
 The field under validation must be a Dictionary whose keys are all included in the given list. At least one
 key must be provided.
 
-
 ```csharp
 public class DictionaryKeysDto
 {
@@ -754,7 +729,6 @@ public class DictionaryKeysDto
 ### Different
 
 The field under validation must have a different value than field.
-
 
 ```csharp
 public class DifferentDto
@@ -775,7 +749,6 @@ public class DifferentDto
 
 The decimal under validation must have an exact length of value or between the given min and max.
 
-
 ```csharp
 public class DigitsDto
 {
@@ -790,7 +763,6 @@ public class DigitsDto
 ### Distinct
 
 Under validation must not have any duplicate values:
-
 
 ```csharp
 public class DistinctDto
@@ -813,7 +785,6 @@ public class DistinctDto
 
 The field under validation must be a collection or string that does not contain any of the given parameter
 values.
-
 
 ```csharp
 public class DoesntContainDto
@@ -842,7 +813,6 @@ public class DoesntContainDto
 
 The field under validation must not end with one of the given values.
 
-
 ```csharp
 public class DoesntEndWithDto
 {
@@ -857,7 +827,6 @@ public class DoesntEndWithDto
 ### DoesntStartWith
 
 The field under validation must not start with one of the given values.
-
 
 ```csharp
 public class DoesntStartWithDto
@@ -874,7 +843,6 @@ public class DoesntStartWithDto
 
 Validates an email address using one or more configurable strategies.
 
-
 ```csharp
 public class EmailDto
 {
@@ -889,7 +857,6 @@ public class EmailDto
 ### EndsWith
 
 The field under validation must end with one of the given values.
-
 
 ```csharp
 public class EndsWithDto
@@ -906,7 +873,6 @@ public class EndsWithDto
 
 The field under validation must be greater than the given field. The two fields must be of the same type.
 Strings, numerics, collections are evaluated using the same conventions as the size rule.
-
 
 ```csharp
 public class GreaterThanDto
@@ -1058,7 +1024,6 @@ public class GreaterThanDto
 The field under validation must be greater than the given fielde. The two fields must be of the same type.
 Strings, numerics, collections are evaluated using the same conventions as the size rule.
 
-
 ```csharp
 public class GreaterThanOrEqualDto
 {
@@ -1208,7 +1173,6 @@ public class GreaterThanOrEqualDto
 
 Validates that a string is a valid hexadecimal color code.
 
-
 ```csharp
 public class HexColorDto
 {
@@ -1223,7 +1187,6 @@ public class HexColorDto
 ### In
 
 The field under validation must be included in the given list of values.
-
 
 ```csharp
 public class InDto
@@ -1306,7 +1269,6 @@ public class InDto
 
 The field under validation must exist in anotherField's values.
 
-
 ```csharp
 public class InArrayDto
 {
@@ -1330,7 +1292,6 @@ public class InArrayDto
 
 The field under validation must be an IP address.
 
-
 ```csharp
 public class IpDto
 {
@@ -1352,7 +1313,6 @@ public class IpDto
 
 The field under validation must be a valid JSON string.
 
-
 ```csharp
 public class JsonDto
 {
@@ -1368,7 +1328,6 @@ public class JsonDto
 
 The field under validation must be less than the given field. The two fields must be of the same type.
 Strings, numerics, arrays, and files are evaluated using the same conventions as the size rule.
-
 
 ```csharp
 public class LessThanDto
@@ -1520,7 +1479,6 @@ public class LessThanDto
 The field under validation must be less than or equal to the given field. The two fields must be of the same
 type. Strings, numerics, arrays, and files are evaluated using the same conventions as the size rule.
 
-
 ```csharp
 public class LessThanOrEqualDto
 {
@@ -1670,7 +1628,6 @@ public class LessThanOrEqualDto
 
 The field under validation must be lowercase.
 
-
 ```csharp
 public class LowercaseDto
 {
@@ -1685,7 +1642,6 @@ public class LowercaseDto
 ### MacAddress
 
 The field under validation must be a MAC address..
-
 
 ```csharp
 public class MacAddressDto
@@ -1702,7 +1658,6 @@ public class MacAddressDto
 
 The field under validation must be less than or equal to a maximum value. Strings, numerics, arrays, and files
 are evaluated in the same fashion as the size rule.
-
 
 ```csharp
 public class MaxDto
@@ -1797,7 +1752,6 @@ public class MaxDto
 
 The field under validation must be grater than or equal to a minimum value. Strings, numerics, arrays, and
 files are evaluated in the same fashion as the size rule.
-
 
 ```csharp
 public class MinDto
@@ -1896,7 +1850,6 @@ Modes for validation logic.
 
 The field under validation must not be included in the given list of values.
 
-
 ```csharp
 public class NotInDto
 {
@@ -1990,7 +1943,6 @@ public class NotInDto
 
 The field under validation must match the given regular expression.
 
-
 ```csharp
 public class NotRegexpDto
 {
@@ -2005,7 +1957,6 @@ public class NotRegexpDto
 ### Regexp
 
 The field under validation must match the given regular expression.
-
 
 ```csharp
 public class RegexpDto
@@ -2022,7 +1973,6 @@ public class RegexpDto
 
 The field under validation must be present in the input data and not empty.
 
-
 ```csharp
 public class RequiredDto
 {
@@ -2037,7 +1987,6 @@ public class RequiredDto
 ### Same
 
 The given field must match the field under validation.
-
 
 ```csharp
 public class SameDto
@@ -2059,7 +2008,6 @@ public class SameDto
 The field under validation must have a size matching the given value. For string data, value corresponds to
 the number of characters. For numeric data, value corresponds to an expected value. For collection, size
 corresponds to the count of the collection.
-
 
 ```csharp
 public class SizeDto
@@ -2154,7 +2102,6 @@ public class SizeDto
 
 The field under validation must start with one of the given values.
 
-
 ```csharp
 public class StartsWithDto
 {
@@ -2169,7 +2116,6 @@ public class StartsWithDto
 ### Uppercase
 
 The field under validation must be uppercase.
-
 
 ```csharp
 public class UppercaseDto
@@ -2188,7 +2134,6 @@ The field under validation must be a valid URL.
 
 If you would like to specify the URL protocols that should be considered valid, you may pass the protocols
 as validation rule parameters.
-
 
 ```csharp
 public class UrlDto

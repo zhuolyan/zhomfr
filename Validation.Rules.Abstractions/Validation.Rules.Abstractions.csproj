@@ -4,6 +4,9 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Validation Rule Abstractions</Title>
+        <Description>A lightweight, extensible foundational library for building custom validation rules in .NET.</Description>
+        <PackageTags>zhomfr; validation; validation rules; rules; csharp; dotnet;</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

@@ -4,6 +4,12 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Validation Rules for Database</Title>
+        <Description>
+            A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
+            System.ComponentModel.DataAnnotations infrastructure.
+        </Description>
+        <PackageTags>zhomfr; validation; validation rules; rules; csharp; dotnet;</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
