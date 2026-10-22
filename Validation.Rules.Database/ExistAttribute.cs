@@ -13,6 +13,15 @@ namespace Zhomfr.Validation.Rules.Database;
 /// </summary>
 /// <typeparam name="TDbContext">The type of the <see cref="DbContext"/> to use for the check.</typeparam>
 /// <typeparam name="TType">The entity type (class) in which to look for the value.</typeparam>
+/// <example>
+///     <code>
+///         public class StubModel
+///         {
+///             [Exist&lt;StubDbContext,StubEntity&gt;(nameof(StubEntity.Name))]
+///             public string Name { get; set; } = "user@example.com";
+///         }
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ExistAttribute<TDbContext, TType> : AbstractRule where TDbContext : DbContext where TType : class
 {

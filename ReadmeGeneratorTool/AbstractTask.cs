@@ -62,6 +62,7 @@ public abstract class AbstractTask(string project)
 
     private static void AddExample(StringBuilder result, string example)
     {
+        result.AppendLine();
         result.AppendLine("```csharp");
 
         string[] lines = example.Split("\n                    ");
@@ -72,6 +73,7 @@ public abstract class AbstractTask(string project)
         }
 
         result.AppendLine("```");
+        result.AppendLine();
     }
 
     protected static StringBuilder GenerateTable(string[] items)
@@ -80,9 +82,9 @@ public abstract class AbstractTask(string project)
         int           rowsCount;
         int           celCount;
 
-        if (items.Length == 4) {
-            rowsCount = 2;
-            celCount  = 2;
+        if (items.Length < 5) {
+            rowsCount = items.Length;
+            celCount  = 1;
         } else {
             rowsCount = (items.Length + 2) / 3;
             celCount  = 3;
