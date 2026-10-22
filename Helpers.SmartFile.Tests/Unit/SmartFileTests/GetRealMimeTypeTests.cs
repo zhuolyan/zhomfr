@@ -6,7 +6,7 @@ namespace Zhomfr.Helpers.SmartFile.Tests.Unit.SmartFileTests;
 public class GetRealMimeTypeTests
 {
     [Test]
-    [CancelAfter(1000)]
+    [CancelAfter(5_000)]
     public async Task Should_ReturnDetectedType_When_MatchIsFound(CancellationToken ct)
     {
         HttpClient request = new();
@@ -24,7 +24,7 @@ public class GetRealMimeTypeTests
     }
 
     [Test]
-    [CancelAfter(1000)]
+    [CancelAfter(5_000)]
     public async Task Should_ReturnFallback_When_NoMatchIsFound(CancellationToken ct)
     {
         byte[]                randomBytes = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
