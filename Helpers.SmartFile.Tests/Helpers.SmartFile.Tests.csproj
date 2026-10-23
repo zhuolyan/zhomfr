@@ -26,6 +26,10 @@
     <ItemGroup>
         <Using Include="NUnit.Framework"/>
     </ItemGroup>
+    
+    <ItemGroup>
+        <None Include="Files\**" CopyToOutputDirectory="Always"/>
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Helpers.ScalarTypes\Helpers.ScalarTypes.csproj"/>
