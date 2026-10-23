@@ -1,7 +1,7 @@
-# Validation Rules for Database
+# Validation Rules for Files
 
-[![NuGet Status](https://img.shields.io/nuget/v/Zhomfr.Validation.Rules.Database.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Database/)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Validation.Rules.Database.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Database/)
+[![NuGet Status](https://img.shields.io/nuget/v/Zhomfr.Validation.Rules.Files.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Files/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Validation.Rules.Files.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Files/)
 
 > ### ⚠️ Warning: Active Development (< 1.0.0)
 > Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means
