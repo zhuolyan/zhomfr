@@ -161,6 +161,7 @@
         "type": "Project",
         "dependencies": {
           "SkiaSharp": "[4.153.1, )",
+          "SkiaSharp.NativeAssets.macOS": "[4.153.1, )",
           "Zhomfr.Helpers.SmartFile": "[1.0.0, )",
           "Zhomfr.Validation.Rules.Abstractions": "[1.0.0, )"
         }
