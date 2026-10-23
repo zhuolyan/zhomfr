@@ -1,4 +1,6 @@
 <Solution>
+    <Project Path="Hash.Abstractions.Tests/Hash.Abstractions.Tests.csproj"/>
+    <Project Path="Hash.Abstractions\Hash.Abstractions.csproj"/>
     <Project Path="Helpers.ScalarTypes.Tests/Helpers.ScalarTypes.Tests.csproj"/>
     <Project Path="Helpers.ScalarTypes/Helpers.ScalarTypes.csproj"/>
     <Project Path="Helpers.SmartFile.Tests/Helpers.SmartFile.Tests.csproj"/>
