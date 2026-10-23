@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Description>
+            A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
+            System.ComponentModel.DataAnnotations infrastructure.
+        </Description>
+        <PackageTags>zhomfr; validation; validation rules; rules; files; csharp; dotnet;</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Helpers.SmartFile\Helpers.SmartFile.csproj" />
+      <ProjectReference Include="..\Validation.Rules.Abstractions\Validation.Rules.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SkiaSharp" Version="4.153.1" />
+      <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.402">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Update="MinVer" Version="8.0.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+</Project>

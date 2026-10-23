@@ -29,7 +29,8 @@ public class SmartFile : IDisposable, IAsyncDisposable
 #region Fields
 
     private bool    _disposed;
-    private string? _realMimeType;
+    private string? _contentType;
+    private string? _extension;
 
     private Stream _stream;
 
@@ -40,19 +41,32 @@ public class SmartFile : IDisposable, IAsyncDisposable
     /// <summary>Gets the name of the file, including the extension.</summary>
     public string FileName { get; }
 
-    /// <summary>Gets the file extension (e.g., ".png").</summary>
+    /// <summary>Gets the file extension (e.g., "png").</summary>
+    /// <remarks>Which may be different from name extension.</remarks>
     public string Extension
     {
         get
         {
-            field ??= Path.GetExtension(this.FileName);
+            if (string.IsNullOrWhiteSpace(this._extension)) {
+                this.SetFileType();
+            }
 
-            return field;
+            return this._extension!;
         }
     }
 
     /// <summary>Gets the MIME type as declared by the source.</summary>
-    public string ContentType => this.GetRealMimeType();
+    public string ContentType
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(this._contentType)) {
+                this.SetFileType();
+            }
+
+            return this._contentType!;
+        }
+    }
 
     /// <summary>Gets the file size in bytes.</summary>
     /// <remarks>Accessing this property on a non-seekable stream will trigger full buffering to determine the length.</remarks>
@@ -225,21 +239,25 @@ public class SmartFile : IDisposable, IAsyncDisposable
 
     /// <summary>Performs a deep binary inspection (magic numbers) to determine the actual MIME type.</summary>
     /// <remarks>This method will trigger stream buffering if the underlying stream is non-seekable.</remarks>
+    [Obsolete("Use ContentType property instead")]
     public string GetRealMimeType()
     {
-        if (!string.IsNullOrWhiteSpace(this._realMimeType)) {
-            return this._realMimeType;
-        }
-
-        this._realMimeType = MimeGuesser.GuessMimeType(this._stream);
-
-        return this._realMimeType;
+        return this.ContentType;
     }
 
     /// <summary>Asynchronously performs a deep inspection of the file's binary signature.</summary>
+    [Obsolete("Use ContentType property instead")]
     public Task<string> GetRealMimeTypeAsync(CancellationToken ct = default)
     {
-        return Task.Run(this.GetRealMimeType, ct);
+        return Task.Run(() => this.ContentType, ct);
+    }
+
+    private void SetFileType()
+    {
+        FileType info = MimeGuesser.GuessFileType(this._stream);
+
+        this._contentType = info.MimeType;
+        this._extension   = info.Extension.ToLower();
     }
 
 #endregion

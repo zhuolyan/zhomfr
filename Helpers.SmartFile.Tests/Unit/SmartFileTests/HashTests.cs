@@ -37,7 +37,7 @@ public class HashTests
               "f7699b90a6a16924a3e3b26ce3ace114487ba5fe89505669af2e94291a4275ac7ab86e497a729ecee6c7ea9e41ba256d97bfa1eb494fd7f025f94cb6933d889d")]
     [TestCase(nameof(HashAlgorithmName.MD5), "e087923eb5dd1310f5f25ddd5ae5b580")]
     [TestCase(nameof(HashAlgorithmName.SHA1), "4d68c8f13459c0edb40504de5003ec2a6b74e613")]
-    public async Task Should_ReturnCorrectHash_When_Called(string stringAlgorithmName, string expectedHash, CancellationToken ct = default)
+    public async Task Should_ReturnCorrectHash_When_Called(string stringAlgorithmName, string expectedHash, CancellationToken ct)
     {
         HashAlgorithmName algorithmName = new(stringAlgorithmName);
 
@@ -48,10 +48,10 @@ public class HashTests
 
     [Test]
     [CancelAfter(1_000)]
-    public async Task Should_ReturnCorrectHash_When_Called(CancellationToken ct = default)
+    public async Task Should_ReturnCorrectHash_When_Called(CancellationToken ct)
     {
         await using SmartFile tested = new(HashTests.FILE_CONTENT, "test.txt");
 
-        Assert.ThrowsAsync<NotSupportedException>(() => _ = tested.HashAsync(HashAlgorithmName.SHA384, ct));
+        await Assert.ThrowsAsync<NotSupportedException>(() => _ = tested.HashAsync(HashAlgorithmName.SHA384, ct));
     }
 }

@@ -39,7 +39,7 @@ public class ConstructorTests
         {
             Assert.That(file.FileName, Is.EqualTo(NAME));
             Assert.That(file.Length, Is.EqualTo(FileFixtures.JpegBytes.Length));
-            Assert.That(file.Extension, Is.EqualTo(".jpg"));
+            Assert.That(file.Extension, Is.EqualTo("jpeg"));
 
             Assert.That(file.ContentType, Is.EqualTo(MediaTypeNames.Image.Jpeg));
         });
@@ -56,7 +56,7 @@ public class ConstructorTests
         using (Assert.EnterMultipleScope()) {
             Assert.That(file.FileName, Is.EqualTo(NAME));
             Assert.That(file.Length, Is.EqualTo(bytes.Length));
-            Assert.That(file.Extension, Is.EqualTo(".jpg"));
+            Assert.That(file.Extension, Is.EqualTo("jpeg"));
 
             Assert.That(file.ContentType, Is.EqualTo(MediaTypeNames.Image.Jpeg));
         }

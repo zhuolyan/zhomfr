@@ -6,8 +6,7 @@
 A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
 `System.ComponentModel.DataAnnotations` infrastructure. Designed to eliminate boilerplate code, this library brings a
 rich set of production-ready validation rules—inspired by robust ecosystem standards (like Laravel's validation
-features)
-—allowing you to validate models cleanly using declarative attributes without reinventing the wheel.
+features) — allowing you to validate models cleanly using declarative attributes without reinventing the wheel.
 
 ## Key Features
 

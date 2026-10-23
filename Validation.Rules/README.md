@@ -44,10 +44,10 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
 
 </td>
 </tr>
@@ -60,28 +60,28 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [Between](#between)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [Between](#between)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
 
 </td>
 <td>
 
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
@@ -94,24 +94,24 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
+- [Between](#between)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
 
 </td>
 <td>
 
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
- - [Max](#max)
- - [Min](#min)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
+- [Max](#max)
+- [Min](#min)
 
 </td>
 <td>
 
- - [NotIn](#notin)
- - [Size](#size)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
@@ -124,26 +124,26 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [Decimal](#decimal)
- - [Digits](#digits)
- - [GreaterThan](#greaterthan)
+- [Between](#between)
+- [Decimal](#decimal)
+- [Digits](#digits)
+- [GreaterThan](#greaterthan)
 
 </td>
 <td>
 
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
@@ -156,49 +156,49 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Accepted](#accepted)
- - [AcceptedIf](#acceptedif)
- - [ActiveUrl](#activeurl)
- - [Alpha](#alpha)
- - [AlphaDash](#alphadash)
- - [AlphaNumeric](#alphanumeric)
- - [Ascii](#ascii)
- - [Between](#between)
- - [Contains](#contains)
- - [Declined](#declined)
- - [DeclinedIf](#declinedif)
- - [DoesntContain](#doesntcontain)
+- [Accepted](#accepted)
+- [AcceptedIf](#acceptedif)
+- [ActiveUrl](#activeurl)
+- [Alpha](#alpha)
+- [AlphaDash](#alphadash)
+- [AlphaNumeric](#alphanumeric)
+- [Ascii](#ascii)
+- [Between](#between)
+- [Contains](#contains)
+- [Declined](#declined)
+- [DeclinedIf](#declinedif)
+- [DoesntContain](#doesntcontain)
 
 </td>
 <td>
 
- - [DoesntEndWith](#doesntendwith)
- - [DoesntStartWith](#doesntstartwith)
- - [Email](#email)
- - [EndsWith](#endswith)
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [HexColor](#hexcolor)
- - [In](#in)
- - [Ip](#ip)
- - [Json](#json)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [DoesntEndWith](#doesntendwith)
+- [DoesntStartWith](#doesntstartwith)
+- [Email](#email)
+- [EndsWith](#endswith)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [HexColor](#hexcolor)
+- [In](#in)
+- [Ip](#ip)
+- [Json](#json)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Lowercase](#lowercase)
- - [MacAddress](#macaddress)
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [NotRegexp](#notregexp)
- - [Regexp](#regexp)
- - [Size](#size)
- - [StartsWith](#startswith)
- - [Uppercase](#uppercase)
- - [Url](#url)
+- [Lowercase](#lowercase)
+- [MacAddress](#macaddress)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [NotRegexp](#notregexp)
+- [Regexp](#regexp)
+- [Size](#size)
+- [StartsWith](#startswith)
+- [Uppercase](#uppercase)
+- [Url](#url)
 
 </td>
 </tr>
@@ -211,28 +211,28 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [After](#after)
- - [AfterOrEqual](#afterorequal)
- - [Before](#before)
- - [BeforeOrEqual](#beforeorequal)
- - [Between](#between)
+- [After](#after)
+- [AfterOrEqual](#afterorequal)
+- [Before](#before)
+- [BeforeOrEqual](#beforeorequal)
+- [Between](#between)
 
 </td>
 <td>
 
- - [GreaterThan](#greaterthan)
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [In](#in)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
+- [GreaterThan](#greaterthan)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [In](#in)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
 
 </td>
 <td>
 
- - [Max](#max)
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Max](#max)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
@@ -245,27 +245,27 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [Between](#between)
- - [Contains](#contains)
- - [Distinct](#distinct)
- - [DoesntContain](#doesntcontain)
- - [GreaterThan](#greaterthan)
+- [Between](#between)
+- [Contains](#contains)
+- [Distinct](#distinct)
+- [DoesntContain](#doesntcontain)
+- [GreaterThan](#greaterthan)
 
 </td>
 <td>
 
- - [GreaterThanOrEqual](#greaterthanorequal)
- - [InArray](#inarray)
- - [LessThan](#lessthan)
- - [LessThanOrEqual](#lessthanorequal)
- - [Max](#max)
+- [GreaterThanOrEqual](#greaterthanorequal)
+- [InArray](#inarray)
+- [LessThan](#lessthan)
+- [LessThanOrEqual](#lessthanorequal)
+- [Max](#max)
 
 </td>
 <td>
 
- - [Min](#min)
- - [NotIn](#notin)
- - [Size](#size)
+- [Min](#min)
+- [NotIn](#notin)
+- [Size](#size)
 
 </td>
 </tr>
@@ -278,9 +278,9 @@ using Zhomfr.Validation.Rules;
 <tr valign="top">
 <td>
 
- - [DictionaryKeys](#dictionarykeys)
- - [Distinct](#distinct)
- - [DoesntContain](#doesntcontain)
+- [DictionaryKeys](#dictionarykeys)
+- [Distinct](#distinct)
+- [DoesntContain](#doesntcontain)
 
 </td>
 </tr>

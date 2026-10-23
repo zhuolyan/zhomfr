@@ -34,7 +34,14 @@
     <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
         <IsPackable>false</IsPackable>
     </PropertyGroup>
-
+    
+    <ItemGroup>
+        <None Update="README.template.md">
+            <Pack>false</Pack>
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
     <ItemGroup Condition="'$(MSBuildProjectName)' != 'ReadmeGeneratorTool' and !$(MSBuildProjectName.EndsWith('.Tests'))">
         <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="true" PackagePath="\" Visible="false"/>
         <None Include="README.md" Pack="true" PackagePath="\"/>
