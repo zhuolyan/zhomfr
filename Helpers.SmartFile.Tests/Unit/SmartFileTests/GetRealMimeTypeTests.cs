@@ -9,10 +9,7 @@ public class GetRealMimeTypeTests
     [CancelAfter(5_000)]
     public async Task Should_ReturnDetectedType_When_MatchIsFound(CancellationToken ct)
     {
-        HttpClient         request = new();
-        await using Stream image   = await request.GetStreamAsync("https://mockimage.tw/photo/320x240/ffffff/000000/Hello%20World", ct);
-
-        await using SmartFile file = new(image);
+        await using SmartFile file = new(File.OpenRead(Path.Combine("Files", "test.png")));
 
         Assert.That(file.ContentType, Is.EqualTo(MediaTypeNames.Image.Png));
     }

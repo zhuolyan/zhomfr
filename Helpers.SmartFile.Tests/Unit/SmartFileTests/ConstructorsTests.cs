@@ -14,7 +14,7 @@ public class ConstructorTests
 
         Assert.Throws<ArgumentNullException>(() =>
         {
-            SmartFile smartFile = new(nullStream!, "null.txt");
+            SmartFile _ = new(nullStream!, "null.txt");
         });
     }
 
