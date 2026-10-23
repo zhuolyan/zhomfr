@@ -7,6 +7,15 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules.Files;
 
 /// <summary>Validates that the file size (in bytes) does not below the specified minimum limit.</summary>
+/// <example>
+///     <code>
+///         public class Dto
+///         {
+///             [FileMin(4_194_304)]
+///             public SmartFile SomeFile;
+///         }
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class FileMinAttribute : AbstractRule
 {
@@ -27,7 +36,7 @@ public class FileMinAttribute : AbstractRule
         if (value is not SmartFile file) {
             throw new UnsupportedTypeException(value.GetType());
         }
-        
+
         return file.Length >= this._min;
     }
 }

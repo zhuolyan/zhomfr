@@ -12,20 +12,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Helpers.SmartFile\Helpers.SmartFile.csproj" />
-      <ProjectReference Include="..\Validation.Rules.Abstractions\Validation.Rules.Abstractions.csproj" />
+        <ProjectReference Include="..\Helpers.SmartFile\Helpers.SmartFile.csproj"/>
+        <ProjectReference Include="..\Validation.Rules.Abstractions\Validation.Rules.Abstractions.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="SkiaSharp" Version="4.153.1" />
-      <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.402">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Update="MinVer" Version="8.0.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="SkiaSharp" Version="4.153.1"/>
+        <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.402">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Update="MinVer" Version="8.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>

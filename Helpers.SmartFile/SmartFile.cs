@@ -43,6 +43,7 @@ public class SmartFile : IDisposable, IAsyncDisposable
 
     /// <summary>Gets the file extension (e.g., "png").</summary>
     /// <remarks>Which may be different from name extension.</remarks>
+    /// <remarks>File type detection is powered by libmagic.</remarks>
     public string Extension
     {
         get
@@ -235,21 +236,6 @@ public class SmartFile : IDisposable, IAsyncDisposable
     public async Task<T?> AsJsonAsync<T>(JsonSerializerOptions? options = null, CancellationToken ct = default)
     {
         return await JsonSerializer.DeserializeAsync<T>(this.GetStream(), options, ct);
-    }
-
-    /// <summary>Performs a deep binary inspection (magic numbers) to determine the actual MIME type.</summary>
-    /// <remarks>This method will trigger stream buffering if the underlying stream is non-seekable.</remarks>
-    [Obsolete("Use ContentType property instead")]
-    public string GetRealMimeType()
-    {
-        return this.ContentType;
-    }
-
-    /// <summary>Asynchronously performs a deep inspection of the file's binary signature.</summary>
-    [Obsolete("Use ContentType property instead")]
-    public Task<string> GetRealMimeTypeAsync(CancellationToken ct = default)
-    {
-        return Task.Run(() => this.ContentType, ct);
     }
 
     private void SetFileType()

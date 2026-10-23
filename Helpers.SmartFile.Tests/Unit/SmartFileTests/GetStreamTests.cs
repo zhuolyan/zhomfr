@@ -52,5 +52,7 @@ public class GetStreamTests
             Assert.That(actualContent, Is.EqualTo(CONTENT));
             Assert.DoesNotThrow(() => resultStream.Position = 0);
         });
+
+        storageFile.Dispose();
     }
 }

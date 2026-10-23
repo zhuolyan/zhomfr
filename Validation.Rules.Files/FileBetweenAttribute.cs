@@ -7,6 +7,18 @@ using Zhomfr.Validation.Rules.Abstractions.Errors;
 namespace Zhomfr.Validation.Rules.Files;
 
 /// <summary>Validates that the file size (in bytes) falls within the specified inclusive range.</summary>
+/// <example>
+///     <code>
+///         public class Dto
+///         {
+///             [FileBetween(3, 5)]
+///             public SmartFile SomeFileInvalid = new ("http://example.com" ,"some_filename.txt"); // ValidationError
+///         
+///             [FileBetween(3, 5)]
+///             public string SomeFileValid = "test"; // Success
+///         }
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class FileBetweenAttribute : AbstractRule
 {
@@ -20,7 +32,7 @@ public class FileBetweenAttribute : AbstractRule
     {
         this._min = min;
         this._max = max;
-        
+
         this.MessageArgs.Add(min);
         this.MessageArgs.Add(max);
     }

@@ -12,6 +12,19 @@ namespace Zhomfr.Validation.Rules.Files;
 ///     Validates the dimensions (width and height) of an image file. Supports both exact match and range-based
 ///     validation.
 /// </summary>
+/// <remarks>The file must be image <see cref="FileImageAttribute"/></remarks>
+/// <example>
+///     <code>
+///         public class Dto
+///         {
+///             [FileDimensions(128, 128)]
+///             public SmartFile SomeFile1;
+///         
+///             [FileDimensions(240, 512, 380, 720)]
+///             public string SomeFile2;
+///         }
+///     </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class FileDimensionsAttribute : AbstractRule
 {
@@ -66,15 +79,12 @@ public class FileDimensionsAttribute : AbstractRule
             throw new UnsupportedTypeException(value.GetType());
         }
 
-        try {
-            using Stream  stream = file.GetStream();
-            using SKCodec codec  = SKCodec.Create(stream);
+        using Stream  stream = file.GetStream();
+        using SKCodec codec  = SKCodec.Create(stream);
 
-            return FileDimensionsAttribute.IsDimensionValid(codec.Info.Width, this._width, this._minWidth, this._maxWidth)
-                && FileDimensionsAttribute.IsDimensionValid(codec.Info.Height, this._height, this._minHeight, this._maxHeight);
-        } catch {
-            return false;
-        }
+        return codec != null
+            && FileDimensionsAttribute.IsDimensionValid(codec.Info.Width, this._width, this._minWidth, this._maxWidth)
+            && FileDimensionsAttribute.IsDimensionValid(codec.Info.Height, this._height, this._minHeight, this._maxHeight);
     }
 
     private static bool IsDimensionValid(int actual, int? exact, int? min, int? max)

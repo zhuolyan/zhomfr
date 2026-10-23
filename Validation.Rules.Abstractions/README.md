@@ -3,6 +3,12 @@
 [![NuGet Status](https://img.shields.io/nuget/v/Zhomfr.Validation.Rules.Abstractions.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Abstractions/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Validation.Rules.Abstractions.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Abstractions/)
 
+> ### ⚠️ Warning: Active Development (< 1.0.0)
+> Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means
+> **breaking changes** may occur even in minor releases (`0.x`).
+>
+> We strongly recommend pinning the package version in your `.csproj` to avoid unexpected build errors.
+
 A lightweight, extensible foundational library for building custom validation rules in .NET. It provides a robust base
 class with essential infrastructure, property access helpers, and a dedicated set of validation exceptions to build
 clean and predictable validation pipelines.

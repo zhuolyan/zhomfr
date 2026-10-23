@@ -10,16 +10,16 @@
 
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="10.1.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
-        <PackageReference Include="NUnit" Version="5.0.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0"/>
+        <PackageReference Include="NUnit" Version="5.0.0"/>
         <PackageReference Include="NUnit.Analyzers" Version="4.15.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="NUnit3TestAdapter" Version="6.3.1" />
+        <PackageReference Include="NUnit3TestAdapter" Version="6.3.1"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -27,16 +27,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Validation.Rules.Files\Validation.Rules.Files.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Stubs\" />
-      <Folder Include="Unit\" />
+        <ProjectReference Include="..\Validation.Rules.Files\Validation.Rules.Files.csproj"/>
     </ItemGroup>
     <ItemGroup>
-        <None Update="Files\**.*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+        <None Include="Files\**" CopyToOutputDirectory="Always"/>
     </ItemGroup>
 </Project>

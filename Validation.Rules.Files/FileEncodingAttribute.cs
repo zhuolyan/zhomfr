@@ -11,6 +11,20 @@ namespace Zhomfr.Validation.Rules.Files;
 ///     Validates that the file content matches the specified character encoding. Equivalent to Laravel's 'encoding'
 ///     rule (uses strict decoder validation).
 /// </summary>
+/// <remarks>This rule read all data form file.</remarks>
+/// <remarks>
+///     This rule relies on <see cref="Encoding"/>. Available encodings depend on the encoding providers registered in
+///     your application (such as <see cref="CodePagesEncodingProvider"/>).
+/// </remarks>
+/// <example>
+///     <code>
+///         public class Dto
+///         {
+///             [FileEncoding("ASCII")]
+///             public SmartFile SomeFile;
+///         }
+///     </code>
+/// </example>
 public class FileEncodingAttribute : AbstractRule
 {
     private readonly string _encodingName;
@@ -23,7 +37,7 @@ public class FileEncodingAttribute : AbstractRule
     public FileEncodingAttribute(string encodingName)
     {
         this._encodingName = encodingName;
-        
+
         this.MessageArgs.Add(encodingName);
     }
 

@@ -49,6 +49,6 @@ public class AsJsonTests
     {
         await using SmartFile file = new("{ invalid json }", "data.json");
 
-        Assert.ThrowsAsync<JsonException>(() => _ = file.AsJsonAsync<Dictionary<string, string>>(ct: ct));
+        await Assert.ThrowsAsync<JsonException>(() => _ = file.AsJsonAsync<Dictionary<string, string>>(ct: ct));
     }
 }
