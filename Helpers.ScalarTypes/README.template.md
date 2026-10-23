@@ -4,7 +4,8 @@
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Helpers.ScalarTypes.svg)](https://www.nuget.org/packages/Zhomfr.Helpers.ScalarTypes/)
 
 > ### ⚠️ Warning: Active Development (< 1.0.0)
-> Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means **breaking changes** may occur even in minor releases (`0.x`).
+> Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means
+> **breaking changes** may occur even in minor releases (`0.x`).
 >
 > We strongly recommend pinning the package version in your `.csproj` to avoid unexpected build errors.
 

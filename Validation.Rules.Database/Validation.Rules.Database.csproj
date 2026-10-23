@@ -9,7 +9,7 @@
             A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
             System.ComponentModel.DataAnnotations infrastructure.
         </Description>
-        <PackageTags>zhomfr; validation; validation rules; rules; csharp; dotnet;</PackageTags>
+        <PackageTags>zhomfr; validation; validation rules; rules; database; csharp; dotnet;</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
@@ -26,13 +26,6 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="README.template.md">
-            <Pack>true</Pack>
-            <PackagePath>/</PackagePath>
-        </None>
     </ItemGroup>
 
 </Project>

@@ -4,7 +4,8 @@
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Helpers.SmartFile.svg)](https://www.nuget.org/packages/Zhomfr.Helpers.SmartFile/)
 
 > ### ⚠️ Warning: Active Development (< 1.0.0)
-> Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means **breaking changes** may occur even in minor releases (`0.x`).
+> Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means
+> **breaking changes** may occur even in minor releases (`0.x`).
 >
 > We strongly recommend pinning the package version in your `.csproj` to avoid unexpected build errors.
 
@@ -77,6 +78,10 @@ public string FileName { get; }
 ### **Extension**
 
 Gets the file extension (e.g., ".png").
+
+**Remarks:**
+> **Known Limitation:** `.ico` files may currently be incorrectly identified as generic binary files (`.bin`). This
+> issue is planned to be resolved in upcoming releases.
 
 ```csharp
 public string Extension { get; }

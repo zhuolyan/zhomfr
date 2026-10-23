@@ -7,6 +7,8 @@
     <Project Path="Validation.Rules.Abstractions/Validation.Rules.Abstractions.csproj"/>
     <Project Path="Validation.Rules.Database.Tests/Validation.Rules.Database.Tests.csproj"/>
     <Project Path="Validation.Rules.Database/Validation.Rules.Database.csproj"/>
+    <Project Path="Validation.Rules.Files.Tests/Validation.Rules.Files.Tests.csproj"/>
+    <Project Path="Validation.Rules.Files/Validation.Rules.Files.csproj"/>
     <Project Path="Validation.Rules.Tests/Validation.Rules.Tests.csproj"/>
     <Project Path="Validation.Rules/Validation.Rules.csproj"/>
 </Solution>

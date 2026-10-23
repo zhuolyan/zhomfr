@@ -29,11 +29,4 @@
         </PackageReference>
     </ItemGroup>
 
-    <ItemGroup>
-        <None Update="README.template.md">
-            <Pack>true</Pack>
-            <PackagePath>/</PackagePath>
-        </None>
-    </ItemGroup>
-
 </Project>

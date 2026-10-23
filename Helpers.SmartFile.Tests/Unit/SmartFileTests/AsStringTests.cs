@@ -50,6 +50,6 @@ public class AsStringTests
 
         await file.DisposeAsync();
 
-        Assert.ThrowsAsync<ObjectDisposedException>(() => _ = file.AsStringAsync(ct));
+        await Assert.ThrowsAsync<ObjectDisposedException>(() => file.AsStringAsync(ct));
     }
 }

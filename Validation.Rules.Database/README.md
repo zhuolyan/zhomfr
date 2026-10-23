@@ -4,15 +4,15 @@
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Validation.Rules.Database.svg)](https://www.nuget.org/packages/Zhomfr.Validation.Rules.Database/)
 
 > ### ⚠️ Warning: Active Development (< 1.0.0)
-> Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means **breaking changes** may occur even in minor releases (`0.x`).
+> Prior to the release of stable version `1.0.0`, this library follows SemVer for initial development. This means
+> **breaking changes** may occur even in minor releases (`0.x`).
 >
 > We strongly recommend pinning the package version in your `.csproj` to avoid unexpected build errors.
 
 A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
 `System.ComponentModel.DataAnnotations` infrastructure. Designed to eliminate boilerplate code, this library brings a
 rich set of production-ready validation rules—inspired by robust ecosystem standards (like Laravel's validation
-features)
-—allowing you to validate models cleanly using declarative attributes without reinventing the wheel.
+features) — allowing you to validate models cleanly using declarative attributes without reinventing the wheel.
 
 ## Key Features
 
@@ -47,13 +47,12 @@ using Zhomfr.Validation.Rules.Database;
 <tr valign="top">
 <td>
 
- - [Exist](#exist)
- - [Unique](#unique)
+- [Exist](#exist)
+- [Unique](#unique)
 
 </td>
 </tr>
 </table>
-
 
 ## 🛠️ Features and Examples
 
@@ -61,7 +60,6 @@ using Zhomfr.Validation.Rules.Database;
 
 Validates that a record with the specified property value exists in the database. Supports any entity type and
 property that can be resolved via .
-
 
 ```csharp
 public class StubModel
@@ -75,7 +73,6 @@ public class StubModel
 
 Validates that the value is unique within the specified database table and column. This rule fails if a record
 with the same property value already exists.
-
 
 ```csharp
 public class StubModel
