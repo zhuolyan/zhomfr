@@ -43,16 +43,16 @@ the .NET ecosystem — while remaining a natural extension of the platform rathe
 ## Coverage
 
 [![.NET Test & Coverage](https://github.com/zhuolyan/zhomfr/actions/workflows/tests.yml/badge.svg)](https://github.com/zhuolyan/zhomfr/actions/workflows/tests.yml)
-[![Branch Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.4.0/.github/badges/badge_branchcoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.4.0/.github/badges/Summary.md)
-[![Line Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.4.0/.github/badges/badge_linecoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.4.0/.github/badges/Summary.md)
-[![Method Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.4.0/.github/badges/badge_methodcoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.4.0/.github/badges/Summary.md)
+[![Branch Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.4.1/.github/badges/badge_branchcoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.4.1/.github/badges/Summary.md)
+[![Line Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.4.1/.github/badges/badge_linecoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.4.1/.github/badges/Summary.md)
+[![Method Coverage](https://raw.githubusercontent.com/zhuolyan/zhomfr/v0.4.1/.github/badges/badge_methodcoverage.svg)](https://github.com/zhuolyan/zhomfr/blob/v0.4.1/.github/badges/Summary.md)
 
 # Summary
 
 |||
 |:---|:---|
-| Generated on: | 10/22/2026 - 04:11:25 |
-| Coverage date: | 10/22/2026 - 04:11:18 - 10/22/2026 - 04:11:22 |
+| Generated on: | 10/23/2026 - 08:00:09 |
+| Coverage date: | 10/23/2026 - 08:00:03 - 10/23/2026 - 08:00:06 |
 | Parser: | MultiReport (4x Cobertura) |
 | Assemblies: | 5 |
 | Classes: | 60 |
