@@ -4,6 +4,11 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Hash Abstraction</Title>
+        <Description>
+            A lightweight and flexible .NET library providing a unified contract for hash functions.
+        </Description>
+        <PackageTags>zhomfr; hash; security</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

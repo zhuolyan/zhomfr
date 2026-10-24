@@ -9,6 +9,7 @@ public interface IHash
     ///     A string containing the hash along with metadata (version, salt, and algorithm parameters) for subsequent
     ///     storage in a database.
     /// </returns>
+    /// <exception cref="Exception">Any errors from driver.</exception>
     string Make(string password);
 
     /// <summary>Verifies that the provided password matches the stored hash.</summary>
@@ -16,6 +17,7 @@ public interface IHash
     /// <param name="storedHash">The full hash string previously generated via the <see cref="Make"/> method.</param>
     /// <returns>True if the password is correct; otherwise, false.</returns>
     /// <remarks>The implementation should use fixed-time comparison to prevent side-channel timing attacks.</remarks>
+    /// <exception cref="Exception">Any errors from driver.</exception>
     bool Check(string password, string storedHash);
 
     /// <summary>Determines if the password hash needs to be updated due to changes in security settings.</summary>
@@ -28,5 +30,6 @@ public interface IHash
     ///     If this method returns true, it is recommended to re-create the hash using <see cref="Make"/> during the
     ///     user's next successful authentication.
     /// </remarks>
+    /// <exception cref="Exception">Any errors from driver.</exception>
     bool NeedsRehash(string storedHash);
 }

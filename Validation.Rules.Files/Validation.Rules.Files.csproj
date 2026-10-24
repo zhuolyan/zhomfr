@@ -8,7 +8,7 @@
             A powerful, intuitive collection of custom validation attributes built directly on top of the standard .NET
             System.ComponentModel.DataAnnotations infrastructure.
         </Description>
-        <PackageTags>zhomfr; validation; validation rules; rules; files; csharp; dotnet;</PackageTags>
+        <PackageTags>zhomfr; validation; rules; dotnet; dataanotation; files; smartfile; dto</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
