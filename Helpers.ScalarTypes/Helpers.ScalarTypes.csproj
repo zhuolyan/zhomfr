@@ -9,7 +9,7 @@
             A collection of convenient and productive extension methods for some types in C# (string, decimal,
             IEnumerable), designed to simplify everyday data processing and formatting tasks.
         </Description>
-        <PackageTags>zhomfr; extensions; helpers; dotnet; string; decimal; enumerable</PackageTags>
+        <PackageTags>zhomfr; extensions; helpers; csharp; dotnet; string; decimal; enumerable</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

@@ -17,7 +17,7 @@ public class AddDefaultHashTests
         ServiceCollection  services      = new();
         IConfigurationRoot configuration = new ConfigurationBuilder().AddInMemoryCollection(config).Build();
 
-        services.AddDefaultHash<StubHash, StubConfig>(configuration);
+        Assert.That(services.AddDefaultHash<StubHash, StubConfig>(configuration), Is.InstanceOf<IServiceCollection>());
 
         using ServiceProvider serviceProvider = services.BuildServiceProvider();
 
@@ -36,7 +36,7 @@ public class AddDefaultHashTests
         ServiceCollection  services      = new();
         IConfigurationRoot configuration = new ConfigurationBuilder().AddInMemoryCollection(config).Build();
 
-        services.AddDefaultHash<StubHash, StubConfig>(configuration);
+        Assert.That(services.AddDefaultHash<StubHash, StubConfig>(configuration), Is.InstanceOf<IServiceCollection>());
 
         using ServiceProvider serviceProvider = services.BuildServiceProvider();
 

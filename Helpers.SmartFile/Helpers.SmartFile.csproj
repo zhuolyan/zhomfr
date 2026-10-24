@@ -8,7 +8,7 @@
         <Description>
             Helpers for working with file streams.
         </Description>
-        <PackageTags>zhomfr; files; streams; helpers; mime; mime-type</PackageTags>
+        <PackageTags>zhomfr; files; streams; helpers; mime; csharp; dotnet; mime-type</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

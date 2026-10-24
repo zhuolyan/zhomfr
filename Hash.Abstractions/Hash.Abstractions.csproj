@@ -8,7 +8,7 @@
         <Description>
             A lightweight and flexible .NET library providing a unified contract for hash functions.
         </Description>
-        <PackageTags>zhomfr; hash; security</PackageTags>
+        <PackageTags>zhomfr; hash; csharp; dotnet; security</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
