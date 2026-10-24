@@ -537,6 +537,7 @@ T<br>
 The cached or freshly generated item.
 
 ### **RememberAsync&lt;T&gt; (String, TimeSpan?, Func&lt;IServiceProvider, CancellationToken, Task&lt;T&gt;&gt;,
+
 CancellationToken)**
 
 Asynchronously get an item from the cache, or execute the callback and store the result if the item is
@@ -598,6 +599,7 @@ T<br>
 The cached or freshly generated item.
 
 ### **RememberForeverAsync&lt;T&gt; (String, Func&lt;IServiceProvider, CancellationToken, Task&lt;T&gt;&gt;,
+
 CancellationToken)**
 
 Asynchronously get an item from the cache, or store the callback result indefinitely if the item is missing.
