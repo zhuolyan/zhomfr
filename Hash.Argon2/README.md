@@ -9,7 +9,8 @@
 >
 > We strongly recommend pinning the package version in your `.csproj` to avoid unexpected build errors.
 
-This is library what provide Argon 2 implementation of `Zhomr.Hash.Abstractions` contract for hashing.
+This library provides an Argon2 implementation of the `Zhomfr.Hash.Abstractions` hashing contract.
 
-> For more information [See documentation for
-`Zhomr.Hash.Abstractions.IHash`](https://www.nuget.org/packages/Zhomfr.Hash.Abstractions/)
+> For more details, see the documentation
+> for [Nuget](https://www.nuget.org/packages/Zhomfr.Hash.Abstractions/)
+> or [GitHub](http://github.com/zhuolyan/zhomfr/tree/master/Hash.Abstractions/).
