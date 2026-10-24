@@ -4,6 +4,11 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Argon Hash Driver</Title>
+        <Description>
+            This library provides an Argon2 implementation of the `Zhomfr.Hash.Abstractions` hashing contract.
+        </Description>
+        <PackageTags>zhomfr; hash; security; argon2;</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
