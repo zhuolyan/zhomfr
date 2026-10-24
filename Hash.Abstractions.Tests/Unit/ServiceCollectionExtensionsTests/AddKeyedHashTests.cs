@@ -17,7 +17,7 @@ public class AddKeyedHashTests
         ServiceCollection  services      = new();
         IConfigurationRoot configuration = new ConfigurationBuilder().AddInMemoryCollection(config).Build();
 
-        services.AddKeyedHash<StubHash, StubConfig>("Another", configuration);
+        Assert.That(services.AddKeyedHash<StubHash, StubConfig>("Another", configuration), Is.InstanceOf<IServiceCollection>());
 
         using ServiceProvider serviceProvider = services.BuildServiceProvider();
 
@@ -36,7 +36,7 @@ public class AddKeyedHashTests
         ServiceCollection  services      = new();
         IConfigurationRoot configuration = new ConfigurationBuilder().AddInMemoryCollection(config).Build();
 
-        services.AddKeyedHash<StubHash, StubConfig>("Another", configuration);
+        Assert.That(services.AddKeyedHash<StubHash, StubConfig>("Another", configuration), Is.InstanceOf<IServiceCollection>());
 
         using ServiceProvider serviceProvider = services.BuildServiceProvider();
 

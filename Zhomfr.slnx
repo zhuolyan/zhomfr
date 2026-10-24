@@ -1,4 +1,5 @@
 <Solution>
+    <Project Path="Cache.Abstractions/Cache.Abstractions.csproj"/>
     <Project Path="Hash.Abstractions.Tests/Hash.Abstractions.Tests.csproj"/>
     <Project Path="Hash.Abstractions\Hash.Abstractions.csproj"/>
     <Project Path="Hash.Argon2.Tests/Hash.Argon2.Tests.csproj"/>
