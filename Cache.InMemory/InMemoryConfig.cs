@@ -15,6 +15,6 @@ public class InMemoryConfig : AbstractConfig
 
     /// <inheritdoc/>
     [Required]
-    [Min("1",  ErrorMessage = "The {0} must be greater than or equal to {1}.")]
+    [Min("1", ErrorMessage = "The {0} must be greater than or equal to {1}.")]
     public override int Ttl { get; init; } = 1;
 }

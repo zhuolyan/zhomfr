@@ -10,14 +10,6 @@ namespace Zhomfr.Cache.Tests.Stubs;
 public class InMemoryInitializer : AbstractInitializer
 {
     /// <inheritdoc/>
-    public override void Dispose()
-    {
-        this.Provider.Dispose();
-
-        GC.SuppressFinalize(this);
-    }
-
-    /// <inheritdoc/>
     protected override void SeedData(List<StubSeedItem> data)
     {
         IMemoryCache cache = this.Provider.GetRequiredService<IMemoryCache>();

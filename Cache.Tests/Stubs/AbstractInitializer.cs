@@ -26,7 +26,12 @@ public abstract class AbstractInitializer : IDisposable
 
         ServiceCollection services = [];
 
-        Dictionary<string, string?> config = new() { { $"Zhomfr:Cache:{this.Key}:Prefix", this.Key }, { $"Zhomfr:Cache:{this.Key}:Ttl", "1" } };
+        Dictionary<string, string?> config = new()
+        {
+            { $"Zhomfr:Cache:{this.Key}:Prefix", this.Key },
+            { $"Zhomfr:Cache:{this.Key}:Ttl", "1" },
+            { $"Zhomfr:Cache:{this.Key}:Connection", GlobalSetup.RedisConnection },
+        };
 
         this.AddServices(services, new ConfigurationBuilder().AddInMemoryCollection(config).Build());
 
@@ -38,7 +43,12 @@ public abstract class AbstractInitializer : IDisposable
     public ICache Tested => this.Provider.GetRequiredKeyedService<ICache>(this.Key);
 
     /// <inheritdoc/>
-    public abstract void Dispose();
+    public void Dispose()
+    {
+        this.Provider.Dispose();
+
+        GC.SuppressFinalize(this);
+    }
 
     protected abstract void SeedData(List<StubSeedItem> data);
 
