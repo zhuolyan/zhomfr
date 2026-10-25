@@ -18,7 +18,24 @@ Your code interacts exclusively with a standardized interface. The underlying al
 injection composition root. If you ever need to change the algorithm or provider tomorrow, you won't need to rewrite
 your business logic.
 
-## Configuration Convention
+## Available Drivers:
+
+* Argon2 see [GitHub](https://github.com/zhuolyan/zhomfr/tree/master/Hash.Argon2)
+  [NuGet](https://www.nuget.org/packages/Zhomfr.Hash.Argon2/)
+
+## Development Custom Driver
+
+### 📦 Installation
+
+Install package:
+
+```shell
+dotnet add package Zhomfr.Hash.Abstractions
+```
+
+For example, you can use code of available drivers in GitHub.
+
+### Configuration Convention
 
 All settings are located in `appsettings.json` under the `Zhomfr:Hash` section:
 
@@ -49,30 +66,6 @@ Your `appsettings.json` file should follow this structure:
     }
   }
 }
-```
-
-## Usage
-
-```csharp
-using Zhomfr.Hash.Abstractions;
-
-public class MyAwesomeHash : IHash 
-{
-    // some implementation.
-}
-public class MyAwesomeHashConfig : AbstractConfig 
-{
-    [Required]
-    public string Secret { get; set; } = string.Empty;
-}
-
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDefaultHash<MyAwesomeHash,MyAwesomeHashConfig>();
-builder.Services.AddKeyedHash<MyAwesomeHash,MyAwesomeHashConfig>("AwesomeKey");
-
-public class MyAwesomeService(IHash hash){}
-public class MyAwesomeService([FromKeyedServices("AwesomeKey")] IHash hash){}
 ```
 
 # IHash
