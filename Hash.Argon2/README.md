@@ -1,4 +1,4 @@
-# Argon 2 Hash Driver.
+# Argon 2 Driver for `Zhomfr.Hash.Abstractions`
 
 [![NuGet Status](https://img.shields.io/nuget/v/Zhomfr.Hash.Argon2.svg)](https://www.nuget.org/packages/Zhomfr.Hash.Argon2/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Zhomfr.Hash.Argon2.svg)](https://www.nuget.org/packages/Zhomfr.Hash.Argon2/)

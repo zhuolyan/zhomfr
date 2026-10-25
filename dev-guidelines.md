@@ -31,6 +31,7 @@ it can represent a logical grouping of related projects or namespaces sharing a 
 
 * `[Cache]` - Covers cache abstractions and drivers.
     * `[Cache.Abstractions]`
+    * `[Cache.InMemory]`
 * `[Validation.Rules]` - Covers validation abstractions and concrete rules. Projects
     * `[Validation.Rules.Abstractions]`
     * `[Validation.Rules]`
@@ -39,14 +40,14 @@ it can represent a logical grouping of related projects or namespaces sharing a 
 * `[Hash]` - Covers hash abstraction and driver.
     * `[Hash.Abstractions]`
     * `[Hash.Argon2]`
-  * And related `Tests` projects.
+    * And related `Tests` projects.
 * `[Helpers.ScalarType]` - Only `Helpers.ScalarType` and `Helpers.ScalarType.Tests` projects.
 * `[Helpers.SmartFile]` - Only `[Helpers.SmartFile]` and `Helpers.SmartFile.Tests` projects.
 * `[Dev]` - Covers module for changes that do not affect framework functionality. This includes GitHub workflows,
   documentation generation tools, developer guidelines, and other auxiliary tooling.
-  * `[ReadmeGeneratorTool]`
-  * `.github/*` files
-  * other
+    * `[ReadmeGeneratorTool]`
+    * `.github/*` files
+    * other
 
 ### Examples:
 
