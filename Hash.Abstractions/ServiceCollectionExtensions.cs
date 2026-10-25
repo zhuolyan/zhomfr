@@ -7,8 +7,8 @@ namespace Zhomfr.Hash.Abstractions;
 /// <summary>Provide extension method for register hash services in DI.</summary>
 public static class ServiceCollectionExtensions
 {
-    private const string HASH_SECTION_PREFIX  = "Zhomfr:Hash:";
-    private const string DEFAULT_HASH_SECTION = $"{ServiceCollectionExtensions.HASH_SECTION_PREFIX}Default";
+    private const string SECTION_PREFIX  = "Zhomfr:Hash:";
+    private const string DEFAULT_SECTION = $"{ServiceCollectionExtensions.SECTION_PREFIX}Default";
 
     extension(IServiceCollection services)
     {
@@ -19,14 +19,14 @@ public static class ServiceCollectionExtensions
         /// <returns>Collection of services with default hash service.</returns>
         public IServiceCollection AddDefaultHash<TService, TConfig>(IConfiguration configuration) where TService : IHash where TConfig : AbstractConfig
         {
-            services.AddOptions<TConfig>(ServiceCollectionExtensions.DEFAULT_HASH_SECTION)
-                    .Bind(configuration.GetSection(ServiceCollectionExtensions.DEFAULT_HASH_SECTION))
+            services.AddOptions<TConfig>(ServiceCollectionExtensions.DEFAULT_SECTION)
+                    .Bind(configuration.GetSection(ServiceCollectionExtensions.DEFAULT_SECTION))
                     .ValidateDataAnnotations()
                     .ValidateOnStart();
 
             services.AddSingleton<IHash>(sp =>
             {
-                TConfig options = sp.GetRequiredService<IOptionsMonitor<TConfig>>().Get(ServiceCollectionExtensions.DEFAULT_HASH_SECTION);
+                TConfig options = sp.GetRequiredService<IOptionsMonitor<TConfig>>().Get(ServiceCollectionExtensions.DEFAULT_SECTION);
 
                 return ActivatorUtilities.CreateInstance<TService>(sp, options);
             });
@@ -43,7 +43,7 @@ public static class ServiceCollectionExtensions
         /// <returns></returns>
         public IServiceCollection AddKeyedHash<TService, TConfig>(string key, IConfiguration configuration) where TService : IHash where TConfig : AbstractConfig
         {
-            string keyedSection = $"{ServiceCollectionExtensions.HASH_SECTION_PREFIX}{key}";
+            string keyedSection = $"{ServiceCollectionExtensions.SECTION_PREFIX}{key}";
 
             services.AddOptions<TConfig>(keyedSection).Bind(configuration.GetSection(keyedSection)).ValidateDataAnnotations().ValidateOnStart();
 
