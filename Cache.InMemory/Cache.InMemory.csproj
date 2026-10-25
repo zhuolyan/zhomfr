@@ -4,6 +4,9 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>InMemory Cache</Title>
+        <Description>This library provides an InMemory implementation of the `Zhomfr.Cache.Abstractions` cache contract.</Description>
+        <PackageTags>zhomfr; cache; inmemory; csharp; dotnet</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

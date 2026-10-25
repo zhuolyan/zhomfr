@@ -11,6 +11,64 @@
 
 This library provides an Argon2 implementation of the `Zhomfr.Hash.Abstractions` hashing contract.
 
+## 📦 Installation
+
+Install package:
+
+```shell
+dotnet add package Zhomfr.Hash.Argon2
+```
+
+After register service in DI:
+
+```csharp
+using Zhomfr.Hash.Abstractions;
+
+builder.Services.AddDefaultHash<Argon2Hash, Argon2Config>();
+builder.Services.AddKeyedHash<Argon2Hash, Argon2Config>("AwesomeKey");
+```
+
+## Configuration Convention
+
+All settings are located in `appsettings.json` under the `Zhomfr:Hash` section:
+
+* The **default service** uses the `Zhomfr:Hash:Default` subsection.
+* **Keyed services** use subsections where the name matches the service key, resulting in `Zhomfr:Hash:KeyName`.
+
+Your `appsettings.json` file should follow this structure:
+
+```json
+{
+  "Zhomfr": {
+    "Hash": {
+      "Default": {
+        "Secret": "some32CharacterAlphaNumericString",
+        "Iterations": 10,
+        "MemorySize": 65536,
+        "DegreeOfParallelism": 4,
+        "SaltSize": 16
+      },
+      "AwesomeKey": {
+        "Secret": "some32CharacterAlphaNumericString",
+        "Iterations": 10,
+        "MemorySize": 65536,
+        "DegreeOfParallelism": 4,
+        "SaltSize": 16
+      }
+    }
+  }
+}
+```
+
+And use in your own code:
+
+```csharp
+using Zhomfr.Hash.Abstractions;
+
+public class MyAwesomeClass(IHash cache){}
+public class MyAwesomeClass([FromKeyedServices("AwesomeKey")]IHash cache){}
+```
+
 > For more details, see the documentation
-> for [Nuget](https://www.nuget.org/packages/Zhomfr.Hash.Abstractions/)
-> or [GitHub](http://github.com/zhuolyan/zhomfr/tree/master/Hash.Abstractions/).
+> for [Nuget](https://www.nuget.org/packages/Zhomfr.Hash.Abstractions/#ihash)
+> or [GitHub](https://github.com/zhuolyan/zhomfr/tree/master/Hash.Abstractions/#ihash).

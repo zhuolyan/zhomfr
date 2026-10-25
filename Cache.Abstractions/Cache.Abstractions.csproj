@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <Title>Cache Abstractions</Title>
         <Description>A lightweight and flexible .NET library providing a unified contract for cahce functions.</Description>
-        <PackageTags>zhomfr; cahe; csharp; dotnet</PackageTags>
+        <PackageTags>zhomfr; cache; csharp; dotnet</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

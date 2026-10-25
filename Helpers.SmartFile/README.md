@@ -25,7 +25,7 @@ After add namespace in using section:
 using Zhomfr.Helpers.SmartFile;
 ```
 
-### If need automatic bind
+### If you need automatic bind
 
 ```csharp
 using Zhomfr.Helpers.SmartFile;
