@@ -19,10 +19,12 @@ namespace Zhomfr.Cache.InMemory;
 /// <param name="memoryCache">The underlying .NET memory cache instance.</param>
 /// <param name="serviceProvider">The service provider used to resolve dependencies inside "Remember" callbacks.</param>
 /// <param name="config">The configuration settings for this cache instance.</param>
+
+// ReSharper disable once ClassNeverInstantiated.Global
 public class InMemoryCache(IMemoryCache memoryCache, IServiceProvider serviceProvider, InMemoryConfig config) : ICache
 {
     private static readonly ConcurrentDictionary<string, CancellationTokenSource> _prefixTokens = new();
-    private readonly        TimeSpan                                              _defaultTtl   = TimeSpan.FromSeconds(config.Ttl);
+    private readonly        TimeSpan                                              _defaultTtl   = TimeSpan.FromMinutes(config.Ttl);
 
     /// <inheritdoc/>
     public T? Get<T>(string key)
