@@ -12,12 +12,12 @@ public static class ServiceCollectionExtensions
 
     extension(IServiceCollection services)
     {
-        /// <summary></summary>
-        /// <param name="configuration"></param>
-        /// <typeparam name="TService"></typeparam>
-        /// <typeparam name="TConfig"></typeparam>
-        /// <returns></returns>
-        public IServiceCollection AddDefaultCache<TService, TConfig>(IConfiguration configuration) where TService : ICache where TConfig : AbstractConfig
+        /// <summary>Add cache service as default (not keyed).</summary>
+        /// <param name="configuration">App configuration.</param>
+        /// <typeparam name="TCache">Cache driver type.</typeparam>
+        /// <typeparam name="TConfig">Cache config type.</typeparam>
+        /// <returns>Service collection with cache service.</returns>
+        public IServiceCollection AddDefaultCache<TCache, TConfig>(IConfiguration configuration) where TCache : ICache where TConfig : AbstractConfig
         {
             services.AddOptions<TConfig>(ServiceCollectionExtensions.DEFAULT_SECTION)
                     .Bind(configuration.GetSection(ServiceCollectionExtensions.DEFAULT_SECTION))
@@ -28,19 +28,19 @@ public static class ServiceCollectionExtensions
             {
                 TConfig options = sp.GetRequiredService<IOptionsMonitor<TConfig>>().Get(ServiceCollectionExtensions.DEFAULT_SECTION);
 
-                return ActivatorUtilities.CreateInstance<TService>(sp, options);
+                return ActivatorUtilities.CreateInstance<TCache>(sp, options);
             });
 
             return services;
         }
 
-        /// <summary></summary>
-        /// <param name="key"></param>
-        /// <param name="configuration"></param>
-        /// <typeparam name="TService"></typeparam>
-        /// <typeparam name="TConfig"></typeparam>
-        /// <returns></returns>
-        public IServiceCollection AddKeyedCache<TService, TConfig>(string key, IConfiguration configuration) where TService : ICache where TConfig : AbstractConfig
+        /// <summary>Add cache service as keyed.</summary>
+        /// <param name="key">Service key.</param>
+        /// <param name="configuration">App configuration.</param>
+        /// <typeparam name="TCache">Cache driver type.</typeparam>
+        /// <typeparam name="TConfig">Cache config type.</typeparam>
+        /// <returns>Service collection with cache service.</returns>
+        public IServiceCollection AddKeyedCache<TCache, TConfig>(string key, IConfiguration configuration) where TCache : ICache where TConfig : AbstractConfig
         {
             string keyedSection = $"{ServiceCollectionExtensions.SECTION_PREFIX}{key}";
 
@@ -51,7 +51,7 @@ public static class ServiceCollectionExtensions
                                                {
                                                    TConfig options = sp.GetRequiredService<IOptionsMonitor<TConfig>>().Get(keyedSection);
 
-                                                   return ActivatorUtilities.CreateInstance<TService>(sp, options);
+                                                   return ActivatorUtilities.CreateInstance<TCache>(sp, options);
                                                });
 
             return services;

@@ -1,5 +1,7 @@
 <Solution>
     <Project Path="Cache.Abstractions/Cache.Abstractions.csproj"/>
+    <Project Path="Cache.Database.Tests/Cache.Database.Tests.csproj"/>
+    <Project Path="Cache.Database/Cache.Database.csproj"/>
     <Project Path="Cache.InMemory/Cache.InMemory.csproj"/>
     <Project Path="Cache.Redis/Cache.Redis.csproj"/>
     <Project Path="Cache.Tests/Cache.Tests.csproj"/>
