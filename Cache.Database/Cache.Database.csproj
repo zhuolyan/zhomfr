@@ -4,6 +4,9 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Database Cache</Title>
+        <Description>This library provides a Database implementation of the `Zhomfr.Cache.Abstractions` cache contract.</Description>
+        <PackageTags>zhomfr; cache; database; csharp; dotnet</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
