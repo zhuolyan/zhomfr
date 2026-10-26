@@ -1,33 +1,20 @@
+using Zhomfr.Cache.Abstractions;
 using Zhomfr.Cache.Tests.Stubs;
 
 namespace Zhomfr.Cache.Tests.Unit.CacheTests;
 
-[TestFixtureSource(typeof(StubFixturesSource), nameof(StubFixturesSource.Tested))]
-public class ForgetTests<T> where T : AbstractInitializer, new()
+[TestFixtureSource(typeof(GlobalSetup), nameof(GlobalSetup.Tested))]
+public class ForgetTests(TestTypes type)
 {
-    [SetUp]
-    public void SetUp()
-    {
-        this._initializer = new T();
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        this._initializer?.Dispose();
-        this._initializer = null;
-    }
-
-    private AbstractInitializer? _initializer;
-
     [TestCase(StubKeys.EXISTS)]
     [TestCase(StubKeys.EXISTS_ANOTHER)]
     public void Should_ReturnTrue_When_Exists(string key)
     {
+        ICache cache = GlobalSetup.GetTested(type);
+
         using (Assert.EnterMultipleScope()) {
-            Assert.That(this._initializer, Is.Not.Null);
-            Assert.That(this._initializer?.Tested.Forget(key), Is.True);
-            Assert.That(this._initializer?.Tested.Get<StubCached>(key), Is.Null);
+            Assert.That(cache.Forget(key), Is.True);
+            Assert.That(cache.Get<StubCached>(key), Is.Null);
         }
     }
 
@@ -35,10 +22,11 @@ public class ForgetTests<T> where T : AbstractInitializer, new()
     [TestCase(StubKeys.EXISTS_EXPIRED)]
     public void Should_ReturnFalse_When_NotExist(string key)
     {
+        ICache cache = GlobalSetup.GetTested(type);
+
         using (Assert.EnterMultipleScope()) {
-            Assert.That(this._initializer, Is.Not.Null);
-            Assert.That(this._initializer?.Tested.Forget(key), Is.False);
-            Assert.That(this._initializer?.Tested.Get<StubCached>(key), Is.Null);
+            Assert.That(cache.Forget(key), Is.False);
+            Assert.That(cache.Get<StubCached>(key), Is.Null);
         }
     }
 }

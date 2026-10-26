@@ -24,7 +24,6 @@ public class StubSetup : IDisposable
         mock.Setup(m => m.GetService(typeof(StubNotExistDbContext))).Returns(null!);
 
         this.ValidationContext = new(new(), mock.Object, null) { DisplayName = "MyProp" };
-        ;
     }
 
     public ValidationContext ValidationContext { get; }

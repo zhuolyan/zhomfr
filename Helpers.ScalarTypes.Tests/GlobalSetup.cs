@@ -2,4 +2,6 @@
 
 namespace Zhomfr.Helpers.ScalarTypes.Tests;
 
-public class AssemblyInfo;
+public class GlobalSetup
+{
+}

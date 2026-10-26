@@ -1,37 +1,23 @@
+using Zhomfr.Cache.Abstractions;
 using Zhomfr.Cache.Tests.Stubs;
 
 namespace Zhomfr.Cache.Tests.Unit.CacheTests;
 
-[TestFixtureSource(typeof(StubFixturesSource), nameof(StubFixturesSource.Tested))]
-public class RememberForeverAsyncTest<T> where T : AbstractInitializer, new()
+[TestFixtureSource(typeof(GlobalSetup), nameof(GlobalSetup.Tested))]
+public class RememberForeverAsyncTest(TestTypes type)
 {
-    [SetUp]
-    public void SetUp()
-    {
-        this._initializer = new T();
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        this._initializer?.Dispose();
-        this._initializer = null;
-    }
-
-    private AbstractInitializer? _initializer;
-
     [TestCase(StubKeys.NOT_EXISTS)]
     [TestCase(StubKeys.EXISTS_EXPIRED)]
     [CancelAfter(1_000)]
     public async Task Should_SetAndReturnValueWithRunFunction_When_NotExistWithoutTtl(string key, CancellationToken ct)
     {
         using (Assert.EnterMultipleScope()) {
-            Assert.That(this._initializer, Is.Not.Null);
+            ICache cache = GlobalSetup.GetTested(type);
 
-            Assert.That((await this._initializer?.Tested.RememberForeverAsync<StubCached>(key, (_, _) => Task.FromResult(StubValues.NotExists), ct)!).Value,
+            Assert.That((await cache.RememberForeverAsync<StubCached>(key, (_, _) => Task.FromResult(StubValues.NotExists), ct)).Value,
                         Is.EqualTo(StubValues.NotExists.Value));
 
-            Assert.That((await this._initializer?.Tested.GetAsync<StubCached>(key, ct)!)?.Value, Is.EqualTo(StubValues.NotExists.Value));
+            Assert.That((await cache.GetAsync<StubCached>(key, ct))?.Value, Is.EqualTo(StubValues.NotExists.Value));
         }
     }
 
@@ -41,12 +27,12 @@ public class RememberForeverAsyncTest<T> where T : AbstractInitializer, new()
     public async Task Should_ReturnValueWithoutRunClosure_When_ExistWithoutTtl(string key, CancellationToken ct)
     {
         using (Assert.EnterMultipleScope()) {
-            Assert.That(this._initializer, Is.Not.Null);
+            ICache cache = GlobalSetup.GetTested(type);
 
-            Assert.That((await this._initializer?.Tested.RememberForeverAsync<StubCached>(key, (_, _) => Task.FromResult(StubValues.NotExists), ct)!).Value,
+            Assert.That((await cache.RememberForeverAsync<StubCached>(key, (_, _) => Task.FromResult(StubValues.NotExists), ct)).Value,
                         Is.Not.EqualTo(StubValues.NotExists.Value));
 
-            Assert.That((await this._initializer?.Tested.GetAsync<StubCached>(key, ct)!)?.Value, Is.Not.EqualTo(StubValues.NotExists.Value));
+            Assert.That((await cache.GetAsync<StubCached>(key, ct))?.Value, Is.Not.EqualTo(StubValues.NotExists.Value));
         }
     }
 }
