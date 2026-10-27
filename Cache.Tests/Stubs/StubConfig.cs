@@ -3,12 +3,8 @@ using Zhomfr.Validation.Rules;
 
 namespace Zhomfr.Cache.Tests.Stubs;
 
-public class StubConfig : AbstractConfig
+public class StubConfig : IConfig
 {
-    /// <inheritdoc/>
     [Between("5", "7")]
-    public override string Prefix { get; init; } = string.Empty;
-
-    /// <inheritdoc/>
-    public override int Ttl { get; init; }
+    public string Prefix { get; init; } = string.Empty;
 }

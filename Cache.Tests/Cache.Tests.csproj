@@ -41,4 +41,8 @@
         <ProjectReference Include="..\Cache.Redis\Cache.Redis.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="Feat\"/>
+    </ItemGroup>
+
 </Project>

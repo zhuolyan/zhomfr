@@ -48,34 +48,32 @@ using Zhomfr.Validation.Rules.Files;
 <tr valign="top">
 <td>
 
- - [FileBetween](#filebetween)
- - [FileDimensions](#filedimensions)
- - [FileEncoding](#fileencoding)
+- [FileBetween](#filebetween)
+- [FileDimensions](#filedimensions)
+- [FileEncoding](#fileencoding)
 
 </td>
 <td>
 
- - [FileExtension](#fileextension)
- - [FileImage](#fileimage)
- - [FileMax](#filemax)
+- [FileExtension](#fileextension)
+- [FileImage](#fileimage)
+- [FileMax](#filemax)
 
 </td>
 <td>
 
- - [FileMime](#filemime)
- - [FileMin](#filemin)
+- [FileMime](#filemime)
+- [FileMin](#filemin)
 
 </td>
 </tr>
 </table>
-
 
 ## 🛠️ Features and Examples
 
 ### FileBetween
 
 Validates that the file size (in bytes) falls within the specified inclusive range.
-
 
 ```csharp
 public class Dto
@@ -93,7 +91,6 @@ public class Dto
 Validates the dimensions (width and height) of an image file. Supports both exact match and range-based
 validation.
 
-
 ```csharp
 public class Dto
 {
@@ -110,7 +107,6 @@ public class Dto
 Validates that the file content matches the specified character encoding. Equivalent to Laravel's 'encoding'
 rule (uses strict decoder validation).
 
-
 ```csharp
 public class Dto
 {
@@ -123,7 +119,6 @@ public class Dto
 
 The file under validation must have a MIME type corresponding to one of the listed extensions.
 
-
 ```csharp
 public class Dto
 {
@@ -135,7 +130,6 @@ public class Dto
 ### FileImage
 
 The file under validation must be an image (bmp, gif, ico, jpeg, png, wbmp, webp).
-
 
 ```csharp
 public class Dto
@@ -152,7 +146,6 @@ public class Dto
 
 Validates that the file size (in bytes) does not exceed the specified maximum limit.
 
-
 ```csharp
 public class Dto
 {
@@ -165,7 +158,6 @@ public class Dto
 
 The file under validation must match one of the given MIME types.
 
-
 ```csharp
 public class Dto
 {
@@ -177,7 +169,6 @@ public class Dto
 ### FileMin
 
 Validates that the file size (in bytes) does not below the specified minimum limit.
-
 
 ```csharp
 public class Dto

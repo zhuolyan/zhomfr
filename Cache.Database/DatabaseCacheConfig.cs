@@ -6,15 +6,15 @@ namespace Zhomfr.Cache.Database;
 /// <inheritdoc/>
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class DatabaseCacheConfig : AbstractConfig
+public class DatabaseCacheConfig : IConfig
 {
-    /// <inheritdoc/>
+    /// <summary>Cache prefix, needed then you use more than one app for one provider.</summary>
     [Required]
     [Min("4", ErrorMessage = "The {0} must consist of {1} or more characters.")]
-    public override string Prefix { get; init; } = string.Empty;
+    public string Prefix { get; init; } = string.Empty;
 
-    /// <inheritdoc/>
+    /// <summary>Default time to life for saved data (in minutes).</summary>
     [Required]
     [Min("1", ErrorMessage = "The {0} must be greater than or equal to {1}.")]
-    public override int Ttl { get; init; } = 1;
+    public int Ttl { get; init; } = 1;
 }
