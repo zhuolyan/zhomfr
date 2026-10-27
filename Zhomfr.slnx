@@ -14,6 +14,8 @@
     <Project Path="Helpers.SmartFile.Tests/Helpers.SmartFile.Tests.csproj"/>
     <Project Path="Helpers.SmartFile/Helpers.SmartFile.csproj"/>
     <Project Path="ReadmeGeneratorTool/ReadmeGeneratorTool.csproj"/>
+    <Project Path="Storage.Abstractions/Storage.Abstractions.csproj"/>
+    <Project Path="Storage.Tests/Storage.Tests.csproj"/>
     <Project Path="Validation.Rules.Abstractions/Validation.Rules.Abstractions.csproj"/>
     <Project Path="Validation.Rules.Database.Tests/Validation.Rules.Database.Tests.csproj"/>
     <Project Path="Validation.Rules.Database/Validation.Rules.Database.csproj"/>

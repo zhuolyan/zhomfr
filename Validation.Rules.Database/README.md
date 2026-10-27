@@ -47,13 +47,12 @@ using Zhomfr.Validation.Rules.Database;
 <tr valign="top">
 <td>
 
- - [Exist](#exist)
- - [Unique](#unique)
+- [Exist](#exist)
+- [Unique](#unique)
 
 </td>
 </tr>
 </table>
-
 
 ## 🛠️ Features and Examples
 
@@ -61,7 +60,6 @@ using Zhomfr.Validation.Rules.Database;
 
 Validates that a record with the specified property value exists in the database. Supports any entity type and
 property that can be resolved via .
-
 
 ```csharp
 public class StubModel
@@ -75,7 +73,6 @@ public class StubModel
 
 Validates that the value is unique within the specified database table and column. This rule fails if a record
 with the same property value already exists.
-
 
 ```csharp
 public class StubModel

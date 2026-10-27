@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
         /// <typeparam name="TCache">Cache driver type.</typeparam>
         /// <typeparam name="TConfig">Cache config type.</typeparam>
         /// <returns>Service collection with cache service.</returns>
-        public IServiceCollection AddDefaultCache<TCache, TConfig>(IConfiguration configuration) where TCache : ICache where TConfig : AbstractConfig
+        public IServiceCollection AddDefaultCache<TCache, TConfig>(IConfiguration configuration) where TCache : ICache where TConfig : class, IConfig
         {
             services.AddOptions<TConfig>(ServiceCollectionExtensions.DEFAULT_SECTION)
                     .Bind(configuration.GetSection(ServiceCollectionExtensions.DEFAULT_SECTION))
@@ -40,16 +40,16 @@ public static class ServiceCollectionExtensions
         /// <typeparam name="TCache">Cache driver type.</typeparam>
         /// <typeparam name="TConfig">Cache config type.</typeparam>
         /// <returns>Service collection with cache service.</returns>
-        public IServiceCollection AddKeyedCache<TCache, TConfig>(string key, IConfiguration configuration) where TCache : ICache where TConfig : AbstractConfig
+        public IServiceCollection AddKeyedCache<TCache, TConfig>(string key, IConfiguration configuration) where TCache : ICache where TConfig : class, IConfig
         {
-            string keyedSection = $"{ServiceCollectionExtensions.SECTION_PREFIX}{key}";
+            string section = $"{ServiceCollectionExtensions.SECTION_PREFIX}{key}";
 
-            services.AddOptions<TConfig>(keyedSection).Bind(configuration.GetSection(keyedSection)).ValidateDataAnnotations().ValidateOnStart();
+            services.AddOptions<TConfig>(section).Bind(configuration.GetSection(section)).ValidateDataAnnotations().ValidateOnStart();
 
             services.AddKeyedSingleton<ICache>(key,
                                                (sp, _) =>
                                                {
-                                                   TConfig options = sp.GetRequiredService<IOptionsMonitor<TConfig>>().Get(keyedSection);
+                                                   TConfig options = sp.GetRequiredService<IOptionsMonitor<TConfig>>().Get(section);
 
                                                    return ActivatorUtilities.CreateInstance<TCache>(sp, options);
                                                });

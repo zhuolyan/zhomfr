@@ -20,8 +20,8 @@ namespace Zhomfr.Cache.Tests;
 [SetUpFixture]
 public class GlobalSetup
 {
-    public static readonly  List<TestTypes>         Tested     = [.. Enum.GetValues<TestTypes>()];
-    private static readonly Dictionary<string, int> _runCounts = [];
+    public static readonly  List<TestTypes>            Tested     = [.. Enum.GetValues<TestTypes>()];
+    private static readonly Dictionary<TestTypes, int> _runCounts = [];
 
     private static readonly List<StubSeedItem> _seedItems =
     [
@@ -94,13 +94,11 @@ public class GlobalSetup
     public static ICache GetTested(TestTypes testType)
 #pragma warning restore NUnit1028
     {
-        string name = testType.ToString();
-
-        if (!GlobalSetup._runCounts.TryGetValue(name, out int _)) {
-            GlobalSetup._runCounts[name] = 0;
+        if (!GlobalSetup._runCounts.TryGetValue(testType, out int _)) {
+            GlobalSetup._runCounts[testType] = 0;
         }
 
-        string key = $"{name}{GlobalSetup._runCounts[name]++}";
+        string key = $"{testType.ToString()}{GlobalSetup._runCounts[testType]++}";
 
         return GlobalSetup.ServiceProvider!.GetRequiredKeyedService<ICache>(key);
     }
@@ -187,7 +185,7 @@ public class GlobalSetup
         List<Type> attributes = [typeof(TestCaseAttribute), typeof(TestAttribute)];
 
         return typeof(GlobalSetup).Assembly.GetTypes()
-                                  .Where(t => t.Namespace?.Contains("CacheTests") ?? false)
+                                  .Where(t => t.Namespace?.Contains("Feat") ?? false)
                                   .Select(t => t.GetMethods().Select(m => m.GetCustomAttributes(true).Count(a => attributes.Contains(a.GetType()))).Sum())
                                   .Sum();
     }
