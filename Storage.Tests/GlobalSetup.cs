@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,8 +12,8 @@ namespace Zhomfr.Storage.Tests;
 [SetUpFixture]
 public class GlobalSetup
 {
-    public static readonly  List<TestTypes>            Tested     = [];
-    private static readonly Dictionary<TestTypes, int> _runCounts = [];
+    public static readonly  List<TestTypes>                      Tested     = [];
+    private static readonly ConcurrentDictionary<TestTypes, int> _runCounts = [];
 
 #region Seed Data
 

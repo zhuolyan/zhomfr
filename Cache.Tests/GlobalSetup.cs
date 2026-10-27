@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,8 +22,8 @@ namespace Zhomfr.Cache.Tests;
 [SetUpFixture]
 public class GlobalSetup
 {
-    public static readonly  List<TestTypes>            Tested     = [.. Enum.GetValues<TestTypes>()];
-    private static readonly Dictionary<TestTypes, int> _runCounts = [];
+    public static readonly  List<TestTypes>                      Tested     = [.. Enum.GetValues<TestTypes>()];
+    private static readonly ConcurrentDictionary<TestTypes, int> _runCounts = [];
 
     private static readonly List<StubSeedItem> _seedItems =
     [

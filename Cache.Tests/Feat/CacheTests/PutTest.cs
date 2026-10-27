@@ -1,7 +1,7 @@
 using Zhomfr.Cache.Abstractions;
 using Zhomfr.Cache.Tests.Stubs;
 
-namespace Zhomfr.Cache.Tests.Unit.CacheTests;
+namespace Zhomfr.Cache.Tests.Feat.CacheTests;
 
 [TestFixtureSource(typeof(GlobalSetup), nameof(GlobalSetup.Tested))]
 public class PutTest(TestTypes type)
