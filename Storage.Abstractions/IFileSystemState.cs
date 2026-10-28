@@ -27,7 +27,7 @@ public interface IFileSystemState
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A task representing whether path is missing.</returns>
     Task<bool> MissingAsync(string path, CancellationToken ct = default);
-    
+
     /// <summary>Determine if file or directory is invisible for access from web.</summary>
     /// <param name="path">The path of the file.</param>
     /// <returns>True if the file or directory is hidden, false otherwise.</returns>

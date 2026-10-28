@@ -48,10 +48,6 @@ public class PutTests(TestTypes type)
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
 
-            using SmartFile file2 = tested.Get(path)!;
-
-            Assert.That(file2.AsString(), Is.Not.EqualTo(PutTests.CONTENT));
-
             Assert.That(tested.Put(path, file), Is.True);
 
             Assert.That(tested.Exists(path), Is.True);

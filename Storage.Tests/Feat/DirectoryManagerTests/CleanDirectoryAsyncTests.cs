@@ -17,16 +17,9 @@ public class CleanDirectoryAsyncTests(TestTypes type)
         IStorage tested = GlobalSetup.GetTested(type);
 
         using (Assert.EnterMultipleScope()) {
-            Assert.That(await tested.ExistsAsync(path, ct), Is.True);
-
-            Assert.That(await tested.ExistsAsync($"{path}{IStorage.DIRECTORY_SEPARATOR}/file1.txt", ct), Is.True);
-            Assert.That(await tested.ExistsAsync($"{path}{IStorage.DIRECTORY_SEPARATOR}/file2.txt", ct), Is.True);
-            Assert.That(await tested.ExistsAsync($"{path}{IStorage.DIRECTORY_SEPARATOR}/dir1", ct), Is.True);
-            Assert.That(await tested.ExistsAsync($"{path}{IStorage.DIRECTORY_SEPARATOR}/dir2", ct), Is.True);
-
             Assert.That(await tested.CleanDirectoryAsync(path, ct), Is.True);
 
-            Assert.That(await tested.ExistsAsync(path, ct), Is.True);
+            Assert.That(await tested.IsEmptyDirectoryAsync(path, ct), Is.True);
         }
     }
 

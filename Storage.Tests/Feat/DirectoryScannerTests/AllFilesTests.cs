@@ -19,14 +19,14 @@ public class AllFilesTests(TestTypes type)
             List<string> files = [.. tested.AllFiles(path)];
 
             Assert.That(files, Has.Count.EqualTo(count));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.All.Match("^.*file[1-2].txt$"));
         }
     }
 
-    [TestCase("dir1", 21)]
-    [TestCase("dir1/dir1", 9)]
-    [TestCase("/dir1", 21)]
-    [TestCase("/dir1/dir1", 9)]
+    [TestCase("dir1", 28)]
+    [TestCase("dir1/dir1", 12)]
+    [TestCase("/dir1", 28)]
+    [TestCase("/dir1/dir1", 12)]
     public void Should_ReturnList_When_DirectoryExistsAndHiddenIsTrue(string path, int count)
     {
         IStorage tested = GlobalSetup.GetTested(type);
@@ -34,10 +34,10 @@ public class AllFilesTests(TestTypes type)
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
 
-            List<string> files = [.. tested.AllFiles(path)];
+            List<string> files = [.. tested.AllFiles(path, true)];
 
             Assert.That(files, Has.Count.EqualTo(count));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.All.Match("^.*file[1-4].txt$"));
         }
     }
 

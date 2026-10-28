@@ -24,17 +24,17 @@ public class RedisCache : ICache, IDisposable
     ///     retrieval, storage, and dependency injection within callbacks.
     /// </summary>
     /// <param name="serviceProvider">The service provider used to resolve dependencies inside "Remember" callbacks.</param>
-    /// <param name="config">The configuration settings for this cache instance.</param>
-    public RedisCache(IServiceProvider serviceProvider, RedisConfig config)
+    /// <param name="cacheConfig">The configuration settings for this cache instance.</param>
+    public RedisCache(IServiceProvider serviceProvider, RedisCacheConfig cacheConfig)
     {
         this._serviceProvider = serviceProvider;
 
-        ConfigurationOptions redisConfig = ConfigurationOptions.Parse(config.Connection);
+        ConfigurationOptions redisConfig = ConfigurationOptions.Parse(cacheConfig.Connection);
 
         this._connection = ConnectionMultiplexer.Connect(redisConfig);
         this._db         = this._connection.GetDatabase();
-        this._defaultTtl = TimeSpan.FromMinutes(config.Ttl);
-        this._prefix     = config.Prefix;
+        this._defaultTtl = TimeSpan.FromMinutes(cacheConfig.Ttl);
+        this._prefix     = cacheConfig.Prefix;
     }
 
     /// <inheritdoc/>

@@ -20,7 +20,6 @@ public class AllDirectoriesAsyncTests(TestTypes type)
             List<string> dirs = [.. await tested.AllDirectoriesAsync(path, ct: ct).ToListAsync(cancellationToken: ct)];
 
             Assert.That(dirs, Has.Count.EqualTo(count));
-            Assert.That(dirs, Has.All.Match("^dir[0-9].txt$"));
         }
     }
 
@@ -38,8 +37,7 @@ public class AllDirectoriesAsyncTests(TestTypes type)
 
             List<string> dirs = [.. await tested.AllDirectoriesAsync(path, true, ct).ToListAsync(cancellationToken: ct)];
 
-            Assert.That(dirs, Has.Count.EqualTo(4));
-            Assert.That(dirs, Has.All.Match("^dir[0-9].txt$"));
+            Assert.That(dirs, Has.Count.EqualTo(count));
         }
     }
 

@@ -144,6 +144,10 @@ public class SmartFile : IDisposable, IAsyncDisposable
 #region Content Access
 
     /// <summary>Returns the underlying data stream. Ensures the stream is seekable by transparently buffering it if necessary.</summary>
+    /// <remarks>
+    ///     You do not need to dispose of the stream manually. As part of SmartFile, it will be cleaned up automatically
+    ///     alongside the owner object.
+    /// </remarks>
     /// <returns>A <see cref="Stream"/> positioned at the beginning (0).</returns>
     /// <exception cref="ObjectDisposedException">If object already disposed.</exception>
     public Stream GetStream()

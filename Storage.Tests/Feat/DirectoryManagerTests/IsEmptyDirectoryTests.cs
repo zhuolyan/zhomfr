@@ -23,13 +23,13 @@ public class IsEmptyDirectoryTests(TestTypes type)
     [TestCase("dir1/not")]
     [TestCase("/not")]
     [TestCase("/dir1/not")]
-    public void Should_ReturnTrue_When_DirectoryNotExists(string path)
+    public void Should_ReturnFalse_When_DirectoryNotExists(string path)
     {
         IStorage tested = GlobalSetup.GetTested(type);
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Missing(path), Is.True);
-            Assert.That(tested.IsEmptyDirectory(path), Is.True);
+            Assert.That(tested.IsEmptyDirectory(path), Is.False);
         }
     }
 

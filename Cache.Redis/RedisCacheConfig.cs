@@ -6,7 +6,7 @@ namespace Zhomfr.Cache.Redis;
 /// <inheritdoc/>
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class RedisConfig : IConfig
+public class RedisCacheConfig : IConfig
 {
     /// <summary>Cache prefix, needed then you use more than one app for one provider.</summary>
     [Required]

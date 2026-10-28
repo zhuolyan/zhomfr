@@ -14,7 +14,7 @@ public interface IStorage : IDirectoryManager, IDirectoryScanner, IFileManager, 
     ///     will automatically translate it to match the target filesystem. Using Windows-specific separators (<c>\</c>) may
     ///     lead to unpredictable behavior.
     /// </summary>
-    public const string DIRECTORY_SEPARATOR = "/";
+    public const char DIRECTORY_SEPARATOR = '/';
 
     /// <summary>Default datetime if object not exists.</summary>
     static readonly DateTimeOffset Default = new(1601, 1, 1, 0, 0, 0, TimeSpan.Zero);

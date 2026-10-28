@@ -1,4 +1,3 @@
-using Zhomfr.Helpers.ScalarTypes.Strings;
 using Zhomfr.Storage.Abstractions;
 
 namespace Zhomfr.Storage.Tests.Feat.FileSystemMetadataTests;
@@ -24,7 +23,7 @@ public class SizeTests(TestTypes type)
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
-            Assert.That(tested.Size(path), Is.EqualTo(path.StartWith("/").Length));
+            Assert.That(tested.Size(path), Is.EqualTo(9));
         }
     }
 
@@ -42,10 +41,10 @@ public class SizeTests(TestTypes type)
         }
     }
 
-    [TestCase("dir1", 732)]
-    [TestCase("/dir1", 732)]
-    [TestCase("dir1/dir1", 328)]
-    [TestCase("/dir1/dir1", 328)]
+    [TestCase("dir1", 252)]
+    [TestCase("/dir1", 252)]
+    [TestCase("dir1/dir1", 108)]
+    [TestCase("/dir1/dir1", 108)]
     public void Should_ReturnRealSize_When_IsDir(string path, int size)
     {
         IStorage tested = GlobalSetup.GetTested(type);

@@ -19,7 +19,7 @@ public class FilesTests(TestTypes type)
             List<string> files = [.. tested.Files(path)];
 
             Assert.That(files, Has.Count.EqualTo(2));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.All.Match("^.*file[1-2].txt$"));
         }
     }
 
@@ -34,10 +34,10 @@ public class FilesTests(TestTypes type)
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
 
-            List<string> files = [.. tested.Files(path)];
+            List<string> files = [.. tested.Files(path, true)];
 
             Assert.That(files, Has.Count.EqualTo(4));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.All.Match("^.*file[1-4].txt$"));
         }
     }
 

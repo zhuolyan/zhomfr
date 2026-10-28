@@ -26,8 +26,8 @@ using Zhomfr.Cache.Abstractions;
 
 builder.Services.AddMemoryCache();
 
-builder.Services.AddDefaultCache<RedisCache, RedisConfig>();
-builder.Services.AddKeyedCache<RedisCache, RedisConfig>("AwesomeKey");
+builder.Services.AddDefaultCache<RedisCache, RedisCacheConfig>();
+builder.Services.AddKeyedCache<RedisCache, RedisCacheConfig>("AwesomeKey");
 ```
 
 ## Configuration Convention

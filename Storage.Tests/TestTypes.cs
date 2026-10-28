@@ -1,3 +1,3 @@
 namespace Zhomfr.Storage.Tests;
 
-public enum TestTypes { }
+public enum TestTypes { Local }

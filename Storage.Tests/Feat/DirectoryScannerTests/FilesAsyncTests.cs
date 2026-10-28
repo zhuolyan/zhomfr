@@ -20,7 +20,7 @@ public class FilesAsyncTests(TestTypes type)
             List<string> files = [.. await tested.FilesAsync(path, ct: ct).ToListAsync(cancellationToken: ct)];
 
             Assert.That(files, Has.Count.EqualTo(2));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.All.Match("^.*file[1-2].txt$"));
         }
     }
 
@@ -39,7 +39,7 @@ public class FilesAsyncTests(TestTypes type)
             List<string> files = [.. await tested.FilesAsync(path, true, ct).ToListAsync(cancellationToken: ct)];
 
             Assert.That(files, Has.Count.EqualTo(4));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.All.Match("^.*file[1-4].txt$"));
         }
     }
 
