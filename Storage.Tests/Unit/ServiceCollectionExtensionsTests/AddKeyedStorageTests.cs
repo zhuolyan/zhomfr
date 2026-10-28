@@ -43,35 +43,35 @@ public class AddKeyedStorageTests
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested1, Is.Not.Null);
-            Assert.That(tested1.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested1!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested1.Config.RootDir, Is.EqualTo(ROOT_DIR));
 
             Assert.That(tested2, Is.Not.Null);
-            Assert.That(tested2.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested2!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested2.Config.RootDir, Is.EqualTo(ROOT_DIR));
 
             Assert.That(tested3, Is.Not.Null);
-            Assert.That(tested3.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested3!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested3.Config.RootDir, Is.EqualTo(ROOT_DIR));
 
             Assert.That(tested4, Is.Not.Null);
-            Assert.That(tested4.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested4!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested4.Config.RootDir, Is.EqualTo(ROOT_DIR));
 
             Assert.That(tested5, Is.Not.Null);
-            Assert.That(tested5.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested5!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested5.Config.RootDir, Is.EqualTo(ROOT_DIR));
 
             Assert.That(tested6, Is.Not.Null);
-            Assert.That(tested6.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested6!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested6.Config.RootDir, Is.EqualTo(ROOT_DIR));
 
             Assert.That(tested7, Is.Not.Null);
-            Assert.That(tested7.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested7!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested7.Config.RootDir, Is.EqualTo(ROOT_DIR));
 
             Assert.That(tested8, Is.Not.Null);
-            Assert.That(tested8.Config.BaseUrl, Is.EqualTo(BASE_URL));
+            Assert.That(tested8!.Config.BaseUrl, Is.EqualTo(BASE_URL));
             Assert.That(tested8.Config.RootDir, Is.EqualTo(ROOT_DIR));
         }
     }

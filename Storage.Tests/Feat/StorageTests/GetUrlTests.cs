@@ -1,4 +1,3 @@
-using Zhomfr.Helpers.ScalarTypes.Strings;
 using Zhomfr.Storage.Abstractions;
 
 namespace Zhomfr.Storage.Tests.Feat.StorageTests;
@@ -24,7 +23,8 @@ public class GetUrlTests(TestTypes type)
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
-            Assert.That(tested.GetUrl(path), Is.EqualTo(path.StartWith("htts://localhost:12345/storage/")));
+            Assert.That(tested.GetUrl(path)!.StartsWith("htts://localhost:12345/storage/"), Is.True);
+            Assert.That(tested.GetUrl(path)!.EndsWith(path), Is.True);
         }
     }
 

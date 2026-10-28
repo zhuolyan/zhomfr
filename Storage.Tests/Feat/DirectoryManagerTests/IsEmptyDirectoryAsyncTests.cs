@@ -25,13 +25,13 @@ public class IsEmptyDirectoryAsyncTests(TestTypes type)
     [TestCase("/not")]
     [TestCase("/dir1/not")]
     [CancelAfter(1_000)]
-    public async Task Should_ReturnTrue_When_DirectoryNotExists(string path, CancellationToken ct)
+    public async Task Should_ReturnFalse_When_DirectoryNotExists(string path, CancellationToken ct)
     {
         IStorage tested = GlobalSetup.GetTested(type);
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(await tested.MissingAsync(path, ct), Is.True);
-            Assert.That(await tested.IsEmptyDirectoryAsync(path, ct), Is.True);
+            Assert.That(await tested.IsEmptyDirectoryAsync(path, ct), Is.False);
         }
     }
 

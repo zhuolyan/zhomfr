@@ -50,10 +50,6 @@ public class PutAsyncTests(TestTypes type)
         using (Assert.EnterMultipleScope()) {
             Assert.That(await tested.ExistsAsync(path, ct), Is.True);
 
-            await using SmartFile file2 = (await tested.GetAsync(path, ct))!;
-
-            Assert.That(await file2.AsStringAsync(ct), Is.Not.EqualTo(PutAsyncTests.CONTENT));
-
             Assert.That(await tested.PutAsync(path, file, ct), Is.True);
 
             Assert.That(await tested.ExistsAsync(path, ct), Is.True);

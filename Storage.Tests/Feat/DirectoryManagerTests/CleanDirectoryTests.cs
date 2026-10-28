@@ -16,16 +16,8 @@ public class CleanDirectoryTests(TestTypes type)
         IStorage tested = GlobalSetup.GetTested(type);
 
         using (Assert.EnterMultipleScope()) {
-            Assert.That(tested.Exists(path), Is.True);
-
-            Assert.That(tested.Exists($"{path}{IStorage.DIRECTORY_SEPARATOR}/file1.txt"), Is.True);
-            Assert.That(tested.Exists($"{path}{IStorage.DIRECTORY_SEPARATOR}/file2.txt"), Is.True);
-            Assert.That(tested.Exists($"{path}{IStorage.DIRECTORY_SEPARATOR}/dir1"), Is.True);
-            Assert.That(tested.Exists($"{path}{IStorage.DIRECTORY_SEPARATOR}/dir2"), Is.True);
-
             Assert.That(tested.CleanDirectory(path), Is.True);
-
-            Assert.That(tested.Exists(path), Is.True);
+            Assert.That(tested.IsEmptyDirectory(path), Is.True);
         }
     }
 

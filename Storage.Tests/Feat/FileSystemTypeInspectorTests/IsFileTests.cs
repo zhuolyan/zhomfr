@@ -9,13 +9,13 @@ public class IsFileTests(TestTypes type)
     [TestCase("/dir1")]
     [TestCase("dir1/dir1")]
     [TestCase("/dir1/dir1")]
-    public void Should_ReturnTrue_When_IsFile(string path)
+    public void Should_ReturnTrue_When_IsDir(string path)
     {
         IStorage tested = GlobalSetup.GetTested(type);
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
-            Assert.That(tested.IsFile(path), Is.True);
+            Assert.That(tested.IsFile(path), Is.False);
         }
     }
 
@@ -31,13 +31,13 @@ public class IsFileTests(TestTypes type)
     [TestCase("dir1/dir1/file3.txt")]
     [TestCase("/dir1/dir1/file1.txt")]
     [TestCase("/dir1/dir1/file3.txt")]
-    public void Should_ReturnFalse_When_IsFile(string path)
+    public void Should_ReturnTrue_When_IsFile(string path)
     {
         IStorage tested = GlobalSetup.GetTested(type);
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
-            Assert.That(tested.IsFile(path), Is.False);
+            Assert.That(tested.IsFile(path), Is.True);
         }
     }
 

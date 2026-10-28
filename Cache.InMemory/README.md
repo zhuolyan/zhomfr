@@ -26,8 +26,8 @@ using Zhomfr.Cache.Abstractions;
 
 builder.Services.AddMemoryCache();
 
-builder.Services.AddDefaultCache<InMemoryCache, InMemoryConfig>();
-builder.Services.AddKeyedCache<InMemoryCache, InMemoryConfig>("AwesomeKey");
+builder.Services.AddDefaultCache<InMemoryCache, InMemoryCacheConfig>();
+builder.Services.AddKeyedCache<InMemoryCache, InMemoryCacheConfig>("AwesomeKey");
 ```
 
 ## Configuration Convention

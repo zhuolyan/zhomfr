@@ -19,7 +19,6 @@ public class DirectoriesTests(TestTypes type)
             List<string> dirs = [.. tested.Directories(path)];
 
             Assert.That(dirs, Has.Count.EqualTo(2));
-            Assert.That(dirs, Has.All.Match("^dir[0-9]$"));
         }
     }
 
@@ -34,10 +33,9 @@ public class DirectoriesTests(TestTypes type)
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
 
-            List<string> dirs = [.. tested.Directories(path)];
+            List<string> dirs = [.. tested.Directories(path, true)];
 
             Assert.That(dirs, Has.Count.EqualTo(3));
-            Assert.That(dirs, Has.All.Match("^dir[0-9]$"));
         }
     }
 

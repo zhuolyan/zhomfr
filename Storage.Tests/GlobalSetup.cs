@@ -1,9 +1,11 @@
 using System.Collections.Concurrent;
+using System.Text;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Zhomfr.Storage.Abstractions;
+using Zhomfr.Storage.Local;
 
 [assembly: Parallelizable(ParallelScope.All)]
 
@@ -12,7 +14,7 @@ namespace Zhomfr.Storage.Tests;
 [SetUpFixture]
 public class GlobalSetup
 {
-    public static readonly  List<TestTypes>                      Tested     = [];
+    public static readonly  List<TestTypes>                      Tested     = [TestTypes.Local];
     private static readonly ConcurrentDictionary<TestTypes, int> _runCounts = [];
 
 #region Seed Data
@@ -26,14 +28,75 @@ public class GlobalSetup
         foreach (TestTypes type in GlobalSetup.Tested) {
             for (int i = 0; i < count; i++) {
                 string key = GlobalSetup.GetServiceKey(type, i);
+
+                GlobalSetup.AddLocalFiles(Path.Combine(Directory.GetCurrentDirectory(), "storage", key));
             }
         }
 
         await Task.WhenAll(tasks);
     }
 
-    private void AddDirsForTests(string key)
+    private static void AddLocalFiles(string root, int deep = 1)
     {
+        if (!Directory.Exists(root)) {
+            Directory.CreateDirectory(root);
+        }
+
+        for (int i = 1; i <= 4; i++) {
+            string filePath = Path.Combine(root, $"file{i}.txt");
+
+            using Stream file = File.Create(filePath);
+
+            foreach (byte chunk in Encoding.UTF8.GetBytes($"file{i}.txt")) {
+                file.WriteByte(chunk);
+            }
+
+            file.Flush();
+            file.Close();
+
+            FileInfo fileInfo = new(filePath);
+
+            if (i > 2) {
+                if (OperatingSystem.IsWindows()) {
+                    fileInfo.Attributes |= FileAttributes.Hidden;
+                } else {
+                    fileInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserWrite;
+                }
+            } else {
+                if (OperatingSystem.IsWindows()) {
+                    fileInfo.Attributes &= ~FileAttributes.Hidden;
+                } else {
+                    fileInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+                }
+            }
+        }
+
+        if (deep > 3) {
+            return;
+        }
+
+        DirectoryInfo dir1 = Directory.CreateDirectory($"{root}/dir1");
+        DirectoryInfo dir2 = Directory.CreateDirectory($"{root}/dir2");
+        DirectoryInfo dir3 = Directory.CreateDirectory($"{root}/empty");
+
+        if (OperatingSystem.IsWindows()) {
+            dir2.Attributes |= FileAttributes.Hidden;
+        } else {
+            dir2.UnixFileMode = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite;
+        }
+
+        if (OperatingSystem.IsWindows()) {
+            dir1.Attributes &= ~FileAttributes.Hidden;
+            dir3.Attributes &= ~FileAttributes.Hidden;
+        } else {
+            dir1.UnixFileMode = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+            dir3.UnixFileMode = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+        }
+
+        deep++;
+
+        GlobalSetup.AddLocalFiles(dir1.FullName, deep);
+        GlobalSetup.AddLocalFiles(dir2.FullName, deep);
     }
 
 #endregion
@@ -47,9 +110,11 @@ public class GlobalSetup
 
         await GlobalSetup.CreateContainers();
 
-        this.CreateServiceProvider(count);
+        GlobalSetup.CreateServiceProvider(count);
 
         await GlobalSetup.Seed(count);
+
+        Thread.Sleep(1000);
     }
 
     [OneTimeTearDown]
@@ -60,6 +125,8 @@ public class GlobalSetup
         if (GlobalSetup.ServiceProvider != null) {
             await GlobalSetup.ServiceProvider.DisposeAsync();
         }
+
+        Directory.Delete(Path.Combine(Directory.GetCurrentDirectory(), "storage"), true);
     }
 
 #endregion
@@ -81,9 +148,9 @@ public class GlobalSetup
         return GlobalSetup.ServiceProvider!.GetRequiredKeyedService<IStorage>(key);
     }
 
-    private void CreateServiceProvider(int count)
+    private static void CreateServiceProvider(int count)
     {
-        Dictionary<string, string?> config   = this.GenerateConfiguration(count);
+        Dictionary<string, string?> config   = GlobalSetup.GenerateConfiguration(count);
         ServiceCollection           services = [];
 
         GlobalSetup.AddServices(services, new ConfigurationManager().AddInMemoryCollection(config).Build(), count);
@@ -98,6 +165,10 @@ public class GlobalSetup
                 string key = GlobalSetup.GetServiceKey(item, i);
 
                 switch (item) {
+                    case TestTypes.Local:
+                        services.AddKeyedStorage<LocalStorage, LocalStorageConfig>(key, configuration);
+
+                        break;
                     default:
                     #pragma warning disable CA2208
                         throw new ArgumentOutOfRangeException(nameof(item), "Unknown test type");
@@ -107,7 +178,7 @@ public class GlobalSetup
         }
     }
 
-    private Dictionary<string, string?> GenerateConfiguration(int count)
+    private static Dictionary<string, string?> GenerateConfiguration(int count)
     {
         Dictionary<string, string?> config = new();
 
@@ -116,8 +187,8 @@ public class GlobalSetup
                 string name   = GlobalSetup.GetServiceKey(item, i);
                 string prefix = $"Zhomfr:Storage:{name}:";
 
-                config[$"{prefix}BaseUrl"] = $"{name}";
-                config[$"{prefix}RootDir"] = name;
+                config[$"{prefix}BaseUrl"] = $"htts://localhost:12345/storage/{name}";
+                config[$"{prefix}RootDir"] = Path.Combine(Directory.GetCurrentDirectory(), "storage", name);
             }
         }
 

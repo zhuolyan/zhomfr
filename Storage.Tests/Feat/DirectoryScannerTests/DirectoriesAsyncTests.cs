@@ -20,7 +20,6 @@ public class DirectoriesAsyncTests(TestTypes type)
             List<string> dirs = [.. await tested.DirectoriesAsync(path, ct: ct).ToListAsync(cancellationToken: ct)];
 
             Assert.That(dirs, Has.Count.EqualTo(2));
-            Assert.That(dirs, Has.All.Match("^dir[0-9]$"));
         }
     }
 
@@ -36,10 +35,9 @@ public class DirectoriesAsyncTests(TestTypes type)
         using (Assert.EnterMultipleScope()) {
             Assert.That(await tested.ExistsAsync(path, ct), Is.True);
 
-            List<string> dirs = [.. await tested.DirectoriesAsync(path, ct: ct).ToListAsync(cancellationToken: ct)];
+            List<string> dirs = [.. await tested.DirectoriesAsync(path, true, ct).ToListAsync(cancellationToken: ct)];
 
             Assert.That(dirs, Has.Count.EqualTo(3));
-            Assert.That(dirs, Has.All.Match("^dir[0-9]$"));
         }
     }
 

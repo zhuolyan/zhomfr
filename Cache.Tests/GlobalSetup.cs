@@ -128,11 +128,11 @@ public class GlobalSetup
 
                 switch (item) {
                     case TestTypes.InMemory:
-                        services.AddKeyedCache<InMemoryCache, InMemoryConfig>(key, configuration);
+                        services.AddKeyedCache<InMemoryCache, InMemoryCacheConfig>(key, configuration);
 
                         break;
                     case TestTypes.Redis:
-                        services.AddKeyedCache<RedisCache, RedisConfig>(key, configuration);
+                        services.AddKeyedCache<RedisCache, RedisCacheConfig>(key, configuration);
 
                         break;
                     case TestTypes.PostgreSql:

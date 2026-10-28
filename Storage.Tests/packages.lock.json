@@ -149,6 +149,13 @@
           "Zhomfr.Helpers.SmartFile": "[1.0.0, )"
         }
       },
+      "Zhomfr.Storage.Local": {
+        "type": "Project",
+        "dependencies": {
+          "Zhomfr.Storage.Abstractions": "[1.0.0, )",
+          "Zhomfr.Validation.Rules": "[1.0.0, )"
+        }
+      },
       "Zhomfr.Validation.Rules": {
         "type": "Project",
         "dependencies": {

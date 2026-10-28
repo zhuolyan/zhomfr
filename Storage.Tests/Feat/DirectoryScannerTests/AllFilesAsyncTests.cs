@@ -20,14 +20,14 @@ public class AllFilesAsyncTests(TestTypes type)
             List<string> files = [.. await tested.AllFilesAsync(path, ct: ct).ToListAsync(cancellationToken: ct)];
 
             Assert.That(files, Has.Count.EqualTo(count));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.All.Match("^.*file[1-2].txt$"));
         }
     }
 
-    [TestCase("dir1", 21)]
-    [TestCase("dir1/dir1", 9)]
-    [TestCase("/dir1", 21)]
-    [TestCase("/dir1/dir1", 9)]
+    [TestCase("dir1", 28)]
+    [TestCase("dir1/dir1", 12)]
+    [TestCase("/dir1", 28)]
+    [TestCase("/dir1/dir1", 12)]
     [CancelAfter(1_000)]
     public async Task Should_ReturnList_When_DirectoryExistsAndHiddenIsTrue(string path, int count, CancellationToken ct)
     {
@@ -38,8 +38,8 @@ public class AllFilesAsyncTests(TestTypes type)
 
             List<string> files = [.. await tested.AllFilesAsync(path, true, ct).ToListAsync(cancellationToken: ct)];
 
-            Assert.That(files, Has.Count.EqualTo(4));
-            Assert.That(files, Has.All.Match("^file[0-9].txt$"));
+            Assert.That(files, Has.Count.EqualTo(count));
+            Assert.That(files, Has.All.Match("^.*file[1-4].txt$"));
         }
     }
 

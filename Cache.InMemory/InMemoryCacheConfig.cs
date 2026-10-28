@@ -6,7 +6,7 @@ namespace Zhomfr.Cache.InMemory;
 /// <inheritdoc/>
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class InMemoryConfig : IConfig
+public class InMemoryCacheConfig : IConfig
 {
     /// <summary>Cache prefix, needed then you use more than one app for one provider.</summary>
     [Required]

@@ -18,13 +18,13 @@ namespace Zhomfr.Cache.InMemory;
 /// </remarks>
 /// <param name="memoryCache">The underlying .NET memory cache instance.</param>
 /// <param name="serviceProvider">The service provider used to resolve dependencies inside "Remember" callbacks.</param>
-/// <param name="config">The configuration settings for this cache instance.</param>
+/// <param name="cacheConfig">The configuration settings for this cache instance.</param>
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class InMemoryCache(IMemoryCache memoryCache, IServiceProvider serviceProvider, InMemoryConfig config) : ICache
+public class InMemoryCache(IMemoryCache memoryCache, IServiceProvider serviceProvider, InMemoryCacheConfig cacheConfig) : ICache
 {
     private static readonly ConcurrentDictionary<string, CancellationTokenSource> _prefixTokens = new();
-    private readonly        TimeSpan                                              _defaultTtl   = TimeSpan.FromMinutes(config.Ttl);
+    private readonly        TimeSpan                                              _defaultTtl   = TimeSpan.FromMinutes(cacheConfig.Ttl);
 
     /// <inheritdoc/>
     public T? Get<T>(string key)
@@ -129,7 +129,7 @@ public class InMemoryCache(IMemoryCache memoryCache, IServiceProvider servicePro
     /// <inheritdoc/>
     public void Flush()
     {
-        if (InMemoryCache._prefixTokens.TryRemove(config.Prefix, out CancellationTokenSource? cts)) {
+        if (InMemoryCache._prefixTokens.TryRemove(cacheConfig.Prefix, out CancellationTokenSource? cts)) {
             cts.Cancel();
             cts.Dispose();
         }
@@ -225,7 +225,7 @@ public class InMemoryCache(IMemoryCache memoryCache, IServiceProvider servicePro
     /// <returns>A <see cref="CancellationTokenSource"/> instance tied to the configured prefix.</returns>
     private CancellationTokenSource GetTokenSource()
     {
-        return InMemoryCache._prefixTokens.GetOrAdd(config.Prefix, _ => new());
+        return InMemoryCache._prefixTokens.GetOrAdd(cacheConfig.Prefix, _ => new());
     }
 
     /// <summary>Sets a value in the cache with the specified key, handling prefixing and expiration tokens.</summary>
@@ -251,7 +251,7 @@ public class InMemoryCache(IMemoryCache memoryCache, IServiceProvider servicePro
     /// <returns>A string representing the prefixed key (e.g., "prefix:key").</returns>
     private string PrepareKey(string key)
     {
-        return $"{config.Prefix}{ICache.KEY_SEPARATOR}{key}";
+        return $"{cacheConfig.Prefix}{ICache.KEY_SEPARATOR}{key}";
     }
 
     /// <summary>Removes a specific item from the cache by its key, applying the configured prefix.</summary>

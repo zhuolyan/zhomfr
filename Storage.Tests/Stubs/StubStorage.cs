@@ -230,6 +230,54 @@ public class StubStorage(StubConfig config) : IStorage
     }
 
     /// <inheritdoc/>
+    public bool IsHidden(string path)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
+    public Task<bool> IsHiddenAsync(string path, CancellationToken ct = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
+    public bool IsVisible(string path)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
+    public Task<bool> IsVisibleAsync(string path, CancellationToken ct = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
+    public bool MakeHidden(string path)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
+    public Task<bool> MakeHiddenAsync(string path, CancellationToken ct = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
+    public bool MakeVisible(string path)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
+    public Task<bool> MakeVisibleAsync(string path, CancellationToken ct = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
     public bool IsDirectory(string path)
     {
         throw new NotImplementedException();

@@ -1,4 +1,3 @@
-using Zhomfr.Helpers.ScalarTypes.Strings;
 using Zhomfr.Storage.Abstractions;
 
 namespace Zhomfr.Storage.Tests.Feat.FileSystemMetadataTests;
@@ -25,7 +24,7 @@ public class SizeAsyncTests(TestTypes type)
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(await tested.ExistsAsync(path, ct), Is.True);
-            Assert.That(await tested.SizeAsync(path, ct), Is.EqualTo(path.StartWith("/").Length));
+            Assert.That(await tested.SizeAsync(path, ct), Is.EqualTo(9));
         }
     }
 
@@ -44,10 +43,10 @@ public class SizeAsyncTests(TestTypes type)
         }
     }
 
-    [TestCase("dir1", 732)]
-    [TestCase("/dir1", 732)]
-    [TestCase("dir1/dir1", 328)]
-    [TestCase("/dir1/dir1", 328)]
+    [TestCase("dir1", 252)]
+    [TestCase("/dir1", 252)]
+    [TestCase("dir1/dir1", 108)]
+    [TestCase("/dir1/dir1", 108)]
     [CancelAfter(1_000)]
     public async Task Should_ReturnRealSize_When_IsDir(string path, int size, CancellationToken ct)
     {
