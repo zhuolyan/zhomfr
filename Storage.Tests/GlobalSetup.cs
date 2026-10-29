@@ -1,11 +1,20 @@
 using System.Collections.Concurrent;
 using System.Text;
 
+using DotNet.Testcontainers.Builders;
+using DotNet.Testcontainers.Containers;
+
+using FluentFTP;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using Zhomfr.Helpers.ScalarTypes.Strings;
 using Zhomfr.Storage.Abstractions;
+using Zhomfr.Storage.Ftp;
 using Zhomfr.Storage.Local;
+
+// ReSharper disable UnreachableSwitchArmDueToIntegerAnalysis
 
 [assembly: Parallelizable(ParallelScope.All)]
 
@@ -14,7 +23,7 @@ namespace Zhomfr.Storage.Tests;
 [SetUpFixture]
 public class GlobalSetup
 {
-    public static readonly  List<TestTypes>                      Tested     = [TestTypes.Local];
+    public static readonly  List<TestTypes>                      Tested     = [TestTypes.Local, TestTypes.Ftp];
     private static readonly ConcurrentDictionary<TestTypes, int> _runCounts = [];
 
 #region Seed Data
@@ -25,48 +34,97 @@ public class GlobalSetup
 
         List<Task> tasks = [];
 
-        foreach (TestTypes type in GlobalSetup.Tested) {
-            for (int i = 0; i < count; i++) {
-                string key = GlobalSetup.GetServiceKey(type, i);
-
-                GlobalSetup.AddLocalFiles(Path.Combine(Directory.GetCurrentDirectory(), "storage", key));
-            }
+        for (int i = 0; i < count; i++) {
+            tasks.Add(GlobalSetup.AddLocalFiles(i));
         }
 
         await Task.WhenAll(tasks);
     }
 
-    private static void AddLocalFiles(string root, int deep = 1)
+    private static async Task AddLocalFiles(int iteration, int deep = 1, string root = "")
     {
-        if (!Directory.Exists(root)) {
-            Directory.CreateDirectory(root);
+        AsyncFtpClient client = new(GlobalSetup._ftpHost,
+                                    "tests",
+                                    "tests",
+                                    GlobalSetup._ftpPort,
+                                    new()
+                                    {
+                                        RetryAttempts                = 3,
+                                        EncryptionMode               = FtpEncryptionMode.Auto,
+                                        ValidateAnyCertificate       = true,
+                                        DataConnectionType           = FtpDataConnectionType.AutoPassive,
+                                        DataConnectionReadTimeout    = 5_000,
+                                        DataConnectionConnectTimeout = 5_000,
+                                        ReadTimeout                  = 5_000,
+                                        ConnectTimeout               = 5_000,
+                                        ListingParser                = FtpParser.Auto,
+                                        TimeConversion               = FtpDate.UTC,
+                                    });
+
+        await client.AutoConnect();
+        string key       = GlobalSetup.GetServiceKey(TestTypes.Local, iteration);
+        string localPath = Path.Combine(Directory.GetCurrentDirectory(), "tests", key, root);
+        string ftpPath   = Path.Combine("/home/tests/", root, key);
+
+        DirectoryInfo localRootInfo = Directory.CreateDirectory(localPath);
+
+        if (root.EndsWith("dir2/")) {
+            if (OperatingSystem.IsWindows()) {
+                localRootInfo.Attributes |= FileAttributes.Hidden;
+            } else {
+                localRootInfo.UnixFileMode = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite;
+            }
+
+            await client.Chmod(ftpPath, FtpPermission.Read | FtpPermission.Write, FtpPermission.None, FtpPermission.None);
+        } else {
+            if (OperatingSystem.IsWindows()) {
+                localRootInfo.Attributes &= ~FileAttributes.Hidden;
+                localRootInfo.Attributes &= ~FileAttributes.Hidden;
+            } else {
+                localRootInfo.UnixFileMode
+                    = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+
+                localRootInfo.UnixFileMode
+                    = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+            }
+
+            await client.Chmod(ftpPath, FtpPermission.Read | FtpPermission.Write, FtpPermission.Read, FtpPermission.Read);
+        }
+
+        if (root.EndsWith("empty/")) {
+            return;
         }
 
         for (int i = 1; i <= 4; i++) {
-            string filePath = Path.Combine(root, $"file{i}.txt");
+            string fileName      = $"file{i}.txt";
+            string localFilePath = Path.Combine(localPath, fileName);
+            string ftpFilePath   = Path.Combine(ftpPath, fileName);
 
-            using Stream file = File.Create(filePath);
+            await using Stream localFile = File.Create(localFilePath);
+            await using Stream ftpFile   = await client.OpenWrite(ftpFilePath);
 
-            foreach (byte chunk in Encoding.UTF8.GetBytes($"file{i}.txt")) {
-                file.WriteByte(chunk);
-            }
+            foreach (byte chunk in Encoding.UTF8.GetBytes(fileName)) {
+                localFile.WriteByte(chunk);
+                ftpFile.WriteByte(chunk);
 
-            file.Flush();
-            file.Close();
+                FileInfo localFileInfo = new(localFilePath);
 
-            FileInfo fileInfo = new(filePath);
+                if (i > 2) {
+                    if (OperatingSystem.IsWindows()) {
+                        localFileInfo.Attributes |= FileAttributes.Hidden;
+                    } else {
+                        localFileInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserWrite;
+                    }
 
-            if (i > 2) {
-                if (OperatingSystem.IsWindows()) {
-                    fileInfo.Attributes |= FileAttributes.Hidden;
+                    await client.Chmod(ftpFilePath, FtpPermission.Read | FtpPermission.Write, FtpPermission.None, FtpPermission.None);
                 } else {
-                    fileInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserWrite;
-                }
-            } else {
-                if (OperatingSystem.IsWindows()) {
-                    fileInfo.Attributes &= ~FileAttributes.Hidden;
-                } else {
-                    fileInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+                    if (OperatingSystem.IsWindows()) {
+                        localFileInfo.Attributes &= ~FileAttributes.Hidden;
+                    } else {
+                        localFileInfo.UnixFileMode = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+                    }
+
+                    await client.Chmod(ftpFilePath, FtpPermission.Read | FtpPermission.Write, FtpPermission.Read, FtpPermission.Read);
                 }
             }
         }
@@ -75,28 +133,11 @@ public class GlobalSetup
             return;
         }
 
-        DirectoryInfo dir1 = Directory.CreateDirectory($"{root}/dir1");
-        DirectoryInfo dir2 = Directory.CreateDirectory($"{root}/dir2");
-        DirectoryInfo dir3 = Directory.CreateDirectory($"{root}/empty");
-
-        if (OperatingSystem.IsWindows()) {
-            dir2.Attributes |= FileAttributes.Hidden;
-        } else {
-            dir2.UnixFileMode = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite;
-        }
-
-        if (OperatingSystem.IsWindows()) {
-            dir1.Attributes &= ~FileAttributes.Hidden;
-            dir3.Attributes &= ~FileAttributes.Hidden;
-        } else {
-            dir1.UnixFileMode = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
-            dir3.UnixFileMode = UnixFileMode.UserExecute | UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
-        }
-
         deep++;
 
-        GlobalSetup.AddLocalFiles(dir1.FullName, deep);
-        GlobalSetup.AddLocalFiles(dir2.FullName, deep);
+        await GlobalSetup.AddLocalFiles(iteration, deep, root.EndWith("dir1/"));
+        await GlobalSetup.AddLocalFiles(iteration, deep, root.EndWith("dir2/"));
+        await GlobalSetup.AddLocalFiles(iteration, deep, root.EndWith("empty/"));
     }
 
 #endregion
@@ -169,6 +210,10 @@ public class GlobalSetup
                         services.AddKeyedStorage<LocalStorage, LocalStorageConfig>(key, configuration);
 
                         break;
+                    case TestTypes.Ftp:
+                        services.AddKeyedStorage<FtpStorage, FtpStorageConfig>(key, configuration);
+
+                        break;
                     default:
                     #pragma warning disable CA2208
                         throw new ArgumentOutOfRangeException(nameof(item), "Unknown test type");
@@ -188,7 +233,37 @@ public class GlobalSetup
                 string prefix = $"Zhomfr:Storage:{name}:";
 
                 config[$"{prefix}BaseUrl"] = $"htts://localhost:12345/storage/{name}";
-                config[$"{prefix}RootDir"] = Path.Combine(Directory.GetCurrentDirectory(), "storage", name);
+
+                config[$"{prefix}RootDir"] = item switch
+                                             {
+                                                 TestTypes.Local => Path.Combine(Directory.GetCurrentDirectory(), "storage", name),
+                                                 TestTypes.Ftp   => $"/home/tests/{name}",
+                                                 var _           => string.Empty,
+                                             };
+
+                config[$"{prefix}Host"] = item switch
+                                          {
+                                              TestTypes.Ftp => GlobalSetup._ftpHost,
+                                              var _         => string.Empty,
+                                          };
+
+                config[$"{prefix}Port"] = item switch
+                                          {
+                                              TestTypes.Ftp => $"{GlobalSetup._ftpPort}",
+                                              var _         => string.Empty,
+                                          };
+
+                config[$"{prefix}Username"] = item switch
+                                              {
+                                                  TestTypes.Ftp => "tests",
+                                                  var _         => string.Empty,
+                                              };
+
+                config[$"{prefix}Password"] = item switch
+                                              {
+                                                  TestTypes.Ftp => "tests",
+                                                  var _         => string.Empty,
+                                              };
             }
         }
 
@@ -214,14 +289,34 @@ public class GlobalSetup
 
 #region Test Containers
 
+    private static IContainer _ftpContainer;
+    private static string     _ftpHost;
+    private static int        _ftpPort;
+
     private static async Task CreateContainers()
     {
-        await Task.WhenAll();
+        await Task.WhenAll(GlobalSetup.CreateFtpContainers());
     }
 
     private static async Task DisposeContainers()
     {
-        await Task.WhenAll();
+        await Task.WhenAll(GlobalSetup._ftpContainer.DisposeAsync().AsTask());
+    }
+
+    private static async Task CreateFtpContainers()
+    {
+        // Піднімаємо легкий FTP-сервер через Testcontainers
+        GlobalSetup._ftpContainer = new ContainerBuilder("stilliard/pure-ftpd").WithPortBinding(21, true)     
+                                                                               .WithPortBinding(30000, 30009)
+                                                                               .WithEnvironment("FTP_USER_PASS", "tests")
+                                                                               .WithEnvironment("FTP_USER_NAME", "tests")
+                                                                               .WithEnvironment("FTP_USER_HOME", "/home/tests")
+                                                                               .Build();
+
+        await GlobalSetup._ftpContainer.StartAsync();
+
+        GlobalSetup._ftpHost = GlobalSetup._ftpContainer.Hostname;
+        GlobalSetup._ftpPort = GlobalSetup._ftpContainer.GetMappedPublicPort(21);
     }
 
 #endregion

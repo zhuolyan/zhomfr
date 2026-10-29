@@ -1,3 +1,6 @@
+using Zhomfr.Helpers.ScalarTypes.Strings;
+using Zhomfr.Storage.Abstractions;
+
 namespace Zhomfr.Storage.Local;
 
 public partial class LocalStorage
@@ -119,5 +122,15 @@ public partial class LocalStorage
         }
 
         return !LocalStorage.IsVisibleRealPath(path);
+    }
+
+    private string GetRealPath(string path)
+    {
+        return path.StartWith(Path.DirectorySeparatorChar.ToString()).StartWith(config.RootDir).Replace(IStorage.DIRECTORY_SEPARATOR[0], Path.DirectorySeparatorChar);
+    }
+
+    private string GetVirtualPath(string path)
+    {
+        return path.Replace(Path.DirectorySeparatorChar, IStorage.DIRECTORY_SEPARATOR[0]).ChopStart(config.RootDir);
     }
 }

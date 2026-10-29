@@ -27,7 +27,7 @@ public class CreatedAtTests(TestTypes type)
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.True);
-            Assert.That(tested.CreatedAt(path), Is.Not.EqualTo(IStorage.Default));
+            Assert.That(tested.CreatedAt(path), Is.Not.EqualTo(IStorage.DefaultDateTime));
         }
     }
 
@@ -41,7 +41,7 @@ public class CreatedAtTests(TestTypes type)
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(tested.Exists(path), Is.False);
-            Assert.That(tested.CreatedAt(path), Is.EqualTo(IStorage.Default));
+            Assert.That(tested.CreatedAt(path), Is.EqualTo(IStorage.DefaultDateTime));
         }
     }
 }

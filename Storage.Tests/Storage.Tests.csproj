@@ -20,6 +20,7 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="NUnit3TestAdapter" Version="6.3.1"/>
+        <PackageReference Include="Testcontainers" Version="4.16.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -28,6 +29,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Storage.Abstractions\Storage.Abstractions.csproj"/>
+        <ProjectReference Include="..\Storage.Ftp\Storage.Ftp.csproj"/>
         <ProjectReference Include="..\Storage.Local\Storage.Local.csproj"/>
         <ProjectReference Include="..\Validation.Rules\Validation.Rules.csproj"/>
     </ItemGroup>

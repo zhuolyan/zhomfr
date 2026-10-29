@@ -17,7 +17,7 @@ public partial class LocalStorage : IFileManager
             return null;
         }
 
-        return new(fileInfo.Open(FileMode.Open, FileAccess.ReadWrite), fileInfo.Name);
+        return new(fileInfo.Open(FileMode.Open, FileAccess.Read), fileInfo.Name);
     }
 
     /// <inheritdoc/>
@@ -41,8 +41,6 @@ public partial class LocalStorage : IFileManager
 
         storageFile.GetStream().CopyTo(file);
 
-        file.Close();
-
         return File.Exists(path);
     }
 
@@ -60,8 +58,6 @@ public partial class LocalStorage : IFileManager
         await using Stream file = fileInfo.Create();
 
         await storageFile.GetStream().CopyToAsync(file, ct);
-
-        file.Close();
 
         return File.Exists(path);
     }
@@ -104,9 +100,6 @@ public partial class LocalStorage : IFileManager
 
         input.CopyTo(output);
 
-        input.Close();
-        output.Close();
-
         inputInfo.Delete();
 
         return !File.Exists(path) && File.Exists(target);
@@ -129,9 +122,6 @@ public partial class LocalStorage : IFileManager
         await using Stream output = outputInfo.Create();
 
         await input.CopyToAsync(output, ct);
-
-        input.Close();
-        output.Close();
 
         inputInfo.Delete();
 
@@ -156,9 +146,6 @@ public partial class LocalStorage : IFileManager
 
         input.CopyTo(output);
 
-        input.Close();
-        output.Close();
-
         return File.Exists(path) && File.Exists(target);
     }
 
@@ -179,9 +166,6 @@ public partial class LocalStorage : IFileManager
         await using Stream output = outputInfo.Create();
 
         await input.CopyToAsync(output, ct);
-
-        input.Close();
-        output.Close();
 
         return File.Exists(path) && File.Exists(target);
     }

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "FluentFTP": {
+        "type": "Direct",
+        "requested": "[55.1.0, )",
+        "resolved": "55.1.0",
+        "contentHash": "RXA6WEaziJiSt/lrOxbpxfkOyTY1YaeQiCKzsVoQQxEwcoI0dtoTzGiqS47mrqq3zBuETMwaVjI7FLTCcJC80w=="
+      },
+      "Microsoft.SourceLink.GitHub": {
+        "type": "Direct",
+        "requested": "[10.0.301, )",
+        "resolved": "10.0.301",
+        "contentHash": "S9U9Ye2bylMeDkzdNh+TsbRUNr6rkBORrnXDk45maPIxVvTmHV1SN2/qtZ/6yO7cdWmQv1LHv77yIeG6Q3nvMQ==",
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "10.0.301",
+          "Microsoft.SourceLink.Common": "10.0.301",
+          "System.IO.Hashing": "10.0.10"
+        }
+      },
+      "MinVer": {
+        "type": "Direct",
+        "requested": "[7.0.0, )",
+        "resolved": "7.0.0",
+        "contentHash": "2lMTCQl5bGP4iv0JNkockPnyllC6eHLz+CoK2ICvalvHod+exXSxueu9hq+zNkU7bZBJf8wMfeRC/Edn8AGmEg=="
+      },
+      "DnsClient": {
+        "type": "Transitive",
+        "resolved": "1.8.0",
+        "contentHash": "RRwtaCXkXWsx0mmsReGDqCbRLtItfUbkRJlet1FpdciVhyMGKcPd57T1+8Jki9ojHlq9fntVhXQroOOgRak8DQ=="
+      },
+      "Microsoft.Build.Tasks.Git": {
+        "type": "Transitive",
+        "resolved": "10.0.301",
+        "contentHash": "9Tah8f2BYuXlff9nIsJAeQJcqnijJTXNraIcTOF2f/f9kLmg0HNWPlMemnD6FBLd/UQcE0s9Vze2zCkA6nrZAA==",
+        "dependencies": {
+          "System.IO.Hashing": "10.0.10"
+        }
+      },
+      "Microsoft.SourceLink.Common": {
+        "type": "Transitive",
+        "resolved": "10.0.301",
+        "contentHash": "oz44EclJdAYVZcRb9dSbWd+6RaE+8a4j5zdE+O7yw5qPRZZhu3pcpDZ/Moy6pLeIXZqBP1FMd8CSE0sgJAGV0g=="
+      },
+      "Mime": {
+        "type": "Transitive",
+        "resolved": "3.8.0",
+        "contentHash": "SG8QHXjnyLoVeIOSw4ym7orS5LIRPBpzFQYfkgSqyAkeog+eZNMj32UOEO1SxLNBASxNPgVBIacxOOZsenBImg==",
+        "dependencies": {
+          "MimeTypesMap": "1.0.9"
+        }
+      },
+      "MimeTypesMap": {
+        "type": "Transitive",
+        "resolved": "1.0.9",
+        "contentHash": "M0TuSCwL1a8QV0VKw8ysY4AIs6v/Aor3N7GXQeqgNlAvqjx9Kj9KxNd09Pg5RzpY1tCOU8mkrfYBi1Lxwj8quQ=="
+      },
+      "System.IO.Hashing": {
+        "type": "Transitive",
+        "resolved": "10.0.10",
+        "contentHash": "eE839zyWZD/UBZYzP2lu9fhHX6RWe63/jz3Jxf+JumzO/db+Vc2s7CMiDwxk9ti2NTUft2tdRx31Rw2OjKbecA=="
+      },
+      "Zhomfr.Helpers.ScalarTypes": {
+        "type": "Project"
+      },
+      "Zhomfr.Helpers.SmartFile": {
+        "type": "Project",
+        "dependencies": {
+          "Mime": "[3.8.0, )"
+        }
+      },
+      "Zhomfr.Storage.Abstractions": {
+        "type": "Project",
+        "dependencies": {
+          "Zhomfr.Helpers.SmartFile": "[1.0.0, )"
+        }
+      },
+      "Zhomfr.Validation.Rules": {
+        "type": "Project",
+        "dependencies": {
+          "DnsClient": "[1.8.0, )",
+          "Zhomfr.Helpers.ScalarTypes": "[1.0.0, )",
+          "Zhomfr.Validation.Rules.Abstractions": "[1.0.0, )"
+        }
+      },
+      "Zhomfr.Validation.Rules.Abstractions": {
+        "type": "Project"
+      }
+    }
+  }
+}

@@ -28,7 +28,7 @@ public class LastModifiedAsyncTests(TestTypes type)
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(await tested.ExistsAsync(path, ct), Is.True);
-            Assert.That(await tested.LastModifiedAsync(path, ct), Is.Not.EqualTo(IStorage.Default));
+            Assert.That(await tested.LastModifiedAsync(path, ct), Is.Not.EqualTo(IStorage.DefaultDateTime));
         }
     }
 
@@ -43,7 +43,7 @@ public class LastModifiedAsyncTests(TestTypes type)
 
         using (Assert.EnterMultipleScope()) {
             Assert.That(await tested.ExistsAsync(path, ct), Is.False);
-            Assert.That(await tested.LastModifiedAsync(path, ct), Is.EqualTo(IStorage.Default));
+            Assert.That(await tested.LastModifiedAsync(path, ct), Is.EqualTo(IStorage.DefaultDateTime));
         }
     }
 }
