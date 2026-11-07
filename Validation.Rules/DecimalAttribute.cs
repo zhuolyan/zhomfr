@@ -57,8 +57,8 @@ public class DecimalAttribute : AbstractRule
 
         int count = d.GetDecimal();
 
-        if (this._exactly.HasValue && count == this._exactly.Value) {
-            return true;
+        if (this._exactly.HasValue) {
+            return count == this._exactly.Value;
         }
 
         return count >= this._min && count <= this._max;
