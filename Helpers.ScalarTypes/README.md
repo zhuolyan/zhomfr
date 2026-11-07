@@ -37,58 +37,59 @@ using Zhomfr.Helpers.ScalarTypes.Strings;
 <tr valign="top">
 <td>
 
-- [After](#after)
-- [AfterLast](#afterlast)
-- [Before](#before)
-- [BeforeLast](#beforelast)
-- [Between](#between)
-- [BetweenFirst](#betweenfirst)
-- [BetweenLast](#betweenlast)
-- [CharAt](#charat)
-- [ChopEnd](#chopend)
-- [ChopStart](#chopstart)
-- [Deduplicate](#deduplicate)
-- [EndWith](#endwith)
-- [Excerpt](#excerpt)
-- [FromBase64](#frombase64)
+ - [After](#after)
+ - [AfterLast](#afterlast)
+ - [Before](#before)
+ - [BeforeLast](#beforelast)
+ - [Between](#between)
+ - [BetweenFirst](#betweenfirst)
+ - [BetweenLast](#betweenlast)
+ - [CharAt](#charat)
+ - [ChopEnd](#chopend)
+ - [ChopStart](#chopstart)
+ - [Deduplicate](#deduplicate)
+ - [EndWith](#endwith)
+ - [Excerpt](#excerpt)
+ - [FromBase64](#frombase64)
 
 </td>
 <td>
 
-- [Initials](#initials)
-- [LcFirst](#lcfirst)
-- [Limit](#limit)
-- [Mask](#mask)
-- [PadBoth](#padboth)
-- [Remove](#remove)
-- [RemoveIgnoreCase](#removeignorecase)
-- [Replace](#replace)
-- [ReplaceFirst](#replacefirst)
-- [ReplaceLast](#replacelast)
-- [ReplaceMatches](#replacematches)
-- [Reverse](#reverse)
-- [Squish](#squish)
-- [StartWith](#startwith)
+ - [Initials](#initials)
+ - [LcFirst](#lcfirst)
+ - [Limit](#limit)
+ - [Mask](#mask)
+ - [PadBoth](#padboth)
+ - [Remove](#remove)
+ - [RemoveIgnoreCase](#removeignorecase)
+ - [Replace](#replace)
+ - [ReplaceFirst](#replacefirst)
+ - [ReplaceLast](#replacelast)
+ - [ReplaceMatches](#replacematches)
+ - [Reverse](#reverse)
+ - [Squish](#squish)
+ - [StartWith](#startwith)
 
 </td>
 <td>
 
-- [SubstringCount](#substringcount)
-- [SubstringReplace](#substringreplace)
-- [Swap](#swap)
-- [ToBase64](#tobase64)
-- [ToCamelCase](#tocamelcase)
-- [ToKebabCase](#tokebabcase)
-- [ToPascalCase](#topascalcase)
-- [ToSnakeCase](#tosnakecase)
-- [UcFirst](#ucfirst)
-- [UcSplit](#ucsplit)
-- [UcWord](#ucword)
-- [WordCount](#wordcount)
+ - [SubstringCount](#substringcount)
+ - [SubstringReplace](#substringreplace)
+ - [Swap](#swap)
+ - [ToBase64](#tobase64)
+ - [ToCamelCase](#tocamelcase)
+ - [ToKebabCase](#tokebabcase)
+ - [ToPascalCase](#topascalcase)
+ - [ToSnakeCase](#tosnakecase)
+ - [UcFirst](#ucfirst)
+ - [UcSplit](#ucsplit)
+ - [UcWord](#ucword)
+ - [WordCount](#wordcount)
 
 </td>
 </tr>
 </table>
+
 
 ### Decimal Methods
 
@@ -96,13 +97,14 @@ using Zhomfr.Helpers.ScalarTypes.Strings;
 <tr valign="top">
 <td>
 
-- [GetDecimal](#getdecimal)
-- [GetDigits](#getdigits)
-- [GetDigitsBeforeSeparator](#getdigitsbeforeseparator)
+ - [GetDecimal](#getdecimal)
+ - [GetDigits](#getdigits)
+ - [GetDigitsBeforeSeparator](#getdigitsbeforeseparator)
 
 </td>
 </tr>
 </table>
+
 
 ### Enumerable Methods
 
@@ -110,29 +112,31 @@ using Zhomfr.Helpers.ScalarTypes.Strings;
 <tr valign="top">
 <td>
 
-- [CountIsBetween](#countisbetween)
-- [CountIsGreatThan](#countisgreatthan)
+ - [CountIsBetween](#countisbetween)
+ - [CountIsGreatThan](#countisgreatthan)
 
 </td>
 <td>
 
-- [CountIsGreatThanOrEqual](#countisgreatthanorequal)
-- [CountIsLessThan](#countislessthan)
+ - [CountIsGreatThanOrEqual](#countisgreatthanorequal)
+ - [CountIsLessThan](#countislessthan)
 
 </td>
 <td>
 
-- [CountIsLessThanOrEqual](#countislessthanorequal)
+ - [CountIsLessThanOrEqual](#countislessthanorequal)
 
 </td>
 </tr>
 </table>
+
 
 ## 🛠️ Features and Examples
 
 ### After
 
 Returns everything after the given value in a string, or the entire string if the value is not found.
+
 
 ```csharp
 string value = "one/two/three";
@@ -144,6 +148,7 @@ string result = value.After("/"); // two/three
 Returns everything after the last occurrence of the given value in a string, or the entire string if the value
 is not found.
 
+
 ```csharp
 string value = "one/two/three";
 string result = value.AfterLast("/"); // three
@@ -152,6 +157,7 @@ string result = value.AfterLast("/"); // three
 ### Before
 
 Returns everything before the given value in a string.
+
 
 ```csharp
 string value = "one/two/three";
@@ -162,6 +168,7 @@ string result = value.Before("/"); // one
 
 Returns everything before the last occurrence of the given value in a string.
 
+
 ```csharp
 string value = "one/two/three";
 string result = value.BeforeLast("/"); // one/two
@@ -170,6 +177,7 @@ string result = value.BeforeLast("/"); // one/two
 ### Between
 
 Returns the portion of a string between two specified values.
+
 
 ```csharp
 string value = "[hello] [world]";
@@ -180,6 +188,7 @@ string result = value.Between("[", "]"); // hello] [world
 
 Returns the smallest possible portion of a string between two specified values.
 
+
 ```csharp
 string value = "[hello] [world]";
 string result = value.BetweenFirst("[", "]"); // hello
@@ -188,6 +197,7 @@ string result = value.BetweenFirst("[", "]"); // hello
 ### BetweenLast
 
 Returns the last smallest possible portion of a string between two specified values.
+
 
 ```csharp
 string value = "[hello] [world]";
@@ -198,6 +208,7 @@ string result = value.BetweenLast("[", "]"); // world
 
 Returns the character at the specified index, or null if the index is out of bounds.
 
+
 ```csharp
 string value = "hello";
 char? result = value.CharAt(1); // e
@@ -206,6 +217,7 @@ char? result = value.CharAt(1); // e
 ### ChopEnd
 
 Removes the first occurrence of any of the specified values from the end of the string.
+
 
 ```csharp
 string value = "example.com/";
@@ -218,6 +230,7 @@ string result2 = value.ChopEnd("/", "."); // example.com
 
 Removes the first occurrence of any of the specified values from the start of the string.
 
+
 ```csharp
 string value = "https://example.com";
             
@@ -228,6 +241,7 @@ string result2 = value.ChopStart("https://", "http://"); // example.com
 ### CountIsBetween
 
 Determines whether the number of elements in the collection is within the specified range (inclusive).
+
 
 ```csharp
 public static class EnumerableStub
@@ -250,6 +264,7 @@ EnumerableStub.GetValue().CountIsGreatThan(1,2) // false
 
 Determines whether the number of elements in the collection is greater than the specified minimum value.
 
+
 ```csharp
 public static class EnumerableStub
 {
@@ -271,6 +286,7 @@ EnumerableStub.GetValue().CountIsGreatThan(4) // false
 Determines whether the number of elements in the collection is greater than or equal to the specified minimum
 value.
 
+
 ```csharp
 public static class EnumerableStub
 {
@@ -290,6 +306,7 @@ EnumerableStub.GetValue().CountIsGreatThanOrEqual(4) // false
 ### CountIsLessThan
 
 Determines whether the number of elements in the collection is less than the specified maximum value.
+
 
 ```csharp
 public static class EnumerableStub
@@ -312,6 +329,7 @@ EnumerableStub.GetValue().CountIsLessThan(4) // true
 Determines whether the number of elements in the collection is less than or equal to the specified maximum
 value.
 
+
 ```csharp
 public static class EnumerableStub
 {
@@ -333,6 +351,7 @@ EnumerableStub.GetValue().CountIsLessThanOrEqual(4) // true
 Replaces consecutive instances of the specified substring with a single instance in the string. By default,
 deduplicates spaces.
 
+
 ```csharp
 string value = "hello   world";
             
@@ -342,6 +361,7 @@ string result = value.Deduplicate(); // hello world
 ### EndWith
 
 Ends the string with a single instance of the specified value if it does not already end with it.
+
 
 ```csharp
 string value = "example";
@@ -353,6 +373,7 @@ string value = "example";
 
 Extracts an excerpt from the string that matches the first instance of the specified phrase.
 
+
 ```csharp
 string value = "The quick brown fox jumps over the lazy dog";
             
@@ -362,6 +383,7 @@ string result = value.Excerpt("fox", radius: 5); // ...own fox jump...
 ### FromBase64
 
 Decodes the given Base64 string, or returns null if the string is not a valid Base64 encoding.
+
 
 ```csharp
 string value = "SGVsbG8=";
@@ -373,6 +395,7 @@ string result = value.FromBase64(); // Hello
 
 Gets the number of digits after the decimal separator.
 
+
 ```csharp
 decimal value = 123.45m;
 int result = value.GetDigits(); // 5
@@ -381,6 +404,7 @@ int result = value.GetDigits(); // 5
 ### GetDigits
 
 Gets the total number of digits before and after the decimal separator.
+
 
 ```csharp
 decimal value = 123.45m;
@@ -391,6 +415,7 @@ int result = value.GetDigits(); // 5
 
 Gets the number of digits in the integer part of the decimal value.
 
+
 ```csharp
 decimal value = 123.45m;
 int result = value.GetDigitsBeforeSeparator(); // 3
@@ -400,6 +425,7 @@ int result = value.GetDigitsBeforeSeparator(); // 3
 
 Returns the initials of the string, optionally capitalizing them.
 
+
 ```csharp
 string value = "John Ronald Reuel Tolkien";
 string result = value.Initials(); // JRRT
@@ -408,6 +434,7 @@ string result = value.Initials(); // JRRT
 ### LcFirst
 
 Returns the string with its first character converted to lowercase.
+
 
 ```csharp
 string value = "HELLO";
@@ -420,6 +447,7 @@ string value = "HELLO";
 Truncates the string to the specified length, optionally appending a custom string to the end of the truncated
 result. Can preserve complete words at the nearest word boundary when specified.
 
+
 ```csharp
 string value = "The quick brown fox";
 string result = value.Limit(12); // The quick ...
@@ -430,6 +458,7 @@ string result = value.Limit(12); // The quick ...
 Masks a portion of a string with a repeated character, which can be used to obfuscate segments of sensitive
 strings such as email addresses and phone numbers.
 
+
 ```csharp
 string value = "john@example.com";
 string result = value.Mask(4, 4); // john*********e.com
@@ -438,6 +467,7 @@ string result = value.Mask(4, 4); // john*********e.com
 ### PadBoth
 
 Pads both sides of a string with another string until the final string reaches the specified length.
+
 
 ```csharp
 string value = "title";
@@ -448,6 +478,7 @@ string result = value.PadBoth(9, "-"); // --title--
 
 Removes the specified values from the string in a case-sensitive manner.
 
+
 ```csharp
 string value = "a-b-c";
 string result = value.Remove("-"); // abc
@@ -457,6 +488,7 @@ string result = value.Remove("-"); // abc
 
 Removes the specified values from the string in a case-insensitive manner.
 
+
 ```csharp
 string value = "Hello HELLO World";
 string result = value.RemoveIgnoreCase("hello"); // World
@@ -465,6 +497,7 @@ string result = value.RemoveIgnoreCase("hello"); // World
 ### Replace
 
 Replaces a given value in the string sequentially using an array of replacement values.
+
 
 ```csharp
 string value = "a-b-c";
@@ -476,6 +509,7 @@ string result = value.Replace("-", ["1", "2"]); // a1b2c
 Replaces the first occurrence of a specified string with another string, with an option to control case
 sensitivity.
 
+
 ```csharp
 string value = "foo foo";
 string result = value.ReplaceFirst("foo", "bar"); // bar foo
@@ -486,6 +520,7 @@ string result = value.ReplaceFirst("foo", "bar"); // bar foo
 Replaces the last occurrence of a specified string with another string, with an option to control case
 sensitivity.
 
+
 ```csharp
 string value = "foo foo";
 string result = value.ReplaceLast("foo", "bar"); // foo bar
@@ -494,6 +529,7 @@ string result = value.ReplaceLast("foo", "bar"); // foo bar
 ### ReplaceMatches
 
 Replaces all portions of a string matching a regular expression pattern with the specified replacement string.
+
 
 ```csharp
 string value = "foo123 bar456";
@@ -504,6 +540,7 @@ string result = value.ReplaceMatches(@"\d+", "#"); // foo# bar#
 
 Reverses the given string.
 
+
 ```csharp
 string value = "hello";
 string result = value.Reverse(); // olleh
@@ -512,6 +549,7 @@ string result = value.Reverse(); // olleh
 ### Squish
 
 Removes all extraneous white space from the string, including extra white space between words.
+
 
 ```csharp
 string value = "  hello   world  ";
@@ -522,6 +560,7 @@ string result = value.Squish(); // hello world
 
 Begins the string with a single instance of the specified value if it does not already start with it.
 
+
 ```csharp
 string value = "example.com";
 string result = value.StartWith("https://"); // https://example.com
@@ -530,6 +569,7 @@ string result = value.StartWith("https://"); // https://example.com
 ### SubstringCount
 
 Returns the number of occurrences of a given value in the string.
+
 
 ```csharp
 string value = "one two one";
@@ -542,6 +582,7 @@ Replaces text within a portion of a string, starting at the specified position a
 characters specified by the length. Passing 0 for the length inserts the string without replacing any existing
 characters.
 
+
 ```csharp
 string value = "hello world";
 string result = value.SubstringReplace("C#", 6, 5); // hello C#
@@ -550,6 +591,7 @@ string result = value.SubstringReplace("C#", 6, 5); // hello C#
 ### Swap
 
 Replaces multiple values in the string.
+
 
 ```csharp
 string value = "hello world";
@@ -560,6 +602,7 @@ string result = value.Swap(new() { ["hello"] = "hi", ["world"] = "there" }); // 
 
 Converts the given string to its Base64-encoded representation.
 
+
 ```csharp
 string value = "Hello";
 string result = value.ToBase64(); // SGVsbG8=
@@ -568,6 +611,7 @@ string result = value.ToBase64(); // SGVsbG8=
 ### ToCamelCase
 
 Converts the given string to camelCase.
+
 
 ```csharp
 string value = "hello_world";
@@ -578,6 +622,7 @@ string result = value.ToCamelCase(); // helloWorld
 
 Converts the string to kebab-case.
 
+
 ```csharp
 string value = "hello world";
 string result = value.ToKebabCase(); // hello-world
@@ -586,6 +631,7 @@ string result = value.ToKebabCase(); // hello-world
 ### ToPascalCase
 
 Converts the given string to PascalCase.
+
 
 ```csharp
 string value = "hello world";
@@ -596,6 +642,7 @@ string result = value.ToKebabCase(); // hello-world
 
 Converts the given string to snake_case.
 
+
 ```csharp
 string value = "helloWorld";
 string result = value.ToSnakeCase(); // hello_world
@@ -604,6 +651,7 @@ string result = value.ToSnakeCase(); // hello_world
 ### UcFirst
 
 Capitalizes the first character of the given string.
+
 
 ```csharp
 string value = "hello";
@@ -614,6 +662,7 @@ string result = value.UcFirst(); // Hello
 
 Splits the string into a list by uppercase characters.
 
+
 ```csharp
 string value = "hello";
 string result = value.UcFirst(); // Hello
@@ -623,6 +672,7 @@ string result = value.UcFirst(); // Hello
 
 Converts the first character of each word in the given string to uppercase.
 
+
 ```csharp
 string value = "hello world";
 string result = value.UcWord(); // Hello World
@@ -631,6 +681,7 @@ string result = value.UcWord(); // Hello World
 ### WordCount
 
 Returns the number of words that the string contains.
+
 
 ```csharp
 string value = "hello world";
